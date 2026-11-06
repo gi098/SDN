@@ -65,15 +65,15 @@ export default function TaskModal({ isOpen, onClose, onSubmit, initialTask }: Ta
       >
         {/* Header */}
         <div className="relative px-8 py-6 bg-slate-950/90 border-b border-white/10 overflow-hidden shrink-0">
-          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gradient-to-br from-cyan-500/20 via-indigo-500/20 to-transparent blur-[60px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gradient-to-br from-emerald-500/20 via-teal-500/20 to-transparent blur-[60px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
           
           <div className="relative z-10 flex items-center justify-between">
             <div className="flex items-center gap-3.5">
-              <div className="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+              <div className="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.3)]">
                 <CheckSquare className="w-5 h-5" />
               </div>
               <div>
-                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-400 text-[10px] font-black uppercase tracking-wider mb-1 border border-cyan-500/20">
+                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 text-[10px] font-black uppercase tracking-wider mb-1 border border-emerald-500/20">
                   <Sparkles className="w-3 h-3" />
                   NEXUS TASK
                 </div>
@@ -115,7 +115,7 @@ export default function TaskModal({ isOpen, onClose, onSubmit, initialTask }: Ta
                 placeholder={t("placeholderTitle")}
                 value={formData.title}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:bg-slate-950 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 transition-all text-sm font-medium text-white placeholder:text-slate-500"
+                className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:bg-slate-950 focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 transition-all text-sm font-medium text-white placeholder:text-slate-500"
               />
             </div>
 
@@ -129,7 +129,7 @@ export default function TaskModal({ isOpen, onClose, onSubmit, initialTask }: Ta
                 placeholder={t("placeholderDesc")}
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:bg-slate-950 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 transition-all text-sm font-medium text-white placeholder:text-slate-500 resize-none"
+                className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:bg-slate-950 focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 transition-all text-sm font-medium text-white placeholder:text-slate-500 resize-none"
               />
             </div>
 
@@ -143,7 +143,7 @@ export default function TaskModal({ isOpen, onClose, onSubmit, initialTask }: Ta
                 <select
                   value={formData.status}
                   onChange={(e) => setFormData({ ...formData, status: e.target.value as TaskStatus })}
-                  className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:outline-none focus:border-cyan-400 transition-all text-sm font-bold text-slate-200 cursor-pointer"
+                  className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:outline-none focus:border-emerald-400 transition-all text-sm font-bold text-slate-200 cursor-pointer"
                 >
                   <option value="TODO">To Do</option>
                   <option value="IN_PROGRESS">In Progress</option>
@@ -161,7 +161,7 @@ export default function TaskModal({ isOpen, onClose, onSubmit, initialTask }: Ta
                   onChange={(e) =>
                     setFormData({ ...formData, priority: e.target.value as TaskPriority })
                   }
-                  className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:outline-none focus:border-cyan-400 transition-all text-sm font-bold text-slate-200 cursor-pointer"
+                  className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:outline-none focus:border-emerald-400 transition-all text-sm font-bold text-slate-200 cursor-pointer"
                 >
                   <option value="LOW">{t("priorityLow")}</option>
                   <option value="MEDIUM">{t("priorityMedium")}</option>
@@ -179,7 +179,7 @@ export default function TaskModal({ isOpen, onClose, onSubmit, initialTask }: Ta
                     type="date"
                     value={formData.dueDate}
                     onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:outline-none focus:border-cyan-400 text-sm font-medium text-slate-200"
+                    className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:outline-none focus:border-emerald-400 text-sm font-medium text-slate-200"
                   />
                   <Calendar className="w-5 h-5 text-slate-400 absolute right-4 top-3.5 pointer-events-none" />
                 </div>

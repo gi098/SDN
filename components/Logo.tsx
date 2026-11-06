@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Zap } from "lucide-react";
 
 interface LogoProps {
   size?: "sm" | "md" | "lg" | "xl";
@@ -35,19 +34,19 @@ export default function Logo({
 
   const content = (
     <div className={`flex items-center gap-3 select-none ${className}`}>
-      {/* High-Tech Glowing Hexagonal / Cyber Cube Icon */}
+      {/* High-Tech Glowing Hexagonal / Cyber Cube Icon (Emerald & Navy) */}
       <div className="relative group shrink-0">
         <div
-          className={`${currentSize.box} relative rounded-xl bg-gradient-to-br from-cyan-500/20 via-blue-600/30 to-violet-600/20 border border-cyan-500/40 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.35)] transition-all duration-300 group-hover:scale-110 group-hover:border-cyan-400 group-hover:shadow-[0_0_25px_rgba(6,182,212,0.6)]`}
+          className={`${currentSize.box} relative rounded-xl bg-gradient-to-br from-emerald-500/20 via-teal-600/30 to-green-600/20 border border-emerald-500/40 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.35)] transition-all duration-300 group-hover:scale-110 group-hover:border-emerald-400 group-hover:shadow-[0_0_25px_rgba(16,185,129,0.6)]`}
         >
           {/* Subtle Ambient Glow behind */}
-          <div className="absolute inset-0 bg-cyan-400/20 blur-md rounded-xl" />
+          <div className="absolute inset-0 bg-emerald-400/20 blur-md rounded-xl" />
 
           {/* Futuristic Geometric Icon */}
           <svg
             viewBox="0 0 24 24"
             fill="none"
-            className={`${currentSize.icon} relative z-10 text-cyan-400 drop-shadow-[0_0_6px_rgba(6,182,212,0.8)]`}
+            className={`${currentSize.icon} relative z-10 text-emerald-400 drop-shadow-[0_0_6px_rgba(16,185,129,0.8)]`}
           >
             <path
               d="M12 2L3 7V17L12 22L21 17V7L12 2Z"
@@ -70,19 +69,19 @@ export default function Logo({
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            <circle cx="12" cy="12" r="2.5" fill="#38bdf8" />
+            <circle cx="12" cy="12" r="2.5" fill="#34d399" />
             <defs>
               <linearGradient id="nexus-grad" x1="3" y1="7" x2="21" y2="22" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#22d3ee" />
-                <stop offset="0.5" stopColor="#818cf8" />
-                <stop offset="1" stopColor="#c084fc" />
+                <stop stopColor="#34d399" />
+                <stop offset="0.5" stopColor="#10b981" />
+                <stop offset="1" stopColor="#059669" />
               </linearGradient>
             </defs>
           </svg>
         </div>
 
         {/* Mini Accent Dot */}
-        <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee] ring-2 ring-[#070a12]" />
+        <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] ring-2 ring-[#050a12]" />
       </div>
 
       {/* Brand Typography */}
@@ -90,11 +89,11 @@ export default function Logo({
         <div className={`flex ${layout === "row" ? "flex-row items-center gap-2" : "flex-col"}`}>
           <div className="flex items-center gap-1.5 leading-none">
             <span
-              className={`font-black tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent ${currentSize.text}`}
+              className={`font-black tracking-tight bg-gradient-to-r from-white via-slate-100 to-emerald-200 bg-clip-text text-transparent ${currentSize.text}`}
             >
               NEXUS
             </span>
-            <span className="text-[10px] font-black uppercase tracking-widest text-cyan-400 bg-cyan-500/10 px-1.5 py-0.5 rounded border border-cyan-500/20">
+            <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/30 shadow-[0_0_10px_rgba(16,185,129,0.2)]">
               SDN
             </span>
           </div>

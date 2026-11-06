@@ -26,7 +26,7 @@ export default function TaskListView({
       case "IN_PROGRESS":
         return {
           label: "IN PROGRESS",
-          classes: "bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 font-bold",
+          classes: "bg-teal-500/10 text-teal-300 border border-teal-500/30 font-bold",
         };
       default:
         return {
@@ -70,8 +70,8 @@ export default function TaskListView({
         return (
           <div
             key={task.id}
-            className={`bg-slate-900/80 backdrop-blur-xl rounded-2xl border p-4 sm:p-5 transition-all ${
-              isDone ? "border-white/5 opacity-70" : "border-white/10 hover:border-cyan-500/40 hover:bg-slate-900"
+            className={`bg-[#0a1222]/90 backdrop-blur-xl rounded-2xl border p-4 sm:p-5 transition-all ${
+              isDone ? "border-white/5 opacity-70" : "border-white/10 hover:border-emerald-500/40 hover:bg-[#0c1629]"
             }`}
           >
             <div className="flex items-start gap-4">
@@ -80,8 +80,8 @@ export default function TaskListView({
                 onClick={() => onToggleStatus(task)}
                 className={`w-6 h-6 rounded-lg border flex-shrink-0 mt-0.5 flex items-center justify-center transition-all ${
                   isDone
-                    ? "bg-cyan-500 border-cyan-500 text-slate-950 shadow-[0_0_10px_rgba(6,182,212,0.5)]"
-                    : "border-slate-700 hover:border-cyan-400 bg-slate-950/60"
+                    ? "bg-emerald-500 border-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,185,129,0.5)]"
+                    : "border-slate-700 hover:border-emerald-400 bg-slate-950/60"
                 }`}
                 title="Toggle status"
               >
@@ -110,7 +110,7 @@ export default function TaskListView({
                   <div className="flex items-center gap-2 text-slate-400">
                     <button
                       onClick={() => onEdit(task)}
-                      className="hover:text-cyan-400 transition-colors p-1"
+                      className="hover:text-emerald-400 transition-colors p-1"
                       title="Edit"
                     >
                       <Edit3 className="w-4 h-4" />
@@ -150,7 +150,7 @@ export default function TaskListView({
                         : "text-slate-300"
                     }`}
                   >
-                    <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+                    <Calendar className="w-3.5 h-3.5 text-emerald-400" />
                     {task.dueDate ? (
                       <span suppressHydrationWarning>
                         Due {new Date(task.dueDate).toLocaleDateString()}

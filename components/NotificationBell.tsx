@@ -43,12 +43,12 @@ export default function NotificationBell() {
                   <div
                     className={`${
                       tToast.visible ? "animate-enter" : "animate-leave"
-                    } max-w-md w-full bg-[#0c1222] text-white shadow-2xl rounded-2xl pointer-events-auto flex p-4 border border-cyan-500/30`}
+                    } max-w-md w-full bg-[#0c1222] text-white shadow-2xl rounded-2xl pointer-events-auto flex p-4 border border-emerald-500/30`}
                   >
                     <div className="flex-1 w-0">
                       <div className="flex items-start">
                         <div className="flex-shrink-0 pt-0.5">
-                          <div className="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">
+                          <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
                             <Bell className="w-4 h-4 animate-bounce" />
                           </div>
                         </div>
@@ -179,11 +179,11 @@ export default function NotificationBell() {
       case "TASK_ASSIGNED":
         return <CheckCircle className="w-4 h-4 text-emerald-400" />;
       case "TEAM_INVITATION":
-        return <UserPlus className="w-4 h-4 text-cyan-400" />;
+        return <UserPlus className="w-4 h-4 text-emerald-400" />;
       case "ROLE_UPDATED":
         return <ShieldAlert className="w-4 h-4 text-amber-400" />;
       default:
-        return <Sparkles className="w-4 h-4 text-violet-400" />;
+        return <Sparkles className="w-4 h-4 text-emerald-400" />;
     }
   };
 
@@ -198,7 +198,7 @@ export default function NotificationBell() {
       >
         <Bell className="w-4 h-4" />
         {unreadCount > 0 && (
-          <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-cyan-500 px-1 text-[9px] font-black text-slate-950 shadow-sm ring-2 ring-[#070a12] animate-pulse">
+          <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-emerald-500 px-1 text-[9px] font-black text-slate-950 shadow-sm ring-2 ring-[#070a12] animate-pulse">
             {unreadCount > 9 ? "9+" : unreadCount}
           </span>
         )}
@@ -210,7 +210,7 @@ export default function NotificationBell() {
             <div className="flex items-center gap-2">
               <h4 className="font-bold text-white text-sm">{t("notifications")}</h4>
               {unreadCount > 0 && (
-                <span className="bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-[10px] font-bold px-2 py-0.5 rounded-md">
+                <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold px-2 py-0.5 rounded-md">
                   {unreadCount} new
                 </span>
               )}
@@ -218,7 +218,7 @@ export default function NotificationBell() {
             {unreadCount > 0 && (
               <button
                 onClick={handleMarkAllRead}
-                className="text-[11px] font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1 hover:underline cursor-pointer"
+                className="text-[11px] font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1 hover:underline cursor-pointer"
               >
                 <CheckCheck className="w-3.5 h-3.5" />
                 {t("markAllRead")}
@@ -241,7 +241,7 @@ export default function NotificationBell() {
                   className={`group relative flex items-start gap-3 p-3 rounded-xl cursor-pointer transition-all pt-3 ${
                     notif.isRead
                       ? "hover:bg-white/5 opacity-75"
-                      : "bg-cyan-500/10 hover:bg-cyan-500/15 border-l-2 border-cyan-400"
+                      : "bg-emerald-500/10 hover:bg-emerald-500/15 border-l-2 border-emerald-400"
                   }`}
                 >
                   <div className="p-2 rounded-lg bg-slate-950/70 border border-white/10 shrink-0 mt-0.5">

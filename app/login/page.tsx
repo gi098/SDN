@@ -46,20 +46,20 @@ export default function LoginPage() {
         {/* Left Side: Brand Panel */}
         <div className="hidden lg:flex w-5/12 bg-slate-950/80 relative p-12 flex-col justify-between overflow-hidden border-r border-white/10">
           {/* Ambient Glowing Orbs */}
-          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-cyan-500/20 via-blue-600/20 to-transparent blur-[70px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-gradient-to-tr from-violet-600/20 to-cyan-500/10 blur-[60px] rounded-full -translate-x-1/4 translate-y-1/4 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-emerald-500/20 via-teal-600/20 to-transparent blur-[70px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-gradient-to-tr from-green-600/20 to-emerald-500/10 blur-[60px] rounded-full -translate-x-1/4 translate-y-1/4 pointer-events-none" />
           
           <div className="relative z-10">
             <Logo size="lg" subtitle="Next-Gen Task Platform" />
           </div>
 
           <div className="relative z-10 space-y-4 my-auto py-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-bold border border-cyan-500/20">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20">
               <ShieldCheck className="w-4 h-4" />
               Secure Enterprise Gateway
             </div>
             <h1 className="text-3xl xl:text-4xl font-black text-white leading-tight tracking-tight">
-              Access your <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">intelligent</span> workspace.
+              Access your <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">intelligent</span> workspace.
             </h1>
             <p className="text-slate-400 text-sm leading-relaxed">
               Real-time collaboration, task tracking, and role-based permissions powered by PostgreSQL & Supabase.
@@ -96,7 +96,7 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:bg-slate-950 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 transition-all text-sm font-medium text-white placeholder:text-slate-500"
+                  className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:bg-slate-950 focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 transition-all text-sm font-medium text-white placeholder:text-slate-500"
                   placeholder="you@example.com"
                 />
               </div>
@@ -112,7 +112,7 @@ export default function LoginPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:bg-slate-950 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 transition-all text-sm font-medium text-white placeholder:text-slate-500"
+                  className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:bg-slate-950 focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 transition-all text-sm font-medium text-white placeholder:text-slate-500"
                   placeholder="••••••••"
                 />
               </div>
@@ -120,7 +120,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3.5 mt-2 rounded-xl theme-gradient-btn text-white font-bold transition-all flex items-center justify-center gap-2 text-sm shadow-[0_0_20px_rgba(6,182,212,0.35)] disabled:opacity-50"
+                className="w-full py-3.5 mt-2 rounded-xl theme-gradient-btn text-white font-bold transition-all flex items-center justify-center gap-2 text-sm shadow-[0_0_20px_rgba(16,185,129,0.35)] disabled:opacity-50"
               >
                 {isLoading ? (
                   <Loader2 className="w-5 h-5 animate-spin" />
@@ -135,7 +135,7 @@ export default function LoginPage() {
             <div className="text-center pt-2 border-t border-white/5">
               <p className="text-xs sm:text-sm font-medium text-slate-400">
                 Don't have an account yet?{" "}
-                <Link href="/register" className="text-cyan-400 font-bold hover:underline transition-all">
+                <Link href="/register" className="text-emerald-400 font-bold hover:underline transition-all">
                   Create account
                 </Link>
               </p>

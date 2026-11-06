@@ -47,13 +47,13 @@ export default function TeamActivityLog({ teamId }: TeamActivityLogProps) {
       case "TASK_CREATED":
         return <PlusCircle className="w-4 h-4 text-emerald-400" />;
       case "TASK_STATUS_CHANGED":
-        return <CheckCircle2 className="w-4 h-4 text-cyan-400" />;
+        return <CheckCircle2 className="w-4 h-4 text-emerald-400" />;
       case "TASK_UPDATED":
-        return <Pencil className="w-4 h-4 text-indigo-400" />;
+        return <Pencil className="w-4 h-4 text-teal-400" />;
       case "TASK_DELETED":
         return <Trash2 className="w-4 h-4 text-rose-400" />;
       case "MEMBER_ADDED":
-        return <UserPlus className="w-4 h-4 text-cyan-400" />;
+        return <UserPlus className="w-4 h-4 text-emerald-400" />;
       case "ROLE_UPDATED":
         return <ShieldAlert className="w-4 h-4 text-amber-400" />;
       default:
@@ -73,7 +73,7 @@ export default function TeamActivityLog({ teamId }: TeamActivityLogProps) {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
         <div>
           <h3 className="text-lg font-bold text-white flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-cyan-400" />
+            <Sparkles className="w-5 h-5 text-emerald-400" />
             {t("auditTrail")}
           </h3>
           <p className="text-xs text-slate-400 mt-0.5">

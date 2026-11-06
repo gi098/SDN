@@ -318,7 +318,7 @@ export default function TeamDetailPage() {
       case "DONE":
         return <CheckCircle2 className="w-4 h-4 text-emerald-400" />;
       case "IN_PROGRESS":
-        return <Clock className="w-4 h-4 text-cyan-400" />;
+        return <Clock className="w-4 h-4 text-teal-400" />;
       default:
         return <CircleDashed className="w-4 h-4 text-slate-400" />;
     }
@@ -327,7 +327,7 @@ export default function TeamDetailPage() {
   if (isLoading || status === "loading") {
     return (
       <div className="flex justify-center items-center h-screen bg-[#070a12]">
-        <Loader2 className="w-10 h-10 animate-spin text-cyan-400" />
+        <Loader2 className="w-10 h-10 animate-spin text-emerald-400" />
       </div>
     );
   }
@@ -343,7 +343,7 @@ export default function TeamDetailPage() {
         draggable
         onDragStart={(e) => handleDragStart(e, task.id)}
         key={task.id}
-        className="group border border-white/10 hover:border-cyan-500/40 rounded-2xl p-5 hover:shadow-xl hover:shadow-cyan-500/10 bg-slate-900/90 flex flex-col gap-3 transition-all duration-300"
+        className="group border border-white/10 hover:border-emerald-500/40 rounded-2xl p-5 hover:shadow-xl hover:shadow-emerald-500/10 bg-slate-900/90 flex flex-col gap-3 transition-all duration-300"
       >
         {editingTaskId === task.id ? (
           /* Inline Edit Form */
@@ -351,14 +351,14 @@ export default function TeamDetailPage() {
             <input
               value={editTask.title}
               onChange={(e) => setEditTask({ ...editTask, title: e.target.value })}
-              className="w-full px-3.5 py-2 rounded-xl border border-white/10 focus:outline-none focus:border-cyan-400 text-sm font-semibold text-white bg-slate-950"
+              className="w-full px-3.5 py-2 rounded-xl border border-white/10 focus:outline-none focus:border-emerald-400 text-sm font-semibold text-white bg-slate-950"
               placeholder="Task title"
               required
             />
             <input
               value={editTask.description}
               onChange={(e) => setEditTask({ ...editTask, description: e.target.value })}
-              className="w-full px-3.5 py-2 rounded-xl border border-white/10 focus:outline-none focus:border-cyan-400 text-sm text-slate-300 bg-slate-950"
+              className="w-full px-3.5 py-2 rounded-xl border border-white/10 focus:outline-none focus:border-emerald-400 text-sm text-slate-300 bg-slate-950"
               placeholder="Description (optional)"
             />
             <div className="flex flex-wrap gap-2">
@@ -436,7 +436,7 @@ export default function TeamDetailPage() {
                             assigneeId: task.assigneeId || "",
                           });
                         }}
-                        className="text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 p-1.5 rounded-lg transition-colors"
+                        className="text-slate-400 hover:text-emerald-400 hover:bg-emerald-500/10 p-1.5 rounded-lg transition-colors"
                         title="Edit Task"
                       >
                         <Pencil className="w-3.5 h-3.5" />
@@ -475,7 +475,7 @@ export default function TeamDetailPage() {
                   <select
                     value={task.status}
                     onChange={(e) => updateTaskStatus(task.id, e.target.value)}
-                    className="pl-8 pr-6 py-1 rounded-lg border border-white/10 bg-slate-950 text-slate-300 hover:border-cyan-500/40 appearance-none transition-colors cursor-pointer text-xs font-bold"
+                    className="pl-8 pr-6 py-1 rounded-lg border border-white/10 bg-slate-950 text-slate-300 hover:border-emerald-500/40 appearance-none transition-colors cursor-pointer text-xs font-bold"
                   >
                     <option value="TODO">To Do</option>
                     <option value="IN_PROGRESS">In Progress</option>
@@ -498,8 +498,8 @@ export default function TeamDetailPage() {
 
                 {/* Assignee Badge */}
                 {task.assignee ? (
-                  <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-[10px] font-bold">
-                    <div className="w-3.5 h-3.5 rounded-full bg-cyan-500/30 flex items-center justify-center text-[8px] font-black text-cyan-300">
+                  <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold">
+                    <div className="w-3.5 h-3.5 rounded-full bg-emerald-500/30 flex items-center justify-center text-[8px] font-black text-emerald-300">
                       {task.assignee.name.charAt(0).toUpperCase()}
                     </div>
                     {task.assignee.name}
@@ -522,7 +522,7 @@ export default function TeamDetailPage() {
       {/* Back Button */}
       <Link
         href="/teams"
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-xs font-bold text-slate-400 hover:text-white hover:border-cyan-500/40 transition-all group w-fit"
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-xs font-bold text-slate-400 hover:text-white hover:border-emerald-500/40 transition-all group w-fit"
       >
         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
         All Workspaces
@@ -530,13 +530,13 @@ export default function TeamDetailPage() {
 
       {/* Hero Banner */}
       <section className="relative overflow-hidden rounded-3xl bg-slate-900/90 border border-white/10 shadow-2xl p-8 md:p-12 text-white">
-        <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-gradient-to-br from-cyan-500/20 via-blue-600/15 to-transparent blur-[70px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-gradient-to-br from-emerald-500/20 via-teal-600/15 to-transparent blur-[70px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
 
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
           <div>
             <div className="flex flex-wrap items-center gap-3 mb-3">
               {/* Workspace Badge */}
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-cyan-500/10 text-cyan-400 text-xs font-bold border border-cyan-500/20">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span className="tracking-widest uppercase text-[10px]">Team Hub</span>
               </div>
@@ -546,7 +546,7 @@ export default function TeamDetailPage() {
                 {isOwner ? (
                   <Crown className="w-3.5 h-3.5 text-amber-400" />
                 ) : isAdmin ? (
-                  <Shield className="w-3.5 h-3.5 text-cyan-400" />
+                  <Shield className="w-3.5 h-3.5 text-emerald-400" />
                 ) : (
                   <Users className="w-3.5 h-3.5 text-slate-400" />
                 )}
@@ -586,7 +586,7 @@ export default function TeamDetailPage() {
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-2 flex items-center gap-3">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-300">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-green-300">
                 {team.name}
               </span>
             </h1>
@@ -610,7 +610,7 @@ export default function TeamDetailPage() {
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
                 {t("filterTasks")}
               </p>
-              <p className="text-2xl font-black text-cyan-400">{tasks.length}</p>
+              <p className="text-2xl font-black text-emerald-400">{tasks.length}</p>
             </div>
           </div>
         </div>
@@ -674,7 +674,7 @@ export default function TeamDetailPage() {
             <div className="flex flex-col gap-4 mb-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold text-white flex items-center gap-2.5">
-                  <ListChecks className="w-5 h-5 text-cyan-400" />
+                  <ListChecks className="w-5 h-5 text-emerald-400" />
                   {t("teamTasks")}
                 </h2>
 
@@ -711,7 +711,7 @@ export default function TeamDetailPage() {
                     placeholder="Search tasks..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-9 pr-4 py-2 rounded-xl border border-white/10 focus:outline-none focus:border-cyan-400 text-xs font-medium text-white bg-slate-900 placeholder:text-slate-500"
+                    className="w-full pl-9 pr-4 py-2 rounded-xl border border-white/10 focus:outline-none focus:border-emerald-400 text-xs font-medium text-white bg-slate-900 placeholder:text-slate-500"
                   />
                 </div>
                 <select
@@ -776,7 +776,7 @@ export default function TeamDetailPage() {
                           ? "In Progress"
                           : "Done"}
                       </span>
-                      <span className="bg-slate-900 px-2 py-0.5 rounded-md text-[11px] font-bold text-cyan-400 border border-white/10">
+                      <span className="bg-slate-900 px-2 py-0.5 rounded-md text-[11px] font-bold text-emerald-400 border border-white/10">
                         {filteredTasks.filter((t) => t.status === colStatus).length}
                       </span>
                     </h3>
@@ -798,7 +798,7 @@ export default function TeamDetailPage() {
             <div className="mt-6 pt-6 border-t border-white/10">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                  <Plus className="w-4 h-4 text-cyan-400" />
+                  <Plus className="w-4 h-4 text-emerald-400" />
                   Add New Task
                 </h3>
                 <button
@@ -818,7 +818,7 @@ export default function TeamDetailPage() {
                 >
                   <div className="md:col-span-12 space-y-1">
                     <label className="block text-[10px] font-extrabold uppercase tracking-widest text-slate-400 ml-1">
-                      Task Title <span className="text-cyan-400">*</span>
+                      Task Title <span className="text-emerald-400">*</span>
                     </label>
                     <input
                       type="text"
@@ -826,7 +826,7 @@ export default function TeamDetailPage() {
                       placeholder="What needs to be done?"
                       value={newTaskTitle}
                       onChange={(e) => setNewTaskTitle(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 bg-slate-900 focus:outline-none focus:border-cyan-400 text-sm font-semibold text-white placeholder:text-slate-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 bg-slate-900 focus:outline-none focus:border-emerald-400 text-sm font-semibold text-white placeholder:text-slate-500"
                     />
                   </div>
                   <div className="md:col-span-12 space-y-1">
@@ -838,7 +838,7 @@ export default function TeamDetailPage() {
                       placeholder="Additional details..."
                       value={newTaskDesc}
                       onChange={(e) => setNewTaskDesc(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 bg-slate-900 focus:outline-none focus:border-cyan-400 text-sm text-white placeholder:text-slate-500"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 bg-slate-900 focus:outline-none focus:border-emerald-400 text-sm text-white placeholder:text-slate-500"
                     />
                   </div>
                   <div className="md:col-span-5 space-y-1">
@@ -920,21 +920,21 @@ export default function TeamDetailPage() {
             </button>
 
             <h2 className="text-xl font-bold text-white flex items-center gap-2.5 mb-5">
-              <Pencil className="w-5 h-5 text-cyan-400" />
+              <Pencil className="w-5 h-5 text-emerald-400" />
               Edit Team Settings
             </h2>
 
             <form onSubmit={handleEditTeam} className="space-y-4">
               <div>
                 <label className="block text-[10px] font-extrabold uppercase tracking-widest text-slate-400 mb-1.5 ml-1">
-                  Team Name <span className="text-cyan-400">*</span>
+                  Team Name <span className="text-emerald-400">*</span>
                 </label>
                 <input
                   type="text"
                   required
                   value={editTeamName}
                   onChange={(e) => setEditTeamName(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-slate-950/70 focus:outline-none focus:border-cyan-400 text-sm font-semibold text-white"
+                  className="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-slate-950/70 focus:outline-none focus:border-emerald-400 text-sm font-semibold text-white"
                 />
               </div>
 
@@ -946,7 +946,7 @@ export default function TeamDetailPage() {
                   rows={3}
                   value={editTeamDesc}
                   onChange={(e) => setEditTeamDesc(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-slate-950/70 focus:outline-none focus:border-cyan-400 text-sm font-medium text-white resize-none"
+                  className="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-slate-950/70 focus:outline-none focus:border-emerald-400 text-sm font-medium text-white resize-none"
                 />
               </div>
 

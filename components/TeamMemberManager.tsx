@@ -110,8 +110,8 @@ export default function TeamMemberManager({ team, currentUserId, onRefresh }: Te
         );
       case "ADMIN":
         return (
-          <span className="inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 shadow-xs min-w-[90px]">
-            <Shield className="w-3.5 h-3.5 text-cyan-400" />
+          <span className="inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 shadow-xs min-w-[90px]">
+            <Shield className="w-3.5 h-3.5 text-emerald-400" />
             ADMIN
           </span>
         );
@@ -130,7 +130,7 @@ export default function TeamMemberManager({ team, currentUserId, onRefresh }: Te
       {/* Role Permissions Summary Banner */}
       <div className="bg-slate-900/90 border border-white/10 rounded-3xl p-6 shadow-xl">
         <h4 className="font-bold text-white text-sm mb-3 flex items-center gap-2">
-          <Info className="w-4 h-4 text-cyan-400" />
+          <Info className="w-4 h-4 text-emerald-400" />
           {t("rbacMatrix")}
         </h4>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-medium">
@@ -144,10 +144,10 @@ export default function TeamMemberManager({ team, currentUserId, onRefresh }: Te
             </p>
           </div>
 
-          <div className="bg-slate-950/70 p-4 rounded-2xl border border-cyan-500/20">
+          <div className="bg-slate-950/70 p-4 rounded-2xl border border-emerald-500/20">
             <div className="flex items-center gap-2 mb-1.5">
-              <Shield className="w-4 h-4 text-cyan-400" />
-              <span className="font-bold text-cyan-300">{t("roleAdmin")}</span>
+              <Shield className="w-4 h-4 text-emerald-400" />
+              <span className="font-bold text-emerald-300">{t("roleAdmin")}</span>
             </div>
             <p className="text-slate-400 leading-relaxed">
               {t("rbacAdminDesc")}
@@ -172,11 +172,11 @@ export default function TeamMemberManager({ team, currentUserId, onRefresh }: Te
           <div className="flex items-center justify-between pb-5 border-b border-white/10">
             <div>
               <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                <UsersRound className="w-5 h-5 text-cyan-400" />
+                <UsersRound className="w-5 h-5 text-emerald-400" />
                 {t("teamRoster")} ({1 + team.members.filter((m: any) => m.userId !== team.ownerId).length})
               </h3>
               <p className="text-xs text-slate-400 mt-0.5">
-                {t("yourCurrentRole")} <span className="font-bold text-cyan-400">{currentUserRole}</span>
+                {t("yourCurrentRole")} <span className="font-bold text-emerald-400">{currentUserRole}</span>
               </p>
             </div>
           </div>
@@ -192,7 +192,7 @@ export default function TeamMemberManager({ team, currentUserId, onRefresh }: Te
                   <p className="font-bold text-white truncate flex items-center gap-2 text-sm">
                     {team.owner.name}
                     {team.owner.id === currentUserId && (
-                      <span className="text-[10px] font-bold bg-cyan-500/10 text-cyan-400 px-2 py-0.5 rounded-full border border-cyan-500/20">
+                      <span className="text-[10px] font-bold bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/20">
                         You
                       </span>
                     )}
@@ -224,7 +224,7 @@ export default function TeamMemberManager({ team, currentUserId, onRefresh }: Te
                 return (
                   <div
                     key={member.id}
-                    className="p-4 bg-slate-950/80 rounded-2xl border border-white/10 hover:border-cyan-500/30 flex items-center justify-between gap-3 transition-all"
+                    className="p-4 bg-slate-950/80 rounded-2xl border border-white/10 hover:border-emerald-500/30 flex items-center justify-between gap-3 transition-all"
                   >
                     <div className="flex items-center gap-3 min-w-0 flex-1">
                       <div className="w-10 h-10 rounded-xl bg-slate-900 text-slate-300 font-bold flex items-center justify-center text-sm border border-white/10 shrink-0">
@@ -234,7 +234,7 @@ export default function TeamMemberManager({ team, currentUserId, onRefresh }: Te
                         <p className="font-bold text-white truncate flex items-center gap-2 text-sm">
                           {member.user.name}
                           {isTargetSelf && (
-                            <span className="text-[10px] font-bold bg-cyan-500/10 text-cyan-400 px-2 py-0.5 rounded-full border border-cyan-500/20">
+                            <span className="text-[10px] font-bold bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/20">
                               You
                             </span>
                           )}
@@ -253,7 +253,7 @@ export default function TeamMemberManager({ team, currentUserId, onRefresh }: Te
                               value={member.role}
                               disabled={updatingUserId === member.userId}
                               onChange={(e) => handleRoleChange(member.userId, e.target.value)}
-                              className="px-2.5 py-1 rounded-lg border border-white/10 bg-slate-900 text-xs font-bold text-slate-200 cursor-pointer focus:outline-none focus:border-cyan-400"
+                              className="px-2.5 py-1 rounded-lg border border-white/10 bg-slate-900 text-xs font-bold text-slate-200 cursor-pointer focus:outline-none focus:border-emerald-400"
                             >
                               <option value="MEMBER">Member</option>
                               <option value="ADMIN">Admin</option>
@@ -284,7 +284,7 @@ export default function TeamMemberManager({ team, currentUserId, onRefresh }: Te
         <div className="lg:col-span-4 bg-slate-900/90 rounded-3xl border border-white/10 p-6 sm:p-7 shadow-xl h-fit">
           <div className="pb-4 border-b border-white/10 mb-4">
             <h3 className="text-base font-bold text-white flex items-center gap-2">
-              <Plus className="w-4 h-4 text-cyan-400" />
+              <Plus className="w-4 h-4 text-emerald-400" />
               {t("inviteTeammate")}
             </h3>
             <p className="text-xs text-slate-400 mt-1">
@@ -304,7 +304,7 @@ export default function TeamMemberManager({ team, currentUserId, onRefresh }: Te
                   value={newEmail}
                   onChange={(e) => setNewEmail(e.target.value)}
                   placeholder="colleague@example.com"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 bg-slate-950 text-xs font-medium text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-400"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 bg-slate-950 text-xs font-medium text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-400"
                 />
               </div>
 

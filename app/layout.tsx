@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark h-full antialiased" suppressHydrationWarning>
       <body
-        className={`${inter.className} min-h-full flex flex-col bg-[#070a12] text-slate-100 antialiased selection:bg-cyan-500 selection:text-slate-950`}
+        className={`${inter.className} min-h-full flex flex-col bg-[#060b14] text-slate-100 antialiased selection:bg-emerald-500 selection:text-slate-950`}
         suppressHydrationWarning
       >
         <Providers>
@@ -40,9 +40,9 @@ export default function RootLayout({
               position="top-right"
               toastOptions={{
                 style: {
-                  background: "#0f172a",
+                  background: "#0a1324",
                   color: "#f8fafc",
-                  border: "1px solid rgba(255, 255, 255, 0.1)",
+                  border: "1px solid rgba(16, 185, 129, 0.25)",
                   borderRadius: "1rem",
                 },
               }}

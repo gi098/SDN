@@ -15,7 +15,7 @@ export default function AnimatedPlanet() {
       duration: Math.random() * 4 + 3,
       delay: Math.random() * 4,
       opacity: Math.random() * 0.6 + 0.3,
-      color: Math.random() > 0.5 ? "rgba(6,182,212,0.8)" : "rgba(139,92,246,0.8)",
+      color: Math.random() > 0.5 ? "rgba(16,185,129,0.8)" : "rgba(52,211,153,0.8)",
     }));
     setParticles(generated);
     setMounted(true);
@@ -39,8 +39,8 @@ export default function AnimatedPlanet() {
           50% { transform: translate(12px, -20px) scale(1.3); }
         }
         @keyframes core-pulse {
-          0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(6,182,212,0.6), inset 0 0 25px rgba(139,92,246,0.6); }
-          50% { transform: scale(1.08); box-shadow: 0 0 70px rgba(6,182,212,0.9), inset 0 0 40px rgba(139,92,246,0.9); }
+          0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(16,185,129,0.6), inset 0 0 25px rgba(5,150,105,0.6); }
+          50% { transform: scale(1.08); box-shadow: 0 0 70px rgba(16,185,129,0.9), inset 0 0 40px rgba(5,150,105,0.9); }
         }
       `}</style>
 
@@ -66,23 +66,23 @@ export default function AnimatedPlanet() {
 
       {/* Central Holographic Quantum Core */}
       <div 
-        className="absolute w-[120px] h-[120px] rounded-full bg-gradient-to-br from-cyan-400 via-indigo-600 to-violet-700 z-10 flex items-center justify-center border-2 border-cyan-300/40" 
+        className="absolute w-[120px] h-[120px] rounded-full bg-gradient-to-br from-emerald-400 via-teal-600 to-emerald-900 z-10 flex items-center justify-center border-2 border-emerald-300/40" 
         style={{ animation: "core-pulse 3.5s ease-in-out infinite" }}
       >
-        <div className="w-[70px] h-[70px] rounded-full bg-slate-950/70 backdrop-blur-sm flex items-center justify-center border border-cyan-400/50">
-          <div className="w-5 h-5 rounded-full bg-cyan-300 shadow-[0_0_15px_#22d3ee]" />
+        <div className="w-[70px] h-[70px] rounded-full bg-slate-950/70 backdrop-blur-sm flex items-center justify-center border border-emerald-400/50">
+          <div className="w-5 h-5 rounded-full bg-emerald-300 shadow-[0_0_15px_#34d399]" />
         </div>
       </div>
 
-      {/* Gyroscopic Cyan Ring */}
+      {/* Gyroscopic Emerald Ring */}
       <div 
-        className="absolute w-[210px] h-[210px] rounded-full border-[2.5px] border-cyan-400/80 shadow-[0_0_20px_rgba(6,182,212,0.7),inset_0_0_15px_rgba(6,182,212,0.7)] z-20"
+        className="absolute w-[210px] h-[210px] rounded-full border-[2.5px] border-emerald-400/80 shadow-[0_0_20px_rgba(16,185,129,0.7),inset_0_0_15px_rgba(16,185,129,0.7)] z-20"
         style={{ animation: "cyber-orbit-1 9s linear infinite" }}
       />
       
-      {/* Gyroscopic Violet Ring */}
+      {/* Gyroscopic Mint/Teal Ring */}
       <div 
-        className="absolute w-[260px] h-[260px] rounded-full border-[2px] border-violet-400/70 shadow-[0_0_25px_rgba(139,92,246,0.6),inset_0_0_20px_rgba(139,92,246,0.6)] z-20"
+        className="absolute w-[260px] h-[260px] rounded-full border-[2px] border-teal-300/70 shadow-[0_0_25px_rgba(20,184,166,0.6),inset_0_0_20px_rgba(20,184,166,0.6)] z-20"
         style={{ animation: "cyber-orbit-2 13s linear infinite" }}
       />
     </div>

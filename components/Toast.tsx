@@ -42,21 +42,21 @@ function ToastItem({
   }, [toast.id, onDismiss]);
 
   const icons = {
-    success: <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />,
-    error: <AlertCircle className="w-5 h-5 text-rose-500 shrink-0" />,
-    info: <Info className="w-5 h-5 text-primary-500 shrink-0" />,
+    success: <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />,
+    error: <AlertCircle className="w-5 h-5 text-rose-400 shrink-0" />,
+    info: <Info className="w-5 h-5 text-emerald-400 shrink-0" />,
   };
 
   const borderStyles = {
-    success: "border-emerald-200 bg-white/95 text-slate-800 shadow-emerald-500/10",
-    error: "border-rose-200 bg-white/95 text-slate-800 shadow-rose-500/10",
-    info: "border-primary-200 bg-white/95 text-slate-800 shadow-primary-500/10",
+    success: "border-emerald-500/30 bg-[#0a1222]/95 text-white shadow-2xl shadow-emerald-500/10",
+    error: "border-rose-500/30 bg-[#0a1222]/95 text-white shadow-2xl shadow-rose-500/10",
+    info: "border-emerald-500/30 bg-[#0a1222]/95 text-white shadow-2xl shadow-emerald-500/10",
   };
 
   const badgeStyles = {
-    success: "bg-emerald-50 text-emerald-700 border-emerald-200",
-    error: "bg-rose-50 text-rose-700 border-rose-200",
-    info: "bg-primary-50 text-primary-700 border-primary-200",
+    success: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
+    error: "bg-rose-500/15 text-rose-400 border-rose-500/30",
+    info: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
   };
 
   return (
@@ -69,7 +69,7 @@ function ToastItem({
       <div className="mt-0.5">{icons[toast.type]}</div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <p className="text-sm font-bold text-slate-900">{toast.title}</p>
+          <p className="text-sm font-bold text-white">{toast.title}</p>
           <span
             className={`text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded-full border ${
               badgeStyles[toast.type]
@@ -79,14 +79,14 @@ function ToastItem({
           </span>
         </div>
         {toast.description && (
-          <p className="text-xs text-slate-600 mt-0.5 line-clamp-2 leading-relaxed">
+          <p className="text-xs text-slate-300 mt-0.5 line-clamp-2 leading-relaxed">
             {toast.description}
           </p>
         )}
       </div>
       <button
         onClick={() => onDismiss(toast.id)}
-        className="text-slate-400 hover:text-slate-600 p-1 rounded-lg hover:bg-slate-100 transition-colors"
+        className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors"
         aria-label="Close notification"
       >
         <X className="w-4 h-4" />

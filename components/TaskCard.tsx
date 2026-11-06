@@ -27,19 +27,19 @@ export default function TaskCard({ task, onEdit, onDelete, onToggleStatus }: Tas
       case "IN_PROGRESS":
         return {
           label: "In Progress",
-          dotColor: "bg-cyan-400 shadow-[0_0_8px_#22d3ee] animate-pulse",
+          dotColor: "bg-teal-400 shadow-[0_0_8px_#2dd4bf] animate-pulse",
           accentLine: "card-accent-in-progress",
-          cardBorder: "hover:border-cyan-500/50 hover:shadow-[0_8px_30px_-5px_rgba(6,182,212,0.25)]",
-          icon: <Clock className="w-3.5 h-3.5 text-cyan-400" />,
+          cardBorder: "hover:border-teal-500/50 hover:shadow-[0_8px_30px_-5px_rgba(20,184,166,0.25)]",
+          icon: <Clock className="w-3.5 h-3.5 text-teal-400" />,
           classes:
-            "bg-cyan-500/10 text-cyan-400 border-cyan-500/30 hover:bg-cyan-500/20",
+            "bg-teal-500/10 text-teal-300 border-teal-500/30 hover:bg-teal-500/20",
         };
       default:
         return {
           label: "To Do",
           dotColor: "bg-slate-400",
           accentLine: "card-accent-todo",
-          cardBorder: "hover:border-violet-500/50 hover:shadow-[0_8px_30px_-5px_rgba(139,92,246,0.25)]",
+          cardBorder: "hover:border-emerald-500/40 hover:shadow-[0_8px_30px_-5px_rgba(16,185,129,0.2)]",
           icon: <Circle className="w-3.5 h-3.5 text-slate-400" />,
           classes:
             "bg-slate-800/80 text-slate-300 border-white/10 hover:bg-slate-800",
@@ -80,7 +80,7 @@ export default function TaskCard({ task, onEdit, onDelete, onToggleStatus }: Tas
 
   return (
     <div
-      className={`group relative bg-slate-900/80 backdrop-blur-xl rounded-2xl border border-white/10 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden ${statusBadge.cardBorder}`}
+      className={`group relative bg-[#0a1222]/90 backdrop-blur-xl rounded-2xl border border-white/10 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden ${statusBadge.cardBorder}`}
     >
       {/* Top Colorful Accent Line */}
       <div className={`h-1 w-full ${statusBadge.accentLine}`} />
@@ -116,7 +116,7 @@ export default function TaskCard({ task, onEdit, onDelete, onToggleStatus }: Tas
           <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity -mt-1 -mr-1">
             <button
               onClick={() => onEdit(task)}
-              className="p-1.5 text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 rounded-lg transition-colors"
+              className="p-1.5 text-slate-400 hover:text-emerald-400 hover:bg-emerald-500/10 rounded-lg transition-colors"
               title="Edit Task"
             >
               <Edit3 className="w-3.5 h-3.5" />
@@ -136,7 +136,7 @@ export default function TaskCard({ task, onEdit, onDelete, onToggleStatus }: Tas
           className={`font-bold text-sm sm:text-base leading-snug mb-2 transition-colors line-clamp-2 ${
             task.status === "DONE"
               ? "line-through text-slate-500"
-              : "text-slate-100 group-hover:text-cyan-300"
+              : "text-slate-100 group-hover:text-emerald-300"
           }`}
         >
           {task.title}
@@ -151,9 +151,9 @@ export default function TaskCard({ task, onEdit, onDelete, onToggleStatus }: Tas
       </div>
 
       {/* Due date & footer info */}
-      <div className="px-4 py-2.5 border-t border-white/5 bg-slate-950/60 flex items-center justify-between text-[11px] text-slate-400 mt-auto">
+      <div className="px-4 py-2.5 border-t border-white/5 bg-[#060b14]/80 flex items-center justify-between text-[11px] text-slate-400 mt-auto">
         <div className="flex items-center gap-1.5">
-          <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+          <Calendar className="w-3.5 h-3.5 text-emerald-400" />
           {task.dueDate ? (
             <span
               suppressHydrationWarning

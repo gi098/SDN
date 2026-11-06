@@ -257,7 +257,7 @@ export default function TeamChat({ teamId, teamName }: TeamChatProps) {
       {/* Chat Header */}
       <div className="px-6 py-4 border-b border-white/10 bg-slate-950/80 backdrop-blur-md flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 flex items-center justify-center font-bold shadow-sm">
+          <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center font-bold shadow-sm">
             💬
           </div>
           <div>
@@ -281,11 +281,11 @@ export default function TeamChat({ teamId, teamName }: TeamChatProps) {
       <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-950/50">
         {isLoading ? (
           <div className="flex items-center justify-center h-full">
-            <Loader2 className="w-8 h-8 animate-spin text-cyan-400" />
+            <Loader2 className="w-8 h-8 animate-spin text-emerald-400" />
           </div>
         ) : messages.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center text-slate-500 p-8">
-            <div className="w-16 h-16 rounded-2xl bg-slate-900 border border-white/10 flex items-center justify-center mb-3 text-cyan-400">
+            <div className="w-16 h-16 rounded-2xl bg-slate-900 border border-white/10 flex items-center justify-center mb-3 text-emerald-400">
               <Sparkles className="w-7 h-7" />
             </div>
             <p className="font-bold text-slate-300 text-sm">{t("noMessagesYet")}</p>
@@ -303,7 +303,7 @@ export default function TeamChat({ teamId, teamName }: TeamChatProps) {
               >
                 {!isMe && (
                   <div
-                    className="w-8 h-8 rounded-xl bg-slate-800 text-cyan-400 font-extrabold flex items-center justify-center text-xs shrink-0 shadow-sm border border-white/10"
+                    className="w-8 h-8 rounded-xl bg-slate-800 text-emerald-400 font-extrabold flex items-center justify-center text-xs shrink-0 shadow-sm border border-white/10"
                     title={msg.sender?.name || "Member"}
                   >
                     {msg.sender?.name?.charAt(0).toUpperCase() || "M"}
@@ -326,7 +326,7 @@ export default function TeamChat({ teamId, teamName }: TeamChatProps) {
                   <div
                     className={`rounded-2xl px-4 py-2.5 text-sm font-medium shadow-sm transition-all ${
                       isMe
-                        ? "theme-gradient-btn text-white rounded-tr-none shadow-[0_0_15px_rgba(6,182,212,0.25)]"
+                        ? "theme-gradient-btn text-white rounded-tr-none shadow-[0_0_15px_rgba(16,185,129,0.25)]"
                         : "bg-slate-900 text-slate-100 border border-white/10 rounded-tl-none"
                     }`}
                   >
@@ -351,7 +351,7 @@ export default function TeamChat({ teamId, teamName }: TeamChatProps) {
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 p-2 bg-black/30 rounded-xl text-xs hover:bg-black/40 transition-colors text-white"
                           >
-                            <Paperclip className="w-4 h-4 text-cyan-400" />
+                            <Paperclip className="w-4 h-4 text-emerald-400" />
                             <span className="truncate max-w-[180px] font-bold">
                               {msg.fileName || "Download file"}
                             </span>
@@ -371,11 +371,11 @@ export default function TeamChat({ teamId, teamName }: TeamChatProps) {
 
       {/* Typing Indicator Bar */}
       {activeTypers.length > 0 && (
-        <div className="px-6 py-1.5 bg-slate-950 border-t border-white/5 text-[11px] font-semibold text-cyan-400 flex items-center gap-2 animate-pulse">
+        <div className="px-6 py-1.5 bg-slate-950 border-t border-white/5 text-[11px] font-semibold text-emerald-400 flex items-center gap-2 animate-pulse">
           <div className="flex gap-1">
-            <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce"></span>
-            <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
-            <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
+            <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce"></span>
+            <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
+            <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
           </div>
           <span>
             {activeTypers.join(", ")} {activeTypers.length > 1 ? t("severalTyping") : t("typing")}
@@ -387,7 +387,7 @@ export default function TeamChat({ teamId, teamName }: TeamChatProps) {
       {attachment && (
         <div className="px-6 py-2 bg-slate-950 border-t border-white/10 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Paperclip className="w-4 h-4 text-cyan-400" />
+            <Paperclip className="w-4 h-4 text-emerald-400" />
             <span className="text-xs font-bold text-slate-300 truncate max-w-xs">{attachment.name}</span>
           </div>
           <button
@@ -416,7 +416,7 @@ export default function TeamChat({ teamId, teamName }: TeamChatProps) {
           className="p-2.5 rounded-xl border border-white/10 bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer disabled:opacity-50"
           title="Attach image or file"
         >
-          {isUploading ? <Loader2 className="w-4 h-4 animate-spin text-cyan-400" /> : <ImageIcon className="w-4 h-4" />}
+          {isUploading ? <Loader2 className="w-4 h-4 animate-spin text-emerald-400" /> : <ImageIcon className="w-4 h-4" />}
         </button>
 
         <input
@@ -424,7 +424,7 @@ export default function TeamChat({ teamId, teamName }: TeamChatProps) {
           value={inputText}
           onChange={handleInputChange}
           placeholder={t("chatPlaceholder")}
-          className="flex-1 px-4 py-2.5 rounded-xl border border-white/10 bg-slate-900 focus:outline-none focus:border-cyan-400 text-sm font-medium text-white placeholder:text-slate-500 transition-all"
+          className="flex-1 px-4 py-2.5 rounded-xl border border-white/10 bg-slate-900 focus:outline-none focus:border-emerald-400 text-sm font-medium text-white placeholder:text-slate-500 transition-all"
         />
 
         <button
