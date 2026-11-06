@@ -5,8 +5,8 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import { Loader2, ArrowRight } from "lucide-react";
-import AnimatedPlanet from "@/components/AnimatedPlanet";
+import { Loader2, ArrowRight, ShieldCheck, Zap } from "lucide-react";
+import Logo from "@/components/Logo";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -26,13 +26,13 @@ export default function LoginPage() {
       });
 
       if (res?.error) {
-        toast.error("Invalid credentials");
+        toast.error("Invalid email or password");
       } else {
-        toast.success("Logged in successfully");
-        router.push("/dashboard");
+        toast.success("Welcome back!");
+        router.push("/teams");
         router.refresh();
       }
-    } catch (error) {
+    } catch {
       toast.error("Something went wrong");
     } finally {
       setIsLoading(false);
@@ -40,72 +40,79 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-[90vh] flex items-stretch bg-slate-50/50 p-4 lg:p-8">
-      <div className="w-full max-w-6xl mx-auto flex rounded-[2.5rem] bg-white shadow-2xl overflow-hidden border border-slate-200/60">
+    <div className="min-h-[85vh] flex items-center justify-center p-4 sm:p-6 lg:p-8">
+      <div className="w-full max-w-5xl flex flex-col lg:flex-row rounded-3xl bg-[#0c1222]/90 backdrop-blur-2xl shadow-[0_25px_70px_-15px_rgba(0,0,0,0.8)] overflow-hidden border border-white/10">
+        
         {/* Left Side: Brand Panel */}
-        <div className="hidden lg:flex w-5/12 bg-slate-900 relative p-12 flex-col justify-center overflow-hidden">
-          {/* Decorative Orbs */}
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-primary-500/40 via-secondary-500/30 to-secondary-500/10 blur-[80px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-primary-500/30 to-secondary-500/10 blur-[60px] rounded-full -translate-x-1/4 translate-y-1/4 pointer-events-none" />
+        <div className="hidden lg:flex w-5/12 bg-slate-950/80 relative p-12 flex-col justify-between overflow-hidden border-r border-white/10">
+          {/* Ambient Glowing Orbs */}
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-cyan-500/20 via-blue-600/20 to-transparent blur-[70px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-gradient-to-tr from-violet-600/20 to-cyan-500/10 blur-[60px] rounded-full -translate-x-1/4 translate-y-1/4 pointer-events-none" />
           
-          {/* Content */}
-          <div className="relative z-10 space-y-2 flex flex-col items-center text-center">
-            <h1 className="text-4xl xl:text-5xl font-black text-white leading-[1.1] tracking-tight mb-4">
-              Welcome to{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-300">
-                AuraSync
-              </span>
+          <div className="relative z-10">
+            <Logo size="lg" subtitle="Next-Gen Task Platform" />
+          </div>
+
+          <div className="relative z-10 space-y-4 my-auto py-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-bold border border-cyan-500/20">
+              <ShieldCheck className="w-4 h-4" />
+              Secure Enterprise Gateway
+            </div>
+            <h1 className="text-3xl xl:text-4xl font-black text-white leading-tight tracking-tight">
+              Access your <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">intelligent</span> workspace.
             </h1>
-            <AnimatedPlanet />
+            <p className="text-slate-400 text-sm leading-relaxed">
+              Real-time collaboration, task tracking, and role-based permissions powered by PostgreSQL & Supabase.
+            </p>
+          </div>
+
+          <div className="relative z-10 text-xs text-slate-500 font-mono">
+            NEXUS OS · VERSION 2.0
           </div>
         </div>
 
         {/* Right Side: Form Panel */}
-        <div className="w-full lg:w-7/12 flex items-center justify-center p-8 lg:p-16 relative bg-white">
-          <div className="w-full max-w-md space-y-8 relative z-10">
+        <div className="w-full lg:w-7/12 flex items-center justify-center p-8 sm:p-12 lg:p-16 relative">
+          <div className="w-full max-w-md space-y-7 relative z-10">
             
-            {/* Mobile Only Heading */}
-            <div className="text-center space-y-2 lg:hidden">
-              <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-slate-50 rounded-full border border-slate-100">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/mascot-bunny-nobg.png" alt="Snow Bunny" width={56} height={56} className="mascot-bunny-img object-contain" />
+            {/* Header */}
+            <div>
+              <div className="lg:hidden mb-6">
+                <Logo size="md" />
               </div>
-              <h2 className="text-3xl font-black text-slate-900 tracking-tight">Sign In</h2>
-              <p className="text-sm text-slate-500 font-medium max-w-sm mx-auto">
-                Enter your details to access your workspace.
+              <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">Sign In</h2>
+              <p className="text-xs sm:text-sm text-slate-400 mt-1">
+                Enter your credentials to manage tasks and workspaces.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5 lg:mt-0">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider ml-1">Email Address</label>
+                <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider ml-1">
+                  Email Address
+                </label>
                 <input
                   type="email"
-                  name="email"
-                  id="email"
-                  autoComplete="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-5 py-3.5 rounded-2xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all text-sm font-medium text-slate-900 placeholder:text-slate-400"
+                  className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:bg-slate-950 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 transition-all text-sm font-medium text-white placeholder:text-slate-500"
                   placeholder="you@example.com"
                 />
               </div>
 
               <div className="space-y-1.5">
                 <div className="flex justify-between items-center ml-1">
-                  <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Password</label>
-                  <Link href="#" className="text-[11px] font-bold text-primary-500 hover:text-primary-600">Forgot password?</Link>
+                  <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                    Password
+                  </label>
                 </div>
                 <input
                   type="password"
-                  name="password"
-                  id="password"
-                  autoComplete="current-password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-5 py-3.5 rounded-2xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all text-sm font-medium text-slate-900 placeholder:text-slate-400"
+                  className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:bg-slate-950 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 transition-all text-sm font-medium text-white placeholder:text-slate-500"
                   placeholder="••••••••"
                 />
               </div>
@@ -113,7 +120,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-4 mt-2 rounded-2xl bg-primary-500 hover:bg-primary-600 text-white font-bold shadow-xl shadow-primary-500/20 hover:shadow-primary-500/30 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:pointer-events-none text-sm"
+                className="w-full py-3.5 mt-2 rounded-xl theme-gradient-btn text-white font-bold transition-all flex items-center justify-center gap-2 text-sm shadow-[0_0_20px_rgba(6,182,212,0.35)] disabled:opacity-50"
               >
                 {isLoading ? (
                   <Loader2 className="w-5 h-5 animate-spin" />
@@ -125,10 +132,10 @@ export default function LoginPage() {
               </button>
             </form>
 
-            <div className="text-center pt-4">
-              <p className="text-sm font-medium text-slate-500">
-                Don't have an account?{" "}
-                <Link href="/register" className="text-primary-600 font-bold hover:text-primary-500 transition-colors">
+            <div className="text-center pt-2 border-t border-white/5">
+              <p className="text-xs sm:text-sm font-medium text-slate-400">
+                Don't have an account yet?{" "}
+                <Link href="/register" className="text-cyan-400 font-bold hover:underline transition-all">
                   Create account
                 </Link>
               </p>

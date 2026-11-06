@@ -7,16 +7,15 @@ export default function AnimatedPlanet() {
   const [particles, setParticles] = useState<any[]>([]);
 
   useEffect(() => {
-    // Generate particles on client to avoid hydration mismatch
-    const generated = Array.from({ length: 60 }).map((_, i) => ({
+    const generated = Array.from({ length: 45 }).map((_, i) => ({
       id: i,
-      size: Math.random() * 6 + 2,
+      size: Math.random() * 4 + 2,
       top: Math.random() * 100,
       left: Math.random() * 100,
-      duration: Math.random() * 5 + 3,
-      delay: Math.random() * 5,
-      opacity: Math.random() * 0.5 + 0.4,
-      color: Math.random() > 0.6 ? 'bg-secondary-300' : Math.random() > 0.5 ? 'bg-secondary-300' : 'bg-white',
+      duration: Math.random() * 4 + 3,
+      delay: Math.random() * 4,
+      opacity: Math.random() * 0.6 + 0.3,
+      color: Math.random() > 0.5 ? "rgba(6,182,212,0.8)" : "rgba(139,92,246,0.8)",
     }));
     setParticles(generated);
     setMounted(true);
@@ -25,41 +24,39 @@ export default function AnimatedPlanet() {
   if (!mounted) return null;
 
   return (
-    <div className="relative w-full h-[320px] flex items-center justify-center [perspective:1200px] my-6">
+    <div className="relative w-full h-[300px] flex items-center justify-center [perspective:1200px] my-4">
       <style>{`
-        @keyframes planet-spin {
+        @keyframes cyber-orbit-1 {
           from { transform: rotateX(75deg) rotateY(20deg) rotateZ(0deg); }
           to { transform: rotateX(75deg) rotateY(20deg) rotateZ(360deg); }
         }
-        @keyframes planet-spin-reverse {
+        @keyframes cyber-orbit-2 {
           from { transform: rotateX(65deg) rotateY(-25deg) rotateZ(0deg); }
           to { transform: rotateX(65deg) rotateY(-25deg) rotateZ(-360deg); }
         }
         @keyframes float-particle {
           0%, 100% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(15px, -25px) scale(1.2); }
+          50% { transform: translate(12px, -20px) scale(1.3); }
         }
-        @keyframes glow-pulse {
-          0%, 100% { box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1), 0 0 40px rgba(255,255,255,0.6); }
-          50% { box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1), 0 0 60px rgba(255,255,255,0.9); }
-        }
-        @keyframes float-bunny {
-          0%, 100% { transform: translateY(5px) scale(1.05); }
-          50% { transform: translateY(-5px) scale(1.1); }
+        @keyframes core-pulse {
+          0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(6,182,212,0.6), inset 0 0 25px rgba(139,92,246,0.6); }
+          50% { transform: scale(1.08); box-shadow: 0 0 70px rgba(6,182,212,0.9), inset 0 0 40px rgba(139,92,246,0.9); }
         }
       `}</style>
 
-      {/* Floating Particles */}
+      {/* Floating Cyber Particles */}
       <div className="absolute inset-0 z-0">
         {particles.map((p) => (
           <div
             key={p.id}
-            className={`absolute rounded-full shadow-[0_0_12px_currentColor] text-transparent ${p.color}`}
+            className="absolute rounded-full"
             style={{
               width: `${p.size}px`,
               height: `${p.size}px`,
               top: `${p.top}%`,
               left: `${p.left}%`,
+              backgroundColor: p.color,
+              boxShadow: `0 0 8px ${p.color}`,
               opacity: p.opacity,
               animation: `float-particle ${p.duration}s ease-in-out infinite ${p.delay}s`,
             }}
@@ -67,30 +64,26 @@ export default function AnimatedPlanet() {
         ))}
       </div>
 
-      {/* The Central Glowing Planet with Bunny (Snow Globe Effect) */}
+      {/* Central Holographic Quantum Core */}
       <div 
-        className="absolute w-[130px] h-[130px] rounded-full bg-white z-10 flex items-center justify-center overflow-hidden border-2 border-white/50" 
-        style={{ animation: 'glow-pulse 4s ease-in-out infinite' }}
+        className="absolute w-[120px] h-[120px] rounded-full bg-gradient-to-br from-cyan-400 via-indigo-600 to-violet-700 z-10 flex items-center justify-center border-2 border-cyan-300/40" 
+        style={{ animation: "core-pulse 3.5s ease-in-out infinite" }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img 
-          src="/mascot-bunny-nobg.png" 
-          alt="3D Bunny Mascot" 
-          className="mascot-bunny-img w-[85%] h-[85%] object-contain object-center drop-shadow-md"
-          style={{ animation: 'float-bunny 5s ease-in-out infinite' }}
-        />
+        <div className="w-[70px] h-[70px] rounded-full bg-slate-950/70 backdrop-blur-sm flex items-center justify-center border border-cyan-400/50">
+          <div className="w-5 h-5 rounded-full bg-cyan-300 shadow-[0_0_15px_#22d3ee]" />
+        </div>
       </div>
 
-      {/* The Cyan Ring */}
+      {/* Gyroscopic Cyan Ring */}
       <div 
-        className="absolute w-[220px] h-[220px] rounded-full border-[3px] border-secondary-400/90 shadow-[0_0_20px_rgba(34,211,238,0.8),inset_0_0_20px_rgba(34,211,238,0.8)] z-20"
-        style={{ animation: 'planet-spin 10s linear infinite' }}
+        className="absolute w-[210px] h-[210px] rounded-full border-[2.5px] border-cyan-400/80 shadow-[0_0_20px_rgba(6,182,212,0.7),inset_0_0_15px_rgba(6,182,212,0.7)] z-20"
+        style={{ animation: "cyber-orbit-1 9s linear infinite" }}
       />
       
-      {/* The Purple Ring */}
+      {/* Gyroscopic Violet Ring */}
       <div 
-        className="absolute w-[270px] h-[270px] rounded-full border-[2px] border-secondary-400/70 shadow-[0_0_20px_rgba(232,121,249,0.6),inset_0_0_20px_rgba(232,121,249,0.6)] z-20"
-        style={{ animation: 'planet-spin-reverse 15s linear infinite' }}
+        className="absolute w-[260px] h-[260px] rounded-full border-[2px] border-violet-400/70 shadow-[0_0_25px_rgba(139,92,246,0.6),inset_0_0_20px_rgba(139,92,246,0.6)] z-20"
+        style={{ animation: "cyber-orbit-2 13s linear infinite" }}
       />
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PlusCircle, CheckCircle2, Pencil, Trash2, UserPlus, ShieldAlert, Settings, Clock, Loader2, Sparkles, Filter } from "lucide-react";
+import { PlusCircle, CheckCircle2, Pencil, Trash2, UserPlus, ShieldAlert, Settings, Sparkles } from "lucide-react";
 import { useRealtimeSubscription } from "@/lib/realtimeClient";
 import { useLanguage } from "@/lib/languageContext";
 
@@ -33,7 +33,6 @@ export default function TeamActivityLog({ teamId }: TeamActivityLogProps) {
     if (teamId) fetchLogs();
   }, [teamId]);
 
-  // Real-time activity updates
   useRealtimeSubscription({
     channel: `team-${teamId}`,
     onEvent: (event, data) => {
@@ -46,19 +45,19 @@ export default function TeamActivityLog({ teamId }: TeamActivityLogProps) {
   const getActionIcon = (action: string) => {
     switch (action) {
       case "TASK_CREATED":
-        return <PlusCircle className="w-4 h-4 text-emerald-500" />;
+        return <PlusCircle className="w-4 h-4 text-emerald-400" />;
       case "TASK_STATUS_CHANGED":
-        return <CheckCircle2 className="w-4 h-4 text-primary-500" />;
+        return <CheckCircle2 className="w-4 h-4 text-cyan-400" />;
       case "TASK_UPDATED":
-        return <Pencil className="w-4 h-4 text-indigo-500" />;
+        return <Pencil className="w-4 h-4 text-indigo-400" />;
       case "TASK_DELETED":
-        return <Trash2 className="w-4 h-4 text-rose-500" />;
+        return <Trash2 className="w-4 h-4 text-rose-400" />;
       case "MEMBER_ADDED":
-        return <UserPlus className="w-4 h-4 text-blue-500" />;
+        return <UserPlus className="w-4 h-4 text-cyan-400" />;
       case "ROLE_UPDATED":
-        return <ShieldAlert className="w-4 h-4 text-amber-500" />;
+        return <ShieldAlert className="w-4 h-4 text-amber-400" />;
       default:
-        return <Settings className="w-4 h-4 text-slate-500" />;
+        return <Settings className="w-4 h-4 text-slate-400" />;
     }
   };
 
@@ -70,14 +69,14 @@ export default function TeamActivityLog({ teamId }: TeamActivityLogProps) {
   });
 
   return (
-    <div className="bg-white rounded-[2.5rem] border border-slate-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.04)] p-8">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+    <div className="bg-slate-900/90 rounded-3xl border border-white/10 shadow-2xl p-6 sm:p-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
         <div>
-          <h3 className="text-xl font-extrabold text-slate-900 flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-primary-500" />
+          <h3 className="text-lg font-bold text-white flex items-center gap-2">
+            <Sparkles className="w-5 h-5 text-cyan-400" />
             {t("auditTrail")}
           </h3>
-          <p className="text-xs font-medium text-slate-500 mt-1">
+          <p className="text-xs text-slate-400 mt-0.5">
             {t("auditLogSubtitle")}
           </p>
         </div>
@@ -87,10 +86,10 @@ export default function TeamActivityLog({ teamId }: TeamActivityLogProps) {
             <button
               key={opt}
               onClick={() => setFilter(opt)}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 filter === opt
-                  ? "bg-slate-900 text-white shadow-xs"
-                  : "bg-slate-100 text-slate-600 hover:bg-slate-200/80"
+                  ? "theme-gradient-btn text-white shadow-sm"
+                  : "bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-750"
               }`}
             >
               {opt === "ALL" ? t("filterAll") : opt === "TASKS" ? t("filterTasks") : t("filterMembers")}
@@ -99,42 +98,30 @@ export default function TeamActivityLog({ teamId }: TeamActivityLogProps) {
         </div>
       </div>
 
-      <div className="mt-6">
+      <div className="mt-6 space-y-3">
         {isLoading ? (
-          <div className="py-16 flex items-center justify-center">
-            <Loader2 className="w-8 h-8 animate-spin text-primary-500" />
-          </div>
+          <div className="py-12 text-center text-slate-500 text-xs">Loading activity stream...</div>
         ) : filteredLogs.length === 0 ? (
-          <div className="py-16 text-center text-slate-400">
-            <Clock className="w-10 h-10 mx-auto mb-2 opacity-30" />
-            <p className="text-sm font-semibold text-slate-600">{t("noActivityYet")}</p>
-            <p className="text-xs text-slate-400 mt-1">{t("activityHint")}</p>
+          <div className="py-12 text-center text-slate-500 text-xs">
+            {t("noActivityYet")}
           </div>
         ) : (
-          <div className="relative pl-6 space-y-6 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-slate-100">
-            {filteredLogs.map((log) => (
-              <div key={log.id} className="relative flex items-start gap-4 group">
-                <div className="absolute -left-6 top-1 p-1 bg-white rounded-full border border-slate-200/80 shadow-xs">
-                  {getActionIcon(log.action)}
-                </div>
-
-                <div className="flex-1 bg-slate-50/70 hover:bg-slate-50 p-4 rounded-2xl border border-slate-200/60 transition-all shadow-xs">
-                  <div className="flex items-center justify-between gap-2">
-                    <p className="text-xs font-extrabold text-slate-900">
-                      {log.user?.name || "System"}
-                    </p>
-                    <span className="text-[10px] font-semibold text-slate-400 flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      {new Date(log.createdAt).toLocaleDateString()} {new Date(log.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-                    </span>
-                  </div>
-                  <p className="text-xs font-medium text-slate-600 mt-1">
-                    {log.details}
-                  </p>
-                </div>
+          filteredLogs.map((log) => (
+            <div
+              key={log.id}
+              className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-950/70 border border-white/10"
+            >
+              <div className="p-2 rounded-xl bg-slate-900 border border-white/10 shrink-0">
+                {getActionIcon(log.action)}
               </div>
-            ))}
-          </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs text-slate-200 font-medium leading-relaxed">{log.details}</p>
+                <p className="text-[10px] font-mono text-slate-500 mt-0.5">
+                  {new Date(log.createdAt).toLocaleString()}
+                </p>
+              </div>
+            </div>
+          ))
         )}
       </div>
     </div>

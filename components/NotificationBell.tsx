@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Bell, CheckCheck, Trash2, CheckCircle, UserPlus, ShieldAlert, Sparkles, X, ExternalLink } from "lucide-react";
+import { Bell, CheckCheck, Trash2, CheckCircle, UserPlus, ShieldAlert, Sparkles, X } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRealtimeSubscription } from "@/lib/realtimeClient";
 import { useLanguage } from "@/lib/languageContext";
@@ -17,16 +17,9 @@ export default function NotificationBell() {
   const [notifications, setNotifications] = useState<any[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const [browserPermission, setBrowserPermission] = useState<NotificationPermission>("default");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const prevUnreadRef = useRef<number>(0);
   const prevNotifIdsRef = useRef<Set<string>>(new Set());
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && "Notification" in window) {
-      setBrowserPermission(Notification.permission);
-    }
-  }, []);
 
   const fetchNotifications = async (isPolling = false) => {
     if (!userId) return;
@@ -38,39 +31,37 @@ export default function NotificationBell() {
         const newUnread: number = data.unreadCount || 0;
 
         if (isPolling) {
-          // Detect newly created notifications since last poll
           const currentIds = new Set(newNotifs.map((n: any) => n.id));
           const brandNew = newNotifs.filter(
             (n: any) => !prevNotifIdsRef.current.has(n.id) && !n.isRead
           );
 
           if (brandNew.length > 0) {
-            // Show toast for each new notification
             brandNew.forEach((notif: any) => {
               toast.custom(
                 (tToast) => (
                   <div
                     className={`${
                       tToast.visible ? "animate-enter" : "animate-leave"
-                    } max-w-md w-full bg-white shadow-xl rounded-2xl pointer-events-auto flex ring-1 ring-black/5 p-4 border border-primary-200`}
+                    } max-w-md w-full bg-[#0c1222] text-white shadow-2xl rounded-2xl pointer-events-auto flex p-4 border border-cyan-500/30`}
                   >
                     <div className="flex-1 w-0">
                       <div className="flex items-start">
                         <div className="flex-shrink-0 pt-0.5">
-                          <div className="w-9 h-9 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center font-bold">
-                            <Bell className="w-5 h-5 animate-bounce" />
+                          <div className="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">
+                            <Bell className="w-4 h-4 animate-bounce" />
                           </div>
                         </div>
                         <div className="ml-3 flex-1">
-                          <p className="text-sm font-black text-slate-900">{notif.title}</p>
-                          <p className="mt-1 text-xs font-medium text-slate-600">{notif.message}</p>
+                          <p className="text-xs font-bold text-white">{notif.title}</p>
+                          <p className="mt-0.5 text-xs text-slate-400">{notif.message}</p>
                         </div>
                       </div>
                     </div>
-                    <div className="flex border-l border-slate-100 pl-3">
+                    <div className="flex border-l border-white/10 pl-3">
                       <button
                         onClick={() => toast.dismiss(tToast.id)}
-                        className="w-full border border-transparent rounded-none rounded-r-lg p-1 flex items-center justify-center text-xs font-bold text-slate-400 hover:text-slate-600"
+                        className="p-1 text-slate-400 hover:text-white"
                       >
                         <X className="w-4 h-4" />
                       </button>
@@ -79,22 +70,11 @@ export default function NotificationBell() {
                 ),
                 { duration: 5000 }
               );
-
-              // Browser push notification
-              if (typeof window !== "undefined" && "Notification" in window && Notification.permission === "granted") {
-                try {
-                  new Notification(notif.title, {
-                    body: notif.message,
-                    icon: "/favicon.ico",
-                  });
-                } catch {}
-              }
             });
           }
 
           prevNotifIdsRef.current = currentIds;
         } else {
-          // First load — seed the known IDs without showing toasts
           prevNotifIdsRef.current = new Set(newNotifs.map((n: any) => n.id));
         }
 
@@ -102,19 +82,15 @@ export default function NotificationBell() {
         setNotifications(newNotifs);
         setUnreadCount(newUnread);
       }
-    } catch {
-      // ignore network errors
-    }
+    } catch {}
   };
 
-  // Initial fetch
   useEffect(() => {
     if (userId) {
       fetchNotifications(false);
     }
   }, [userId]);
 
-  // Polling every 10 seconds as the reliable mechanism
   useEffect(() => {
     if (!userId) return;
     const interval = setInterval(() => {
@@ -123,12 +99,10 @@ export default function NotificationBell() {
     return () => clearInterval(interval);
   }, [userId]);
 
-  // Real-time subscription (bonus — works if Pusher/SSE available)
   useRealtimeSubscription({
     channel: userId ? `user-${userId}` : null,
     onEvent: (event, data) => {
       if (event === "notification:new" && data) {
-        // Avoid duplicate with polling: only add if not already in list
         setNotifications((prev) => {
           if (prev.find((n) => n.id === data.id)) return prev;
           prevNotifIdsRef.current.add(data.id);
@@ -139,7 +113,6 @@ export default function NotificationBell() {
     },
   });
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -201,26 +174,16 @@ export default function NotificationBell() {
     } catch {}
   };
 
-  const requestBrowserPermission = async () => {
-    if (typeof window !== "undefined" && "Notification" in window) {
-      const perm = await Notification.requestPermission();
-      setBrowserPermission(perm);
-      if (perm === "granted") {
-        toast.success("Browser notifications enabled!");
-      }
-    }
-  };
-
   const getIcon = (type: string) => {
     switch (type) {
       case "TASK_ASSIGNED":
-        return <CheckCircle className="w-4 h-4 text-emerald-500" />;
+        return <CheckCircle className="w-4 h-4 text-emerald-400" />;
       case "TEAM_INVITATION":
-        return <UserPlus className="w-4 h-4 text-indigo-500" />;
+        return <UserPlus className="w-4 h-4 text-cyan-400" />;
       case "ROLE_UPDATED":
-        return <ShieldAlert className="w-4 h-4 text-amber-500" />;
+        return <ShieldAlert className="w-4 h-4 text-amber-400" />;
       default:
-        return <Sparkles className="w-4 h-4 text-primary-500" />;
+        return <Sparkles className="w-4 h-4 text-violet-400" />;
     }
   };
 
@@ -230,24 +193,24 @@ export default function NotificationBell() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2.5 rounded-xl border border-slate-200/80 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 transition-all shadow-xs flex items-center justify-center active:scale-95"
+        className="relative p-2.5 rounded-xl border border-white/10 bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white transition-all shadow-sm flex items-center justify-center active:scale-95"
         title="Notifications"
       >
-        <Bell className="w-4.5 h-4.5" />
+        <Bell className="w-4 h-4" />
         {unreadCount > 0 && (
-          <span className="absolute -top-1 -right-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-black text-white shadow-sm ring-2 ring-white animate-pulse">
+          <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-cyan-500 px-1 text-[9px] font-black text-slate-950 shadow-sm ring-2 ring-[#070a12] animate-pulse">
             {unreadCount > 9 ? "9+" : unreadCount}
           </span>
         )}
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-3 w-80 sm:w-96 rounded-3xl bg-white p-4 shadow-2xl ring-1 ring-slate-900/10 z-[100] border border-slate-100 animate-in fade-in-50 zoom-in-95 duration-200">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100 px-1">
+        <div className="absolute right-0 mt-3 w-80 sm:w-96 rounded-2xl bg-[#0c1222] p-4 shadow-2xl z-[100] border border-white/10 animate-in fade-in-50 zoom-in-95 duration-200">
+          <div className="flex items-center justify-between pb-3 border-b border-white/10 px-1">
             <div className="flex items-center gap-2">
-              <h4 className="font-extrabold text-slate-900 text-sm">{t("notifications")}</h4>
+              <h4 className="font-bold text-white text-sm">{t("notifications")}</h4>
               {unreadCount > 0 && (
-                <span className="bg-primary-50 text-primary-600 text-[11px] font-bold px-2 py-0.5 rounded-full">
+                <span className="bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-[10px] font-bold px-2 py-0.5 rounded-md">
                   {unreadCount} new
                 </span>
               )}
@@ -255,7 +218,7 @@ export default function NotificationBell() {
             {unreadCount > 0 && (
               <button
                 onClick={handleMarkAllRead}
-                className="text-[11px] font-bold text-primary-600 hover:text-primary-700 flex items-center gap-1 hover:underline cursor-pointer"
+                className="text-[11px] font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1 hover:underline cursor-pointer"
               >
                 <CheckCheck className="w-3.5 h-3.5" />
                 {t("markAllRead")}
@@ -263,26 +226,11 @@ export default function NotificationBell() {
             )}
           </div>
 
-          {/* Browser notification prompt banner */}
-          {browserPermission === "default" && (
-            <div className="mt-3 p-2.5 bg-primary-50/70 border border-primary-200/60 rounded-2xl flex items-center justify-between gap-2">
-              <p className="text-[11px] font-semibold text-primary-800">
-                Receive instant desktop alerts?
-              </p>
-              <button
-                onClick={requestBrowserPermission}
-                className="px-2.5 py-1 bg-primary-600 text-white rounded-xl text-[10px] font-bold hover:bg-primary-700 shadow-xs shrink-0 cursor-pointer"
-              >
-                Enable
-              </button>
-            </div>
-          )}
-
           {/* List of notifications */}
-          <div className="mt-3 max-h-80 overflow-y-auto space-y-2 pr-1 divide-y divide-slate-50">
+          <div className="mt-3 max-h-80 overflow-y-auto space-y-2 pr-1 divide-y divide-white/5">
             {notifications.length === 0 ? (
-              <div className="py-8 text-center text-slate-400">
-                <Bell className="w-8 h-8 mx-auto mb-2 opacity-30" />
+              <div className="py-8 text-center text-slate-500">
+                <Bell className="w-7 h-7 mx-auto mb-2 opacity-30" />
                 <p className="text-xs font-semibold">{t("noNotifications")}</p>
               </div>
             ) : (
@@ -290,23 +238,23 @@ export default function NotificationBell() {
                 <div
                   key={notif.id}
                   onClick={() => handleNotificationClick(notif)}
-                  className={`group relative flex items-start gap-3 p-3 rounded-2xl cursor-pointer transition-all pt-3 ${
+                  className={`group relative flex items-start gap-3 p-3 rounded-xl cursor-pointer transition-all pt-3 ${
                     notif.isRead
-                      ? "hover:bg-slate-50 opacity-80"
-                      : "bg-primary-50/40 hover:bg-primary-50/70 border-l-4 border-primary-500"
+                      ? "hover:bg-white/5 opacity-75"
+                      : "bg-cyan-500/10 hover:bg-cyan-500/15 border-l-2 border-cyan-400"
                   }`}
                 >
-                  <div className="p-2 rounded-xl bg-white border border-slate-200/60 shadow-xs shrink-0 mt-0.5">
+                  <div className="p-2 rounded-lg bg-slate-950/70 border border-white/10 shrink-0 mt-0.5">
                     {getIcon(notif.type)}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-bold text-slate-900 leading-tight">
+                    <p className="text-xs font-bold text-white leading-tight">
                       {notif.title}
                     </p>
-                    <p className="text-[11px] text-slate-600 font-medium mt-0.5 line-clamp-2 leading-relaxed">
+                    <p className="text-[11px] text-slate-400 font-medium mt-0.5 line-clamp-2 leading-relaxed">
                       {notif.message}
                     </p>
-                    <p className="text-[9px] font-bold text-slate-400 mt-1">
+                    <p className="text-[9px] font-mono text-slate-500 mt-1">
                       {new Date(notif.createdAt).toLocaleTimeString([], {
                         hour: "2-digit",
                         minute: "2-digit",
@@ -315,7 +263,7 @@ export default function NotificationBell() {
                   </div>
                   <button
                     onClick={(e) => handleDeleteNotification(e, notif.id)}
-                    className="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg text-slate-300 hover:text-rose-500 hover:bg-white transition-all shadow-xs"
+                    className="opacity-0 group-hover:opacity-100 p-1 rounded-md text-slate-500 hover:text-rose-400 hover:bg-white/10 transition-all"
                     title="Delete"
                   >
                     <Trash2 className="w-3.5 h-3.5" />

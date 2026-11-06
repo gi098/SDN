@@ -21,17 +21,17 @@ export default function TaskListView({
       case "DONE":
         return {
           label: "DONE",
-          classes: "bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold",
+          classes: "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-bold",
         };
       case "IN_PROGRESS":
         return {
           label: "IN PROGRESS",
-          classes: "bg-secondary-50 text-secondary-700 border border-secondary-200 font-bold",
+          classes: "bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 font-bold",
         };
       default:
         return {
           label: "TO DO",
-          classes: "bg-slate-50 text-slate-600 border border-slate-200 font-bold",
+          classes: "bg-slate-800 text-slate-400 border border-white/10 font-bold",
         };
     }
   };
@@ -41,23 +41,23 @@ export default function TaskListView({
       case "HIGH":
         return {
           label: "HIGH",
-          classes: "bg-gradient-to-r from-rose-50 to-pink-50 text-rose-700 border border-rose-200 font-bold",
+          classes: "bg-rose-500/10 text-rose-400 border border-rose-500/30 font-bold",
         };
       case "MEDIUM":
         return {
           label: "MEDIUM",
-          classes: "bg-gradient-to-r from-amber-50 to-orange-50 text-amber-800 border border-amber-200 font-bold",
+          classes: "bg-amber-500/10 text-amber-400 border border-amber-500/30 font-bold",
         };
       default:
         return {
           label: "LOW",
-          classes: "bg-slate-50 text-slate-600 border border-slate-200 font-bold",
+          classes: "bg-slate-800/80 text-slate-400 border border-white/5 font-bold",
         };
     }
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {tasks.map((task) => {
         const statusBadge = getStatusBadge(task.status);
         const priorityBadge = getPriorityBadge(task.priority);
@@ -70,22 +70,22 @@ export default function TaskListView({
         return (
           <div
             key={task.id}
-            className={`bg-white rounded-xl border p-4 transition-colors ${
-              isDone ? "border-slate-200/60 opacity-75" : "border-slate-200 hover:border-slate-300"
+            className={`bg-slate-900/80 backdrop-blur-xl rounded-2xl border p-4 sm:p-5 transition-all ${
+              isDone ? "border-white/5 opacity-70" : "border-white/10 hover:border-cyan-500/40 hover:bg-slate-900"
             }`}
           >
             <div className="flex items-start gap-4">
               {/* Checkbox */}
               <button
                 onClick={() => onToggleStatus(task)}
-                className={`w-6 h-6 rounded-[6px] border flex-shrink-0 mt-0.5 flex items-center justify-center transition-colors shadow-2xs ${
+                className={`w-6 h-6 rounded-lg border flex-shrink-0 mt-0.5 flex items-center justify-center transition-all ${
                   isDone
-                    ? "bg-primary-500 border-primary-500 text-white"
-                    : "border-slate-300 hover:border-primary-400 bg-white"
+                    ? "bg-cyan-500 border-cyan-500 text-slate-950 shadow-[0_0_10px_rgba(6,182,212,0.5)]"
+                    : "border-slate-700 hover:border-cyan-400 bg-slate-950/60"
                 }`}
                 title="Toggle status"
               >
-                {isDone && <Check className="w-4 h-4" />}
+                {isDone && <Check className="w-4 h-4 stroke-[3]" />}
               </button>
 
               {/* Main Content Area */}
@@ -94,8 +94,8 @@ export default function TaskListView({
                 <div className="flex items-start justify-between gap-4 mb-1.5">
                   <div className="flex items-center gap-3 flex-wrap">
                     <h3
-                      className={`text-[17px] font-extrabold tracking-tight ${
-                        isDone ? "text-slate-400 line-through" : "text-slate-800"
+                      className={`text-base sm:text-lg font-bold tracking-tight ${
+                        isDone ? "text-slate-500 line-through" : "text-slate-100"
                       }`}
                     >
                       {task.title}
@@ -107,17 +107,17 @@ export default function TaskListView({
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-2 text-slate-300">
+                  <div className="flex items-center gap-2 text-slate-400">
                     <button
                       onClick={() => onEdit(task)}
-                      className="hover:text-slate-600 transition-colors p-1"
+                      className="hover:text-cyan-400 transition-colors p-1"
                       title="Edit"
                     >
                       <Edit3 className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => onDelete(task.id)}
-                      className="hover:text-rose-600 transition-colors p-1"
+                      className="hover:text-rose-400 transition-colors p-1"
                       title="Delete"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -126,9 +126,9 @@ export default function TaskListView({
                 </div>
 
                 {/* Middle Row: Priority */}
-                <div className="mb-2.5">
+                <div className="mb-2">
                   <span
-                    className={`text-[10px] uppercase px-2 py-0.5 rounded-md ${priorityBadge.classes}`}
+                    className={`text-[9px] uppercase px-2 py-0.5 rounded-md ${priorityBadge.classes}`}
                   >
                     {priorityBadge.label}
                   </span>
@@ -136,30 +136,30 @@ export default function TaskListView({
 
                 {/* Description */}
                 {task.description && (
-                  <p className="text-[13px] text-slate-600 mb-3.5 font-medium">{task.description}</p>
+                  <p className="text-xs text-slate-400 mb-3 font-normal leading-relaxed">{task.description}</p>
                 )}
 
                 {/* Footer */}
-                <div className="flex items-center gap-4 text-xs text-slate-500">
+                <div className="flex items-center gap-4 text-xs text-slate-400">
                   <div
-                    className={`flex items-center gap-1.5 font-semibold ${
+                    className={`flex items-center gap-1.5 font-medium ${
                       isDone
-                        ? "text-slate-400"
+                        ? "text-slate-500"
                         : isOverdue
-                        ? "text-rose-700"
-                        : "text-slate-700"
+                        ? "text-rose-400 font-bold"
+                        : "text-slate-300"
                     }`}
                   >
-                    <Calendar className="w-3.5 h-3.5 text-primary-500" />
+                    <Calendar className="w-3.5 h-3.5 text-cyan-400" />
                     {task.dueDate ? (
                       <span suppressHydrationWarning>
                         Due {new Date(task.dueDate).toLocaleDateString()}
                       </span>
                     ) : (
-                      <span className="italic font-normal">No deadline</span>
+                      <span className="italic text-slate-500">No deadline</span>
                     )}
                   </div>
-                  <span suppressHydrationWarning className="font-medium text-slate-400">
+                  <span suppressHydrationWarning className="font-mono text-slate-500 text-[11px]">
                     Created {new Date(task.createdAt).toLocaleDateString()}
                   </span>
                 </div>

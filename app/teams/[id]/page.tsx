@@ -13,12 +13,10 @@ import {
   ListChecks,
   Shield,
   Crown,
-  Mail,
   CircleDashed,
   Clock,
   CheckCircle2,
   Sparkles,
-  Layout,
   UsersRound,
   Pencil,
   X,
@@ -201,7 +199,6 @@ export default function TeamDetailPage() {
       });
       if (res.ok) {
         const createdTask = await res.json();
-        // Optimistically update
         setTasks((prev) => {
           if (prev.some((t) => t.id === createdTask.id)) return prev;
           return [createdTask, ...prev];
@@ -236,7 +233,6 @@ export default function TeamDetailPage() {
   };
 
   const updateTaskStatus = async (taskId: string, newStatus: string) => {
-    // Optimistic UI update
     setTasks((prev) => prev.map((t) => (t.id === taskId ? { ...t, status: newStatus } : t)));
     try {
       const res = await fetch(`/api/tasks/${taskId}`, {
@@ -320,9 +316,9 @@ export default function TeamDetailPage() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "DONE":
-        return <CheckCircle2 className="w-4 h-4 text-emerald-500" />;
+        return <CheckCircle2 className="w-4 h-4 text-emerald-400" />;
       case "IN_PROGRESS":
-        return <Clock className="w-4 h-4 text-amber-500" />;
+        return <Clock className="w-4 h-4 text-cyan-400" />;
       default:
         return <CircleDashed className="w-4 h-4 text-slate-400" />;
     }
@@ -330,8 +326,8 @@ export default function TeamDetailPage() {
 
   if (isLoading || status === "loading") {
     return (
-      <div className="flex justify-center items-center h-screen bg-slate-50">
-        <Loader2 className="w-10 h-10 animate-spin text-primary-500" />
+      <div className="flex justify-center items-center h-screen bg-[#070a12]">
+        <Loader2 className="w-10 h-10 animate-spin text-cyan-400" />
       </div>
     );
   }
@@ -347,7 +343,7 @@ export default function TeamDetailPage() {
         draggable
         onDragStart={(e) => handleDragStart(e, task.id)}
         key={task.id}
-        className="group border border-slate-200/80 hover:border-primary-300 rounded-3xl p-6 hover:shadow-xl hover:shadow-primary-500/10 bg-white flex flex-col gap-4 transition-all duration-300"
+        className="group border border-white/10 hover:border-cyan-500/40 rounded-2xl p-5 hover:shadow-xl hover:shadow-cyan-500/10 bg-slate-900/90 flex flex-col gap-3 transition-all duration-300"
       >
         {editingTaskId === task.id ? (
           /* Inline Edit Form */
@@ -355,21 +351,21 @@ export default function TeamDetailPage() {
             <input
               value={editTask.title}
               onChange={(e) => setEditTask({ ...editTask, title: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-primary-400 focus:ring-4 focus:ring-primary-100 text-sm font-semibold text-slate-900 bg-slate-50"
+              className="w-full px-3.5 py-2 rounded-xl border border-white/10 focus:outline-none focus:border-cyan-400 text-sm font-semibold text-white bg-slate-950"
               placeholder="Task title"
               required
             />
             <input
               value={editTask.description}
               onChange={(e) => setEditTask({ ...editTask, description: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-primary-400 focus:ring-4 focus:ring-primary-100 text-sm text-slate-700 bg-slate-50"
+              className="w-full px-3.5 py-2 rounded-xl border border-white/10 focus:outline-none focus:border-cyan-400 text-sm text-slate-300 bg-slate-950"
               placeholder="Description (optional)"
             />
             <div className="flex flex-wrap gap-2">
               <select
                 value={editTask.status}
                 onChange={(e) => setEditTask({ ...editTask, status: e.target.value })}
-                className="flex-1 px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs font-bold text-slate-700 appearance-none cursor-pointer focus:outline-none"
+                className="flex-1 px-3 py-2 rounded-xl border border-white/10 bg-slate-950 text-xs font-bold text-slate-200 cursor-pointer focus:outline-none"
               >
                 <option value="TODO">To Do</option>
                 <option value="IN_PROGRESS">In Progress</option>
@@ -378,7 +374,7 @@ export default function TeamDetailPage() {
               <select
                 value={editTask.priority}
                 onChange={(e) => setEditTask({ ...editTask, priority: e.target.value })}
-                className="flex-1 px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs font-bold text-slate-700 appearance-none cursor-pointer focus:outline-none"
+                className="flex-1 px-3 py-2 rounded-xl border border-white/10 bg-slate-950 text-xs font-bold text-slate-200 cursor-pointer focus:outline-none"
               >
                 <option value="LOW">Low</option>
                 <option value="MEDIUM">Medium</option>
@@ -387,7 +383,7 @@ export default function TeamDetailPage() {
               <select
                 value={editTask.assigneeId}
                 onChange={(e) => setEditTask({ ...editTask, assigneeId: e.target.value })}
-                className="flex-1 px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs font-bold text-slate-700 appearance-none cursor-pointer focus:outline-none"
+                className="flex-1 px-3 py-2 rounded-xl border border-white/10 bg-slate-950 text-xs font-bold text-slate-200 cursor-pointer focus:outline-none"
               >
                 <option value="">Unassigned</option>
                 <option value={team.owner.id}>{team.owner.name} (Owner)</option>
@@ -401,14 +397,14 @@ export default function TeamDetailPage() {
             <div className="flex gap-2 pt-1">
               <button
                 type="submit"
-                className="flex items-center gap-1.5 px-4 py-2 rounded-full theme-gradient-btn text-white text-xs font-bold shadow-sm transition-all cursor-pointer"
+                className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl theme-gradient-btn text-white text-xs font-bold shadow-sm transition-all cursor-pointer"
               >
                 <Check className="w-3.5 h-3.5 stroke-[3]" /> Save
               </button>
               <button
                 type="button"
                 onClick={() => setEditingTaskId(null)}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold transition-all cursor-pointer"
+                className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition-all cursor-pointer"
               >
                 <X className="w-3.5 h-3.5" /> Cancel
               </button>
@@ -416,12 +412,12 @@ export default function TeamDetailPage() {
           </form>
         ) : (
           /* Normal View */
-          <div className="flex flex-col justify-between gap-4">
+          <div className="flex flex-col justify-between gap-3">
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-4 mb-2">
                 <h3
-                  className={`font-black text-base truncate ${
-                    task.status === "DONE" ? "line-through text-slate-400" : "text-slate-800"
+                  className={`font-bold text-sm sm:text-base truncate ${
+                    task.status === "DONE" ? "line-through text-slate-500" : "text-white"
                   }`}
                 >
                   {task.title}
@@ -440,14 +436,14 @@ export default function TeamDetailPage() {
                             assigneeId: task.assigneeId || "",
                           });
                         }}
-                        className="text-slate-400 hover:text-primary-600 hover:bg-primary-50 p-2 rounded-xl transition-colors shadow-xs"
+                        className="text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 p-1.5 rounded-lg transition-colors"
                         title="Edit Task"
                       >
                         <Pencil className="w-3.5 h-3.5" />
                       </button>
                       <button
                         onClick={() => handleDeleteTask(task.id)}
-                        className="text-slate-400 hover:text-rose-600 hover:bg-rose-50 p-2 rounded-xl transition-colors shadow-xs"
+                        className="text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 p-1.5 rounded-lg transition-colors"
                         title="Delete Task"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
@@ -456,7 +452,7 @@ export default function TeamDetailPage() {
                   ) : (
                     <span
                       title="Only Owner, Admin, or Assignee can modify"
-                      className="text-slate-300 p-1"
+                      className="text-slate-600 p-1"
                     >
                       <Lock className="w-3.5 h-3.5" />
                     </span>
@@ -465,7 +461,7 @@ export default function TeamDetailPage() {
               </div>
 
               {task.description && (
-                <p className="text-xs font-medium text-slate-500 mb-4 line-clamp-2 leading-relaxed">
+                <p className="text-xs text-slate-400 mb-3 line-clamp-2 leading-relaxed">
                   {task.description}
                 </p>
               )}
@@ -479,7 +475,7 @@ export default function TeamDetailPage() {
                   <select
                     value={task.status}
                     onChange={(e) => updateTaskStatus(task.id, e.target.value)}
-                    className="pl-8 pr-7 py-1.5 rounded-xl border border-slate-200/80 bg-slate-50 hover:bg-slate-100 focus:ring-2 focus:ring-primary-500 appearance-none transition-colors cursor-pointer text-slate-700 shadow-xs text-xs font-extrabold"
+                    className="pl-8 pr-6 py-1 rounded-lg border border-white/10 bg-slate-950 text-slate-300 hover:border-cyan-500/40 appearance-none transition-colors cursor-pointer text-xs font-bold"
                   >
                     <option value="TODO">To Do</option>
                     <option value="IN_PROGRESS">In Progress</option>
@@ -489,12 +485,12 @@ export default function TeamDetailPage() {
 
                 {/* Priority Badge */}
                 <span
-                  className={`px-3 py-1.5 rounded-xl border text-[11px] font-black shadow-xs ${
+                  className={`px-2.5 py-1 rounded-lg border text-[10px] font-bold ${
                     task.priority === "HIGH"
-                      ? "bg-rose-50 text-rose-700 border-rose-100"
+                      ? "bg-rose-500/10 text-rose-400 border-rose-500/20"
                       : task.priority === "MEDIUM"
-                      ? "bg-amber-50 text-amber-700 border-amber-100"
-                      : "bg-slate-50 text-slate-600 border-slate-200"
+                      ? "bg-amber-500/10 text-amber-400 border-amber-500/20"
+                      : "bg-slate-800 text-slate-400 border-white/5"
                   }`}
                 >
                   {task.priority}
@@ -502,14 +498,14 @@ export default function TeamDetailPage() {
 
                 {/* Assignee Badge */}
                 {task.assignee ? (
-                  <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary-50 text-primary-700 border border-primary-100 text-[11px] font-bold shadow-xs">
-                    <div className="w-4 h-4 rounded-full bg-primary-200 flex items-center justify-center text-[9px] font-black">
+                  <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-[10px] font-bold">
+                    <div className="w-3.5 h-3.5 rounded-full bg-cyan-500/30 flex items-center justify-center text-[8px] font-black text-cyan-300">
                       {task.assignee.name.charAt(0).toUpperCase()}
                     </div>
                     {task.assignee.name}
                   </span>
                 ) : (
-                  <span className="px-2.5 py-1 rounded-xl bg-slate-100 text-slate-400 text-[10px] font-bold">
+                  <span className="px-2 py-0.5 rounded-md bg-slate-950 text-slate-500 text-[10px] font-medium border border-white/5">
                     Unassigned
                   </span>
                 )}
@@ -526,39 +522,39 @@ export default function TeamDetailPage() {
       {/* Back Button */}
       <Link
         href="/teams"
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 text-sm font-bold text-slate-600 hover:text-primary-600 hover:border-primary-200 hover:bg-primary-50 transition-all shadow-xs group w-fit"
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-xs font-bold text-slate-400 hover:text-white hover:border-cyan-500/40 transition-all group w-fit"
       >
         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-        All Teams
+        All Workspaces
       </Link>
 
       {/* Hero Banner */}
-      <section className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700 shadow-2xl p-8 md:p-12 text-white">
-        <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-gradient-to-br from-primary-500/20 via-secondary-500/10 to-transparent blur-[70px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+      <section className="relative overflow-hidden rounded-3xl bg-slate-900/90 border border-white/10 shadow-2xl p-8 md:p-12 text-white">
+        <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-gradient-to-br from-cyan-500/20 via-blue-600/15 to-transparent blur-[70px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
 
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
           <div>
-            <div className="flex flex-wrap items-center gap-3 mb-4">
+            <div className="flex flex-wrap items-center gap-3 mb-3">
               {/* Workspace Badge */}
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 text-primary-300 text-xs font-bold border border-white/20 backdrop-blur-md">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-cyan-500/10 text-cyan-400 text-xs font-bold border border-cyan-500/20">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span className="tracking-widest uppercase text-[10px]">Team Hub</span>
               </div>
 
               {/* User Role Badge */}
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/15 text-white text-xs font-black border border-white/20 backdrop-blur-md">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-slate-800 text-slate-200 text-xs font-bold border border-white/10">
                 {isOwner ? (
-                  <Crown className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                  <Crown className="w-3.5 h-3.5 text-amber-400" />
                 ) : isAdmin ? (
-                  <Shield className="w-3.5 h-3.5 text-indigo-400" />
+                  <Shield className="w-3.5 h-3.5 text-cyan-400" />
                 ) : (
-                  <Users className="w-3.5 h-3.5 text-slate-300" />
+                  <Users className="w-3.5 h-3.5 text-slate-400" />
                 )}
                 <span>{t("yourCurrentRole")} {currentUserRole}</span>
               </div>
 
               {/* Real-time Indicator Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold border border-emerald-500/30 backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20">
                 <span className="flex h-2 w-2 relative">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -568,66 +564,66 @@ export default function TeamDetailPage() {
 
               {/* Team Settings / Delete Buttons (Owner / Admin) */}
               {(isOwner || isAdmin) && (
-                <div className="flex items-center gap-2 ml-2">
+                <div className="flex items-center gap-2 ml-1">
                   <button
                     onClick={() => setIsEditTeamOpen(true)}
-                    className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors border border-white/10 cursor-pointer"
+                    className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-750 text-slate-300 hover:text-white transition-colors border border-white/10"
                     title="Edit Team Settings"
                   >
-                    <Pencil className="w-4 h-4" />
+                    <Pencil className="w-3.5 h-3.5" />
                   </button>
                   {isOwner && (
                     <button
                       onClick={() => setIsDeleteTeamOpen(true)}
-                      className="p-2 rounded-xl bg-rose-500/20 hover:bg-rose-500/40 text-rose-200 transition-colors border border-rose-500/30 cursor-pointer"
-                      title="Delete Team (Owner Only)"
+                      className="p-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 transition-colors border border-rose-500/30"
+                      title="Delete Team"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   )}
                 </div>
               )}
             </div>
 
-            <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight mb-3 flex items-center gap-3">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-300">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-2 flex items-center gap-3">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-300">
                 {team.name}
               </span>
             </h1>
             {team.description && (
-              <p className="text-slate-300 text-base max-w-xl font-medium leading-relaxed">
+              <p className="text-slate-400 text-sm max-w-xl font-medium leading-relaxed">
                 {team.description}
               </p>
             )}
           </div>
 
-          <div className="flex flex-wrap gap-4 shrink-0">
-            <div className="px-6 py-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-center min-w-[130px] shadow-inner">
-              <p className="text-[10px] font-bold text-primary-200 uppercase tracking-widest mb-1">
+          <div className="flex flex-wrap gap-3 shrink-0">
+            <div className="px-5 py-3 rounded-2xl bg-slate-950/70 border border-white/10 text-center min-w-[110px]">
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
                 {t("filterMembers")}
               </p>
-              <p className="text-3xl font-black">
+              <p className="text-2xl font-black text-white">
                 {team.members.filter((m: any) => m.user.id !== team.owner.id).length + 1}
               </p>
             </div>
-            <div className="px-6 py-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-center min-w-[130px] shadow-inner">
-              <p className="text-[10px] font-bold text-primary-200 uppercase tracking-widest mb-1">
+            <div className="px-5 py-3 rounded-2xl bg-slate-950/70 border border-white/10 text-center min-w-[110px]">
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
                 {t("filterTasks")}
               </p>
-              <p className="text-3xl font-black">{tasks.length}</p>
+              <p className="text-2xl font-black text-cyan-400">{tasks.length}</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Navigation Tabs Bar */}
-      <div className="flex items-center gap-2 border-b border-slate-200/80 pb-2 overflow-x-auto">
+      <div className="flex items-center gap-2 border-b border-white/10 pb-3 overflow-x-auto">
         <button
           onClick={() => setActiveTab("board")}
-          className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-black text-sm transition-all cursor-pointer whitespace-nowrap ${
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs transition-all whitespace-nowrap cursor-pointer ${
             activeTab === "board"
-              ? "theme-gradient-btn text-white shadow-md shadow-primary-500/20"
-              : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+              ? "theme-gradient-btn text-white shadow-lg"
+              : "text-slate-400 hover:text-white hover:bg-slate-900"
           }`}
         >
           <Kanban className="w-4 h-4" />
@@ -636,10 +632,10 @@ export default function TeamDetailPage() {
 
         <button
           onClick={() => setActiveTab("chat")}
-          className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-black text-sm transition-all cursor-pointer whitespace-nowrap ${
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs transition-all whitespace-nowrap cursor-pointer ${
             activeTab === "chat"
-              ? "theme-gradient-btn text-white shadow-md shadow-primary-500/20"
-              : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+              ? "theme-gradient-btn text-white shadow-lg"
+              : "text-slate-400 hover:text-white hover:bg-slate-900"
           }`}
         >
           <MessageSquare className="w-4 h-4" />
@@ -648,10 +644,10 @@ export default function TeamDetailPage() {
 
         <button
           onClick={() => setActiveTab("members")}
-          className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-black text-sm transition-all cursor-pointer whitespace-nowrap ${
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs transition-all whitespace-nowrap cursor-pointer ${
             activeTab === "members"
-              ? "theme-gradient-btn text-white shadow-md shadow-primary-500/20"
-              : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+              ? "theme-gradient-btn text-white shadow-lg"
+              : "text-slate-400 hover:text-white hover:bg-slate-900"
           }`}
         >
           <UsersRound className="w-4 h-4" />
@@ -660,10 +656,10 @@ export default function TeamDetailPage() {
 
         <button
           onClick={() => setActiveTab("activity")}
-          className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-black text-sm transition-all cursor-pointer whitespace-nowrap ${
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs transition-all whitespace-nowrap cursor-pointer ${
             activeTab === "activity"
-              ? "theme-gradient-btn text-white shadow-md shadow-primary-500/20"
-              : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+              ? "theme-gradient-btn text-white shadow-lg"
+              : "text-slate-400 hover:text-white hover:bg-slate-900"
           }`}
         >
           <History className="w-4 h-4" />
@@ -674,56 +670,54 @@ export default function TeamDetailPage() {
       {/* Tab 1: Task Board (Kanban & List) */}
       {activeTab === "board" && (
         <div className="space-y-6">
-          <div className="bg-white rounded-[2.5rem] border border-slate-200/80 p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
-            <div className="flex flex-col gap-5 mb-8">
+          <div className="bg-slate-900/80 rounded-3xl border border-white/10 p-6 sm:p-8 shadow-xl">
+            <div className="flex flex-col gap-4 mb-6">
               <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-black text-slate-900 flex items-center gap-3">
-                  <div className="p-2.5 bg-slate-900 text-white rounded-xl shadow-sm">
-                    <ListChecks className="w-5 h-5" />
-                  </div>
+                <h2 className="text-xl font-bold text-white flex items-center gap-2.5">
+                  <ListChecks className="w-5 h-5 text-cyan-400" />
                   {t("teamTasks")}
                 </h2>
 
-                <div className="flex bg-slate-100/80 p-1 rounded-2xl border border-slate-200/50">
+                <div className="flex bg-slate-950 p-1 rounded-xl border border-white/10">
                   <button
                     onClick={() => setViewMode("board")}
-                    className={`px-4 py-2 rounded-xl transition-all flex items-center gap-2 text-xs font-bold cursor-pointer ${
+                    className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 text-xs font-bold cursor-pointer ${
                       viewMode === "board"
                         ? "theme-gradient-btn text-white shadow-sm"
-                        : "text-slate-600 hover:text-slate-900"
+                        : "text-slate-400 hover:text-white"
                     }`}
                   >
-                    <Kanban className="w-4 h-4" /> Kanban Board
+                    <Kanban className="w-3.5 h-3.5" /> Kanban
                   </button>
                   <button
                     onClick={() => setViewMode("list")}
-                    className={`px-4 py-2 rounded-xl transition-all flex items-center gap-2 text-xs font-bold cursor-pointer ${
+                    className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 text-xs font-bold cursor-pointer ${
                       viewMode === "list"
                         ? "theme-gradient-btn text-white shadow-sm"
-                        : "text-slate-600 hover:text-slate-900"
+                        : "text-slate-400 hover:text-white"
                     }`}
                   >
-                    <List className="w-4 h-4" /> List View
+                    <List className="w-3.5 h-3.5" /> List
                   </button>
                 </div>
               </div>
 
               {/* Filters Bar */}
-              <div className="flex flex-wrap items-center gap-3 bg-slate-50/80 p-3 rounded-2xl border border-slate-200/60">
+              <div className="flex flex-wrap items-center gap-2.5 bg-slate-950/60 p-3 rounded-2xl border border-white/10">
                 <div className="relative flex-1 min-w-[200px]">
-                  <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                  <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
                   <input
                     type="text"
                     placeholder="Search tasks..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-primary-400 focus:ring-4 focus:ring-primary-100 text-sm font-medium text-slate-700 bg-white shadow-xs"
+                    className="w-full pl-9 pr-4 py-2 rounded-xl border border-white/10 focus:outline-none focus:border-cyan-400 text-xs font-medium text-white bg-slate-900 placeholder:text-slate-500"
                   />
                 </div>
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
-                  className="px-4 py-2 rounded-xl border border-slate-200 bg-white text-xs font-extrabold text-slate-700 appearance-none cursor-pointer focus:outline-none shadow-xs min-w-[130px]"
+                  className="px-3 py-2 rounded-xl border border-white/10 bg-slate-900 text-xs font-bold text-slate-300 cursor-pointer focus:outline-none"
                 >
                   <option value="ALL">All Statuses</option>
                   <option value="TODO">To Do</option>
@@ -733,7 +727,7 @@ export default function TeamDetailPage() {
                 <select
                   value={filterPriority}
                   onChange={(e) => setFilterPriority(e.target.value)}
-                  className="px-4 py-2 rounded-xl border border-slate-200 bg-white text-xs font-extrabold text-slate-700 appearance-none cursor-pointer focus:outline-none shadow-xs min-w-[130px]"
+                  className="px-3 py-2 rounded-xl border border-white/10 bg-slate-900 text-xs font-bold text-slate-300 cursor-pointer focus:outline-none"
                 >
                   <option value="ALL">All Priorities</option>
                   <option value="LOW">Low</option>
@@ -743,7 +737,7 @@ export default function TeamDetailPage() {
                 <select
                   value={filterAssignee}
                   onChange={(e) => setFilterAssignee(e.target.value)}
-                  className="px-4 py-2 rounded-xl border border-slate-200 bg-white text-xs font-extrabold text-slate-700 appearance-none cursor-pointer focus:outline-none shadow-xs min-w-[130px]"
+                  className="px-3 py-2 rounded-xl border border-white/10 bg-slate-900 text-xs font-bold text-slate-300 cursor-pointer focus:outline-none"
                 >
                   <option value="ALL">All Assignees</option>
                   <option value={team.owner.id}>{team.owner.name} (Owner)</option>
@@ -757,25 +751,23 @@ export default function TeamDetailPage() {
             </div>
 
             {filteredTasks.length === 0 ? (
-              <div className="text-center py-16 px-4 rounded-[2rem] border-2 border-dashed border-slate-200 bg-slate-50/50">
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-xs border border-slate-100">
-                  <ListChecks className="w-8 h-8 text-slate-300" />
-                </div>
-                <h3 className="font-black text-slate-700 text-lg mb-1">No tasks found</h3>
-                <p className="text-xs font-medium text-slate-500 max-w-sm mx-auto">
-                  Try adjusting your filters or create a new task below.
+              <div className="text-center py-16 px-4 rounded-2xl border border-dashed border-white/10 bg-slate-950/40">
+                <ListChecks className="w-8 h-8 text-slate-600 mx-auto mb-2" />
+                <h3 className="font-bold text-white text-base mb-1">No tasks in this view</h3>
+                <p className="text-xs text-slate-400 max-w-sm mx-auto">
+                  Adjust your filters or add a new task below.
                 </p>
               </div>
             ) : viewMode === "board" ? (
-              <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 overflow-x-auto pb-4">
+              <div className="grid grid-cols-1 xl:grid-cols-3 gap-5 overflow-x-auto pb-4">
                 {["TODO", "IN_PROGRESS", "DONE"].map((colStatus) => (
                   <div
                     key={colStatus}
                     onDrop={(e) => handleDrop(e, colStatus)}
                     onDragOver={handleDragOver}
-                    className="bg-slate-50/60 rounded-[2rem] p-5 border border-slate-200/60 min-w-[280px]"
+                    className="bg-slate-950/60 rounded-2xl p-4 border border-white/10 min-w-[280px]"
                   >
-                    <h3 className="font-extrabold text-slate-700 mb-4 flex items-center justify-between">
+                    <h3 className="font-bold text-sm text-slate-300 mb-4 flex items-center justify-between">
                       <span className="flex items-center gap-2">
                         {getStatusIcon(colStatus)}
                         {colStatus === "TODO"
@@ -784,11 +776,11 @@ export default function TeamDetailPage() {
                           ? "In Progress"
                           : "Done"}
                       </span>
-                      <span className="bg-white px-2.5 py-1 rounded-full text-xs font-black shadow-xs text-slate-500 border border-slate-200/50">
+                      <span className="bg-slate-900 px-2 py-0.5 rounded-md text-[11px] font-bold text-cyan-400 border border-white/10">
                         {filteredTasks.filter((t) => t.status === colStatus).length}
                       </span>
                     </h3>
-                    <div className="space-y-4 min-h-[160px]">
+                    <div className="space-y-3 min-h-[160px]">
                       {filteredTasks
                         .filter((t) => t.status === colStatus)
                         .map((task) => renderTask(task))}
@@ -797,36 +789,36 @@ export default function TeamDetailPage() {
                 ))}
               </div>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {filteredTasks.map((task) => renderTask(task))}
               </div>
             )}
 
             {/* Create Task Button + Collapsible Form */}
-            <div className="mt-8 pt-8 border-t border-slate-100">
+            <div className="mt-6 pt-6 border-t border-white/10">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-base font-black text-slate-700 flex items-center gap-2">
-                  <Plus className="w-4 h-4 text-primary-500 stroke-[3]" />
+                <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                  <Plus className="w-4 h-4 text-cyan-400" />
                   Add New Task
                 </h3>
                 <button
                   type="button"
                   onClick={() => setIsAddTaskOpen(!isAddTaskOpen)}
-                  className="px-5 py-2.5 rounded-full theme-gradient-btn active:scale-95 text-white text-xs font-bold shadow-md shadow-primary-500/20 transition-all flex items-center gap-1.5 cursor-pointer"
+                  className="px-4 py-2 rounded-xl theme-gradient-btn text-white text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer"
                 >
-                  <Plus className="w-4 h-4 stroke-[3]" />
-                  {isAddTaskOpen ? "Close Form" : "Create Task"}
+                  <Plus className="w-3.5 h-3.5 stroke-[3]" />
+                  {isAddTaskOpen ? "Close" : "New Task"}
                 </button>
               </div>
 
               {isAddTaskOpen && (
                 <form
                   onSubmit={handleAddTask}
-                  className="grid grid-cols-1 md:grid-cols-12 gap-4 bg-slate-50/70 p-6 rounded-3xl border border-slate-200/80 animate-in fade-in duration-200"
+                  className="grid grid-cols-1 md:grid-cols-12 gap-3.5 bg-slate-950/80 p-5 rounded-2xl border border-white/10 animate-in fade-in duration-200"
                 >
-                  <div className="md:col-span-12 space-y-1.5">
-                    <label className="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 ml-1">
-                      Task Title <span className="text-primary-500">*</span>
+                  <div className="md:col-span-12 space-y-1">
+                    <label className="block text-[10px] font-extrabold uppercase tracking-widest text-slate-400 ml-1">
+                      Task Title <span className="text-cyan-400">*</span>
                     </label>
                     <input
                       type="text"
@@ -834,29 +826,29 @@ export default function TeamDetailPage() {
                       placeholder="What needs to be done?"
                       value={newTaskTitle}
                       onChange={(e) => setNewTaskTitle(e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-white focus:outline-none focus:border-primary-400 focus:ring-4 focus:ring-primary-100 text-sm font-semibold text-slate-900 shadow-xs"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 bg-slate-900 focus:outline-none focus:border-cyan-400 text-sm font-semibold text-white placeholder:text-slate-500"
                     />
                   </div>
-                  <div className="md:col-span-12 space-y-1.5">
-                    <label className="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 ml-1">
-                      Description <span className="text-slate-400 normal-case">(Optional)</span>
+                  <div className="md:col-span-12 space-y-1">
+                    <label className="block text-[10px] font-extrabold uppercase tracking-widest text-slate-400 ml-1">
+                      Description <span className="text-slate-500 normal-case">(Optional)</span>
                     </label>
                     <input
                       type="text"
                       placeholder="Additional details..."
                       value={newTaskDesc}
                       onChange={(e) => setNewTaskDesc(e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-white focus:outline-none focus:border-primary-400 focus:ring-4 focus:ring-primary-100 text-sm font-semibold text-slate-900 shadow-xs"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 bg-slate-900 focus:outline-none focus:border-cyan-400 text-sm text-white placeholder:text-slate-500"
                     />
                   </div>
-                  <div className="md:col-span-5 space-y-1.5">
-                    <label className="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 ml-1">
+                  <div className="md:col-span-5 space-y-1">
+                    <label className="block text-[10px] font-extrabold uppercase tracking-widest text-slate-400 ml-1">
                       Assignee
                     </label>
                     <select
                       value={newTaskAssignee}
                       onChange={(e) => setNewTaskAssignee(e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-white font-bold text-slate-700 appearance-none text-sm shadow-xs cursor-pointer focus:outline-none"
+                      className="w-full px-3 py-2 rounded-xl border border-white/10 bg-slate-900 font-bold text-slate-200 text-xs cursor-pointer focus:outline-none"
                     >
                       <option value="">Unassigned</option>
                       <option value={team.owner.id}>{team.owner.name} (Owner)</option>
@@ -867,14 +859,14 @@ export default function TeamDetailPage() {
                       ))}
                     </select>
                   </div>
-                  <div className="md:col-span-4 space-y-1.5">
-                    <label className="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 ml-1">
-                      {t("labelPriority")}
+                  <div className="md:col-span-4 space-y-1">
+                    <label className="block text-[10px] font-extrabold uppercase tracking-widest text-slate-400 ml-1">
+                      Priority
                     </label>
                     <select
                       value={newTaskPriority}
                       onChange={(e) => setNewTaskPriority(e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-white font-bold text-slate-700 appearance-none text-sm shadow-xs cursor-pointer focus:outline-none"
+                      className="w-full px-3 py-2 rounded-xl border border-white/10 bg-slate-900 font-bold text-slate-200 text-xs cursor-pointer focus:outline-none"
                     >
                       <option value="LOW">Low</option>
                       <option value="MEDIUM">Medium</option>
@@ -885,9 +877,9 @@ export default function TeamDetailPage() {
                     <button
                       type="submit"
                       disabled={isAddingTask}
-                      className="w-full py-3.5 rounded-full theme-gradient-btn text-white font-bold shadow-md shadow-primary-500/20 active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-70 text-sm cursor-pointer"
+                      className="w-full py-2.5 rounded-xl theme-gradient-btn text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                     >
-                      {isAddingTask ? <Loader2 className="w-4 h-4 animate-spin" /> : "Create Task"}
+                      {isAddingTask ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : "Save Task"}
                     </button>
                   </div>
                 </form>
@@ -918,64 +910,60 @@ export default function TeamDetailPage() {
 
       {/* Edit Team Modal */}
       {isEditTeamOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          <div
-            className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity"
-            onClick={() => setIsEditTeamOpen(false)}
-          />
-          <div className="relative w-full max-w-md bg-white rounded-[2.5rem] p-8 shadow-2xl border border-slate-100 animate-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+          <div className="relative w-full max-w-md bg-[#0c1222] rounded-3xl p-6 sm:p-7 shadow-2xl border border-white/10 animate-in zoom-in-95 duration-200">
             <button
               onClick={() => setIsEditTeamOpen(false)}
-              className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 transition-colors cursor-pointer"
+              className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
 
-            <h2 className="text-xl font-black text-slate-900 flex items-center gap-3 mb-6">
-              <Pencil className="w-5 h-5 text-primary-500" />
+            <h2 className="text-xl font-bold text-white flex items-center gap-2.5 mb-5">
+              <Pencil className="w-5 h-5 text-cyan-400" />
               Edit Team Settings
             </h2>
 
             <form onSubmit={handleEditTeam} className="space-y-4">
               <div>
-                <label className="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5 ml-1">
-                  Team Name <span className="text-primary-500">*</span>
+                <label className="block text-[10px] font-extrabold uppercase tracking-widest text-slate-400 mb-1.5 ml-1">
+                  Team Name <span className="text-cyan-400">*</span>
                 </label>
                 <input
                   type="text"
                   required
                   value={editTeamName}
                   onChange={(e) => setEditTeamName(e.target.value)}
-                  className="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:border-primary-400 focus:ring-4 focus:ring-primary-100 text-sm font-bold text-slate-900 shadow-xs"
+                  className="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-slate-950/70 focus:outline-none focus:border-cyan-400 text-sm font-semibold text-white"
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] font-extrabold uppercase tracking-widest text-slate-500 mb-1.5 ml-1">
+                <label className="block text-[10px] font-extrabold uppercase tracking-widest text-slate-400 mb-1.5 ml-1">
                   Description
                 </label>
                 <textarea
                   rows={3}
                   value={editTeamDesc}
                   onChange={(e) => setEditTeamDesc(e.target.value)}
-                  className="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:border-primary-400 focus:ring-4 focus:ring-primary-100 text-sm font-semibold text-slate-900 shadow-xs resize-none"
+                  className="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-slate-950/70 focus:outline-none focus:border-cyan-400 text-sm font-medium text-white resize-none"
                 />
               </div>
 
-              <div className="flex gap-3 pt-2">
+              <div className="flex gap-2.5 pt-2">
                 <button
                   type="button"
                   onClick={() => setIsEditTeamOpen(false)}
-                  className="flex-1 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-sm transition-all cursor-pointer"
+                  className="flex-1 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs transition-all"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isEditingTeam}
-                  className="flex-1 py-3 rounded-full theme-gradient-btn text-white font-bold text-sm shadow-md shadow-primary-500/20 active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-70 cursor-pointer"
+                  className="flex-1 py-2.5 rounded-xl theme-gradient-btn text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-1.5"
                 >
-                  {isEditingTeam ? <Loader2 className="w-4 h-4 animate-spin" /> : "Save Changes"}
+                  {isEditingTeam ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : "Save Changes"}
                 </button>
               </div>
             </form>
@@ -985,25 +973,21 @@ export default function TeamDetailPage() {
 
       {/* Delete Team Confirmation Modal */}
       {isDeleteTeamOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          <div
-            className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity"
-            onClick={() => setIsDeleteTeamOpen(false)}
-          />
-          <div className="relative w-full max-w-md bg-white rounded-[2.5rem] p-8 shadow-2xl border border-slate-100 animate-in zoom-in-95 duration-200">
-            <h2 className="text-xl font-black text-slate-900 flex items-center gap-3 mb-3">
-              <Trash2 className="w-5 h-5 text-rose-500" />
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+          <div className="relative w-full max-w-md bg-[#0c1222] rounded-3xl p-6 sm:p-7 shadow-2xl border border-rose-500/20 animate-in zoom-in-95 duration-200">
+            <h2 className="text-xl font-bold text-white flex items-center gap-2 mb-2">
+              <Trash2 className="w-5 h-5 text-rose-400" />
               Delete Team Permanently
             </h2>
-            <p className="text-xs font-medium text-slate-500 leading-relaxed mb-6">
-              Are you sure you want to delete <span className="font-bold text-slate-800">&quot;{team.name}&quot;</span>? All tasks, messages, and member associations will be deleted permanently.
+            <p className="text-xs text-slate-400 leading-relaxed mb-5">
+              Are you sure you want to delete <span className="font-bold text-white">&quot;{team.name}&quot;</span>? All tasks, messages, and member associations will be deleted permanently.
             </p>
 
-            <div className="flex gap-3">
+            <div className="flex gap-2.5">
               <button
                 type="button"
                 onClick={() => setIsDeleteTeamOpen(false)}
-                className="flex-1 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-sm transition-all cursor-pointer"
+                className="flex-1 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs transition-all"
               >
                 Cancel
               </button>
@@ -1011,9 +995,9 @@ export default function TeamDetailPage() {
                 type="button"
                 onClick={handleDeleteTeam}
                 disabled={isDeletingTeam}
-                className="flex-1 py-3 rounded-full bg-rose-500 hover:bg-rose-600 active:scale-95 text-white font-bold text-sm shadow-md shadow-rose-500/20 transition-all flex items-center justify-center gap-2 disabled:opacity-70 cursor-pointer"
+                className="flex-1 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-lg shadow-rose-600/30 transition-all flex items-center justify-center gap-1.5"
               >
-                {isDeletingTeam ? <Loader2 className="w-4 h-4 animate-spin" /> : "Delete Team"}
+                {isDeletingTeam ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : "Delete Team"}
               </button>
             </div>
           </div>

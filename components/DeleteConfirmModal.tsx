@@ -24,36 +24,29 @@ export default function DeleteConfirmModal({
   if (!isOpen || !task) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
       <div
-        className="w-full max-w-md bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl border border-rose-200/80 overflow-hidden"
+        className="w-full max-w-md bg-[#0c1222] rounded-3xl shadow-2xl border border-rose-500/30 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-rose-100 bg-rose-50/50">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-rose-500/20 bg-rose-500/5">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 flex items-center justify-center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/mascot-bunny-nobg.png"
-                alt="Snow Bunny Mascot"
-                width={38}
-                height={38}
-                className="mascot-bunny-img object-contain drop-shadow-xs animate-cute-float"
-              />
+            <div className="w-9 h-9 rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-400">
+              <AlertTriangle className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-rose-900 flex items-center gap-2">
+              <h3 className="text-base font-bold text-white flex items-center gap-2">
                 <span>{t("deleteTitle")}</span>
               </h3>
-              <p className="text-xs text-rose-600/80">{t("deleteWarning")}</p>
+              <p className="text-xs text-rose-400">{t("deleteWarning")}</p>
             </div>
           </div>
           <button
             onClick={onClose}
             disabled={isDeleting}
             type="button"
-            className="p-1.5 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors disabled:opacity-50"
+            className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-50"
           >
             <X className="w-5 h-5" />
           </button>
@@ -61,18 +54,18 @@ export default function DeleteConfirmModal({
 
         {/* Content */}
         <div className="p-6">
-          <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-rose-50/70 border border-rose-200/60 mb-5">
-            <AlertTriangle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
-            <div className="text-xs text-rose-800 leading-relaxed">
+          <div className="flex items-start gap-3.5 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 mb-5">
+            <AlertTriangle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
+            <div className="text-xs text-rose-300 leading-relaxed">
               {t("deleteDesc")}
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/70 mb-6">
-            <p className="text-xs text-slate-500 font-semibold mb-1">{t("deleteTaskLabel")}</p>
-            <p className="text-sm font-bold text-slate-900 line-clamp-2">{task.title}</p>
+          <div className="p-4 rounded-xl bg-slate-950/70 border border-white/10 mb-6">
+            <p className="text-xs text-slate-400 font-semibold mb-1">{t("deleteTaskLabel")}</p>
+            <p className="text-sm font-bold text-slate-100 line-clamp-2">{task.title}</p>
             {task.description && (
-              <p className="text-xs text-slate-600 line-clamp-2 mt-1 italic">
+              <p className="text-xs text-slate-400 line-clamp-2 mt-1 italic">
                 {task.description}
               </p>
             )}
@@ -84,7 +77,7 @@ export default function DeleteConfirmModal({
               onClick={onClose}
               disabled={isDeleting}
               type="button"
-              className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 active:scale-95 transition-all disabled:opacity-50"
+              className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 transition-all disabled:opacity-50"
             >
               {t("btnCancel")}
             </button>
@@ -92,7 +85,7 @@ export default function DeleteConfirmModal({
               onClick={onConfirm}
               disabled={isDeleting}
               type="button"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 shadow-md shadow-rose-500/25 active:scale-95 transition-all disabled:opacity-50"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-rose-600 hover:bg-rose-500 shadow-lg shadow-rose-600/30 active:scale-95 transition-all disabled:opacity-50"
             >
               <Trash2 className="w-4 h-4" />
               {isDeleting ? t("btnDeleting") : t("btnDeleteNow")}

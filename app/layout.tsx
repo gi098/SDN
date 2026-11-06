@@ -12,12 +12,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "AuraSync – Joyful & Professional Task Management",
+  title: "Nexus – Modern Workspace & Task Platform",
   description:
-    "Task & Team Management application built with Next.js App Router, Prisma ORM, and Supabase PostgreSQL. Featuring a magical Snow Bunny mascot and streamlined productivity workflow.",
+    "Enterprise-grade collaborative workspace and task management system built with Next.js, TypeScript, Tailwind CSS, Prisma ORM, and Supabase.",
   icons: {
-    icon: "/mascot-bunny-nobg.png",
-    apple: "/mascot-bunny-nobg.png",
+    icon: "/favicon.ico",
   },
 };
 
@@ -27,27 +26,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
+    <html lang="en" className="dark h-full antialiased" suppressHydrationWarning>
       <body
-        className={`${inter.className} min-h-full flex flex-col luminous-bg text-slate-800 antialiased selection:bg-secondary-500 selection:text-white transition-colors duration-300`}
+        className={`${inter.className} min-h-full flex flex-col bg-[#070a12] text-slate-100 antialiased selection:bg-cyan-500 selection:text-slate-950`}
         suppressHydrationWarning
       >
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try {
-              document.documentElement.classList.remove('dark');
-              localStorage.removeItem('theme');
-              var t = localStorage.getItem('color-theme') || 'ocean';
-              document.documentElement.setAttribute('data-theme', t);
-            } catch(e) {}`,
-          }}
-        />
         <Providers>
           <LanguageProvider>
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />
-            <Toaster position="top-right" />
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                style: {
+                  background: "#0f172a",
+                  color: "#f8fafc",
+                  border: "1px solid rgba(255, 255, 255, 0.1)",
+                  borderRadius: "1rem",
+                },
+              }}
+            />
           </LanguageProvider>
         </Providers>
       </body>

@@ -3,12 +3,14 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f1f5f9;
-  --foreground: #0f172a;
+  --background: #090d16;
+  --foreground: #f8fafc;
+  --surface: #0f172a;
+  --surface-border: rgba(255, 255, 255, 0.08);
 }
 
 .dark {
-  --background: #0f172a;
+  --background: #090d16;
   --foreground: #f8fafc;
 }
 
@@ -19,90 +21,88 @@
   --font-mono: var(--font-geist-mono);
 }
 
+* {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
 body {
-  background-color: #f0f4f9;
-  color: #1e293b;
+  background-color: #070a12;
+  color: #f1f5f9;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
 }
 
 /* 
-  Dual Luminous Color Themes Tokens:
-  Theme 1: Ocean Sky Aurora (Sky Blue + Royal Violet + Rose Pink + Mint)
-  Theme 2: Sunset Coral (Warm Peach + Coral Rose + Lavender + Amber)
-  Full-palette synchronization across background, buttons, badges, typography, and halos!
+  Modern High-Tech Dark Mode Design Tokens:
+  - Cyan / Electric Blue / Neon Violet Accent Gradient
+  - Obsidian & Slate Glassmorphism
+  - Glowing Ambient Mesh Halos
 */
 :root,
-html[data-theme="ocean"] {
-  --primary-gradient: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 50%, #06b6d4 100%);
-  --primary-gradient-hover: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 50%, #22d3ee 100%);
-  --brand-text-gradient: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 50%, #06b6d4 100%);
-  --accent-color: #0ea5e9;
-  --accent-bg-subtle: rgba(14, 165, 233, 0.12);
-  --accent-border: rgba(56, 189, 248, 0.45);
-  --halo-glow-1: rgba(56, 189, 248, 0.35);
-  --halo-glow-2: rgba(6, 182, 212, 0.35);
-  --halo-glow-3: rgba(45, 212, 191, 0.25);
-  --mascot-card-border: rgba(186, 230, 253, 0.85);
-  --active-tab-shadow: 0 4px 14px 0 rgba(14, 165, 233, 0.35);
-  --primary-btn-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.3);
-  --focus-ring: #0ea5e9;
-}
-
+html[data-theme="ocean"],
 html[data-theme="sunset"] {
-  --primary-gradient: linear-gradient(135deg, #f43f5e 0%, #ec4899 50%, #f59e0b 100%);
-  --primary-gradient-hover: linear-gradient(135deg, #fb7185 0%, #f472b6 50%, #fbbf24 100%);
-  --brand-text-gradient: linear-gradient(135deg, #e11d48 0%, #db2777 50%, #ea580c 100%);
-  --accent-color: #e11d48;
-  --accent-bg-subtle: rgba(244, 63, 94, 0.12);
-  --accent-border: rgba(251, 113, 133, 0.45);
-  --halo-glow-1: rgba(251, 146, 60, 0.28);
-  --halo-glow-2: rgba(244, 63, 94, 0.24);
-  --halo-glow-3: rgba(168, 85, 247, 0.18);
-  --mascot-card-border: rgba(254, 215, 170, 0.85);
-  --active-tab-shadow: 0 4px 14px 0 rgba(244, 63, 94, 0.35);
-  --primary-btn-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.3);
-  --focus-ring: #e11d48;
+  --primary-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+  --primary-gradient-hover: linear-gradient(135deg, #22d3ee 0%, #60a5fa 50%, #a78bfa 100%);
+  --brand-text-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+  --accent-color: #06b6d4;
+  --accent-bg-subtle: rgba(6, 182, 212, 0.15);
+  --accent-border: rgba(6, 182, 212, 0.4);
+  --halo-glow-1: rgba(6, 182, 212, 0.25);
+  --halo-glow-2: rgba(99, 102, 241, 0.25);
+  --halo-glow-3: rgba(168, 85, 247, 0.2);
+  --active-tab-shadow: 0 0 20px rgba(6, 182, 212, 0.45);
+  --primary-btn-shadow: 0 4px 25px -4px rgba(6, 182, 212, 0.5);
+  --focus-ring: #06b6d4;
 }
 
+/* Futuristic Ambient Glowing Mesh Background */
 .luminous-bg,
-html[data-theme="ocean"] .luminous-bg,
-html[data-theme="ocean"] body {
-  background-color: #f1f5f9;
+body {
+  background-color: #070a12;
   background-image:
-    radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.30) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(6, 182, 212, 0.25) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(45, 212, 191, 0.18) 0px, transparent 55%),
-    radial-gradient(at 0% 100%, rgba(14, 165, 233, 0.22) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.25) 0px, transparent 50%);
+    radial-gradient(at 15% 10%, rgba(6, 182, 212, 0.16) 0px, transparent 45%),
+    radial-gradient(at 85% 15%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
+    radial-gradient(at 50% 60%, rgba(139, 92, 246, 0.12) 0px, transparent 60%),
+    radial-gradient(at 10% 90%, rgba(14, 165, 233, 0.14) 0px, transparent 50%),
+    radial-gradient(at 90% 90%, rgba(59, 130, 246, 0.16) 0px, transparent 50%);
   background-attachment: fixed;
-  transition: background-color 0.5s ease-in-out;
+  background-size: cover;
 }
 
-html[data-theme="sunset"] .luminous-bg,
-html[data-theme="sunset"] body {
-  background-color: #faf5f0;
-  background-image:
-    radial-gradient(at 0% 0%, rgba(251, 146, 60, 0.32) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(244, 63, 94, 0.26) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(168, 85, 247, 0.22) 0px, transparent 55%),
-    radial-gradient(at 0% 100%, rgba(251, 191, 36, 0.25) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(45, 212, 191, 0.20) 0px, transparent 50%);
-  background-attachment: fixed;
-  transition: background-color 0.5s ease-in-out;
+/* Modern Dark Frosted Glass */
+.dark-glass {
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Theme Utilities for Complete Synchronized Theme Transition */
+.dark-glass:hover {
+  border-color: rgba(6, 182, 212, 0.35);
+  box-shadow: 0 16px 45px -10px rgba(6, 182, 212, 0.15), 0 0 20px rgba(99, 102, 241, 0.1);
+}
+
+.dark-card {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Gradient Buttons & Texts */
 .theme-gradient-btn {
   background-image: var(--primary-gradient);
   box-shadow: var(--primary-btn-shadow);
   color: #ffffff;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .theme-gradient-btn:hover {
   background-image: var(--primary-gradient-hover);
-  box-shadow: var(--primary-btn-shadow);
+  box-shadow: 0 6px 30px rgba(6, 182, 212, 0.65);
+  transform: translateY(-1px);
 }
 
 .theme-gradient-text {
@@ -111,224 +111,68 @@ html[data-theme="sunset"] body {
   background-clip: text;
   color: transparent;
   display: inline-block;
-  transition: all 0.5s ease;
-}
-
-/* Mascot Fox & Logo Color Synchronization */
-.mascot-bunny-img {
-  transition: filter 0.5s ease-in-out;
-}
-
-html[data-theme="sunset"] .mascot-bunny-img {
-  filter: hue-rotate(185deg) saturate(1.18);
-}
-
-.mascot-sparkle-badge {
-  background-image: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-  transition: background-image 0.5s ease;
-}
-
-html[data-theme="sunset"] .mascot-sparkle-badge {
-  background-image: linear-gradient(135deg, #fb923c 0%, #f43f5e 100%);
 }
 
 .theme-active-tab {
   background-image: var(--primary-gradient);
   color: #ffffff;
   box-shadow: var(--active-tab-shadow);
-  transition: all 0.3s ease;
 }
 
 .theme-accent-badge {
   background-color: var(--accent-bg-subtle);
   border-color: var(--accent-border);
-  color: var(--accent-color);
-  transition: all 0.3s ease;
+  color: #38bdf8;
 }
 
-.theme-halo-1 {
-  background-color: var(--halo-glow-1);
-  transition: background-color 0.5s ease;
-}
-.theme-halo-2 {
-  background-color: var(--halo-glow-2);
-  transition: background-color 0.5s ease;
-}
-.theme-halo-3 {
-  background-color: var(--halo-glow-3);
-  transition: background-color 0.5s ease;
-}
-
-.theme-mascot-card {
-  border-color: var(--mascot-card-border);
-  transition: border-color 0.5s ease;
-}
-
-.theme-modal-header {
-  background-image: linear-gradient(to right, rgba(224, 242, 254, 0.6), rgba(207, 250, 254, 0.4), rgba(224, 242, 254, 0.4));
-  transition: background-image 0.5s ease;
-}
-
-html[data-theme="sunset"] .theme-modal-header {
-  background-image: linear-gradient(to right, rgba(255, 237, 213, 0.6), rgba(254, 226, 226, 0.4), rgba(253, 230, 250, 0.4));
-}
-
-.theme-focus-ring:focus {
-  outline: none;
-  border-color: var(--accent-color) !important;
-  box-shadow: 0 0 0 2.5px var(--accent-bg-subtle) !important;
-}
-
-/* Card Accent Lines & Status Colors with Dynamic Theme Adaptation */
-.card-accent-done {
-  background-image: linear-gradient(to right, #34d399, #2dd4bf, #38bdf8);
-  transition: background-image 0.5s ease;
-}
-html[data-theme="sunset"] .card-accent-done {
-  background-image: linear-gradient(to right, #10b981, #f59e0b, #fb923c);
-}
-
-.card-accent-in-progress {
-  background-image: linear-gradient(to right, #38bdf8, #60a5fa, #6366f1);
-  transition: background-image 0.5s ease;
-}
-html[data-theme="sunset"] .card-accent-in-progress {
-  background-image: linear-gradient(to right, #fb923c, #f43f5e, #ec4899);
-}
-
-.card-accent-todo {
-  background-image: linear-gradient(to right, #818cf8, #c084fc, #f472b6);
-  transition: background-image 0.5s ease;
-}
-html[data-theme="sunset"] .card-accent-todo {
-  background-image: linear-gradient(to right, #c084fc, #f43f5e, #fb923c);
-}
-
-/* Dynamic Sprint Progress Bar */
+/* Glowing Sprint Progress Bar */
 .sprint-progress-bar {
-  background-image: linear-gradient(to right, #38bdf8, #6366f1, #10b981);
-  transition: background-image 0.5s ease;
-}
-html[data-theme="sunset"] .sprint-progress-bar {
-  background-image: linear-gradient(to right, #fb923c, #f43f5e, #fbbf24);
+  background-image: linear-gradient(90deg, #06b6d4, #3b82f6, #10b981);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.5);
 }
 
-/* Premium Frosted Glass Card */
-.frosted-glass {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 10px 30px -5px rgba(100, 116, 139, 0.1), 0 4px 6px -2px rgba(100, 116, 139, 0.04);
-  transition: all 0.3s ease;
+/* Accent Card Lines */
+.card-accent-done {
+  background-image: linear-gradient(90deg, #10b981, #06b6d4);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+.card-accent-in-progress {
+  background-image: linear-gradient(90deg, #06b6d4, #6366f1);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+}
+.card-accent-todo {
+  background-image: linear-gradient(90deg, #8b5cf6, #ec4899);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
 }
 
-.frosted-glass:hover {
-  border-color: rgba(56, 189, 248, 0.45);
-  box-shadow: 0 18px 35px -5px rgba(14, 165, 233, 0.16), 0 8px 10px -4px rgba(99, 102, 241, 0.08);
-}
-
-html[data-theme="sunset"] .frosted-glass:hover {
-  border-color: rgba(251, 146, 60, 0.5);
-  box-shadow: 0 18px 35px -5px rgba(251, 146, 60, 0.18), 0 8px 10px -4px rgba(244, 63, 94, 0.1);
-}
-
-/* Micro Animations */
-@keyframes cute-float {
+/* Animations */
+@keyframes cyber-pulse {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
+    opacity: 0.8;
+    transform: scale(1);
   }
   50% {
-    transform: translateY(-8px) rotate(1.5deg);
+    opacity: 1;
+    transform: scale(1.05);
   }
 }
 
-@keyframes soft-pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.3), 0 0 40px rgba(6, 182, 212, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(56, 189, 248, 0.5), 0 0 60px rgba(14, 165, 233, 0.3);
-  }
+.animate-cyber-pulse {
+  animation: cyber-pulse 3s ease-in-out infinite;
 }
 
-.animate-cute-float {
-  animation: cute-float 4.5s ease-in-out infinite;
-}
-
-.animate-glow {
-  animation: soft-pulse-glow 4s ease-in-out infinite;
-}
-
-/* Custom Scrollbar */
+/* Sleek Dark Scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(226, 232, 240, 0.6);
+  background: #090d16;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(56, 189, 248, 0.4);
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(14, 165, 233, 0.7);
-}
-
-@theme inline {
-  --color-primary-50: var(--theme-c1-50);
-  --color-primary-100: var(--theme-c1-100);
-  --color-primary-200: var(--theme-c1-200);
-  --color-primary-300: var(--theme-c1-300);
-  --color-primary-400: var(--theme-c1-400);
-  --color-primary-500: var(--theme-c1-500);
-  --color-primary-600: var(--theme-c1-600);
-  --color-secondary-50: var(--theme-c2-50);
-  --color-secondary-100: var(--theme-c2-100);
-  --color-secondary-200: var(--theme-c2-200);
-  --color-secondary-300: var(--theme-c2-300);
-  --color-secondary-400: var(--theme-c2-400);
-  --color-secondary-500: var(--theme-c2-500);
-  --color-secondary-600: var(--theme-c2-600);
-  --color-secondary-700: var(--theme-c2-700);
-}
-
-:root,
-html[data-theme="ocean"] {
-  --theme-c1-50: #f0f9ff;
-  --theme-c1-100: #e0f2fe;
-  --theme-c1-200: #bae6fd;
-  --theme-c1-300: #7dd3fc;
-  --theme-c1-400: #38bdf8;
-  --theme-c1-500: #0ea5e9;
-  --theme-c1-600: #0284c7;
-  
-  --theme-c2-50: #ecfeff;
-  --theme-c2-100: #cffafe;
-  --theme-c2-200: #a5f3fc;
-  --theme-c2-300: #67e8f9;
-  --theme-c2-400: #22d3ee;
-  --theme-c2-500: #06b6d4;
-  --theme-c2-600: #0891b2;
-  --theme-c2-700: #0e7490;
-}
-
-html[data-theme="sunset"] {
-  --theme-c1-50: #fff1f2;
-  --theme-c1-100: #ffe4e6;
-  --theme-c1-200: #fecdd3;
-  --theme-c1-300: #fda4af;
-  --theme-c1-400: #fb7185;
-  --theme-c1-500: #f43f5e;
-  --theme-c1-600: #e11d48;
-  
-  --theme-c2-50: #fffbeb;
-  --theme-c2-100: #fef3c7;
-  --theme-c2-200: #fde68a;
-  --theme-c2-300: #fcd34d;
-  --theme-c2-400: #fbbf24;
-  --theme-c2-500: #f59e0b;
-  --theme-c2-600: #d97706;
-  --theme-c2-700: #b45309;
+  background: rgba(6, 182, 212, 0.6);
 }
