@@ -5,13 +5,14 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import { Loader2, ArrowRight, ShieldCheck, Zap } from "lucide-react";
+import { Loader2, ArrowRight, Mail, Lock, Eye, EyeOff } from "lucide-react";
 import Logo from "@/components/Logo";
 
 export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -40,107 +41,99 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-[85vh] flex items-center justify-center p-4 sm:p-6 lg:p-8">
-      <div className="w-full max-w-5xl flex flex-col lg:flex-row rounded-3xl bg-[#0c1222]/90 backdrop-blur-2xl shadow-[0_25px_70px_-15px_rgba(0,0,0,0.8)] overflow-hidden border border-white/10">
+    <div className="min-h-[calc(100vh-5rem)] flex items-center justify-center p-4 sm:p-6 relative">
+      {/* Subtle Background Glow */}
+      <div className="absolute w-[360px] h-[360px] bg-emerald-500/15 blur-[100px] rounded-full pointer-events-none -top-10 left-1/2 -translate-x-1/2" />
+
+      {/* Floating Compact Cyber Card */}
+      <div className="w-full max-w-[420px] relative z-10 bg-[#08101e]/90 backdrop-blur-2xl border border-white/10 hover:border-emerald-500/30 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(16,185,129,0.12)] transition-all">
         
-        {/* Left Side: Brand Panel */}
-        <div className="hidden lg:flex w-5/12 bg-slate-950/80 relative p-12 flex-col justify-between overflow-hidden border-r border-white/10">
-          {/* Ambient Glowing Orbs */}
-          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-emerald-500/20 via-teal-600/20 to-transparent blur-[70px] rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-gradient-to-tr from-green-600/20 to-emerald-500/10 blur-[60px] rounded-full -translate-x-1/4 translate-y-1/4 pointer-events-none" />
-          
-          <div className="relative z-10">
-            <Logo size="lg" subtitle="Next-Gen Task Platform" />
-          </div>
-
-          <div className="relative z-10 space-y-4 my-auto py-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20">
-              <ShieldCheck className="w-4 h-4" />
-              Secure Enterprise Gateway
-            </div>
-            <h1 className="text-3xl xl:text-4xl font-black text-white leading-tight tracking-tight">
-              Access your <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">intelligent</span> workspace.
-            </h1>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              Real-time collaboration, task tracking, and role-based permissions powered by PostgreSQL & Supabase.
-            </p>
-          </div>
-
-          <div className="relative z-10 text-xs text-slate-500 font-mono">
-            NEXUS OS · VERSION 2.0
-          </div>
+        {/* Brand Header */}
+        <div className="flex flex-col items-center text-center mb-6">
+          <Logo size="md" showSubtitle={false} className="mb-3" />
+          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            Sign In to Nexus
+          </h2>
+          <p className="text-xs text-slate-400 mt-1">
+            Access your team workspaces and project sprint boards
+          </p>
         </div>
 
-        {/* Right Side: Form Panel */}
-        <div className="w-full lg:w-7/12 flex items-center justify-center p-8 sm:p-12 lg:p-16 relative">
-          <div className="w-full max-w-md space-y-7 relative z-10">
-            
-            {/* Header */}
-            <div>
-              <div className="lg:hidden mb-6">
-                <Logo size="md" />
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">Sign In</h2>
-              <p className="text-xs sm:text-sm text-slate-400 mt-1">
-                Enter your credentials to manage tasks and workspaces.
-              </p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-1.5">
-                <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider ml-1">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:bg-slate-950 focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 transition-all text-sm font-medium text-white placeholder:text-slate-500"
-                  placeholder="you@example.com"
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <div className="flex justify-between items-center ml-1">
-                  <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                    Password
-                  </label>
-                </div>
-                <input
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-white/10 bg-slate-950/70 focus:bg-slate-950 focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 transition-all text-sm font-medium text-white placeholder:text-slate-500"
-                  placeholder="••••••••"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full py-3.5 mt-2 rounded-xl theme-gradient-btn text-white font-bold transition-all flex items-center justify-center gap-2 text-sm shadow-[0_0_20px_rgba(16,185,129,0.35)] disabled:opacity-50"
-              >
-                {isLoading ? (
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                ) : (
-                  <>
-                    Sign In <ArrowRight className="w-4 h-4" />
-                  </>
-                )}
-              </button>
-            </form>
-
-            <div className="text-center pt-2 border-t border-white/5">
-              <p className="text-xs sm:text-sm font-medium text-slate-400">
-                Don't have an account yet?{" "}
-                <Link href="/register" className="text-emerald-400 font-bold hover:underline transition-all">
-                  Create account
-                </Link>
-              </p>
+        {/* Login Form */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Email */}
+          <div className="space-y-1.5">
+            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">
+              Email Address
+            </label>
+            <div className="relative">
+              <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-white/10 bg-[#050a12]/80 focus:bg-[#050a12] focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 text-xs sm:text-sm font-medium text-white placeholder:text-slate-500 transition-all"
+                placeholder="developer@example.com"
+              />
             </div>
           </div>
+
+          {/* Password */}
+          <div className="space-y-1.5">
+            <div className="flex justify-between items-center ml-1">
+              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                Password
+              </label>
+            </div>
+            <div className="relative">
+              <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                type={showPassword ? "text" : "password"}
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-white/10 bg-[#050a12]/80 focus:bg-[#050a12] focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 text-xs sm:text-sm font-medium text-white placeholder:text-slate-500 transition-all"
+                placeholder="••••••••"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 p-1"
+                tabIndex={-1}
+              >
+                {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+              </button>
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full py-2.5 mt-2 rounded-xl theme-gradient-btn text-white text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(16,185,129,0.35)] disabled:opacity-50 cursor-pointer active:scale-95"
+          >
+            {isLoading ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <>
+                Sign In <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
+              </>
+            )}
+          </button>
+        </form>
+
+        {/* Footer Link */}
+        <div className="text-center pt-5 mt-5 border-t border-white/5">
+          <p className="text-xs text-slate-400">
+            Don't have an account?{" "}
+            <Link
+              href="/register"
+              className="text-emerald-400 font-bold hover:text-emerald-300 hover:underline transition-colors ml-1"
+            >
+              Create one
+            </Link>
+          </p>
         </div>
       </div>
     </div>
