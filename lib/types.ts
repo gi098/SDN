@@ -1,34 +1,51 @@
-import { ALLOWED_CATEGORIES, Category } from "./validations";
+export const ALLOWED_GENRES = [
+  "Fiction",
+  "Non-Fiction",
+  "Science",
+  "History",
+  "Other",
+] as const;
 
-export { ALLOWED_CATEGORIES };
-export type { Category };
+export type Genre = (typeof ALLOWED_GENRES)[number];
 
 export interface User {
   id: string;
   email: string;
 }
 
-export interface Expense {
+export interface ReadingLog {
   id: string;
   userId: string;
-  title: string;
-  amount: number;
-  category: string;
-  note: string;
-  starred: boolean;
-  spentAt: string | Date;
+  bookTitle: string;
+  title?: string;
+  minutes: number;
+  genre: string;
+  category?: string;
+  notes: string;
+  note?: string;
+  isFavorite: boolean;
+  favorite?: boolean;
+  readAt: string | Date;
+  date?: string | Date;
   createdAt: string | Date;
+  updatedAt?: string | Date;
 }
 
-export interface CategoryBreakdown {
-  category: string;
+export interface GenreBreakdown {
+  genre: string;
+  category?: string;
   count: number;
-  total: number;
+  totalMinutes: number;
+  total?: number;
+  percentage: number;
 }
 
-export interface ExpenseSummary {
-  count: number;
-  starredCount: number;
-  totalAmount: number;
-  breakdown: CategoryBreakdown[];
+export interface ReadingSummary {
+  totalSessions: number;
+  totalLogs?: number;
+  totalMinutes: number;
+  favoriteCount: number;
+  starredCount?: number;
+  genreBreakdown: GenreBreakdown[];
+  categoryBreakdown?: GenreBreakdown[];
 }

@@ -2,12 +2,12 @@
 
 import React from "react";
 import { AuthProvider } from "@/contexts/AuthContext";
-import { ExpenseProvider } from "@/contexts/ExpenseContext";
+import { ReadingLogProvider } from "@/contexts/ReadingLogContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <AuthProvider>
-      <ExpenseProvider>{children}</ExpenseProvider>
+      <ReadingLogProvider>{children}</ReadingLogProvider>
     </AuthProvider>
   );
 }

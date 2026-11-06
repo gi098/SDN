@@ -1,6 +1,6 @@
-# ExpenseTrail – Personal Expense Tracker
+# ReadLog – Personal Reading Tracker
 
-ExpenseTrail is a modern, high-performance personal expense tracking web application built according to the **SDN302 Practical Exam** specification.
+ReadLog is a modern, high-performance personal reading log and habit-tracking web application built according to the **SDN302 Practical Exam** specification.
 
 ## 🚀 Key Features
 
@@ -9,25 +9,26 @@ ExpenseTrail is a modern, high-performance personal expense tracking web applica
   - Password hashing via `bcryptjs`.
   - Session management using custom JWT and strict `HttpOnly` cookie named `session_token`.
   - Server-side and client-side validation.
-  - Strict data isolation ensuring each user only accesses their own expenses.
-- **Expense Management**:
-  - Add expenses with title, amount, category, date, and optional note.
-  - Instant duplicate transaction detection (same title, amount, date for the same user).
-  - Star / unstar favorite transactions with real-time toggle.
-  - Edit and delete expenses with immediate synchronization.
-  - Formatted currency displays ($X.XX) and responsive cards.
+  - Strict data isolation ensuring each user only accesses their own reading logs.
+- **Reading Log Management**:
+  - Add reading sessions with book title, reading minutes, genre, date, and key insights/notes.
+  - Instant duplicate session detection (same book title, minutes, and date for the same user).
+  - Favorite / bookmark reading sessions with real-time toggle.
+  - Edit and delete reading sessions with immediate synchronization.
+  - Responsive reading session cards and intuitive interactions.
 - **Dynamic Filtering & Search**:
-  - Filter by category (`All`, `Food`, `Transport`, `Bills`, `Shopping`, `Other`).
-  - Filter by starred transactions only.
-  - Real-time case-insensitive keyword search in both `title` and `note`.
+  - Filter by genre (`Fiction`, `Non-Fiction`, `Science`, `History`, `Other`).
+  - Filter by favorite reading sessions only.
+  - Real-time search across book titles and notes.
   - One-click clear all filters.
-- **Real-Time Analytics & Summary**:
-  - Total expense amount, total entry count, and starred items count.
-  - Category breakdown with percentages, item counts, and totals.
-  - Breakdown sorted by total descending, with deterministic tie-breaker priority: `Food`, `Transport`, `Bills`, `Shopping`, `Other`.
+- **Real-Time Analytics & Dashboard**:
+  - Total reading sessions, total minutes read, and favorite sessions count.
+  - Genre distribution breakdown with percentages, session counts, and total minutes.
+  - Live progress bars indicating reading time share per genre.
 - **Modern Responsive Design**:
-  - Built with Tailwind CSS and ShadCN UI (`components.json`, Button, Input, Card, Badge).
-  - Fully responsive across mobile (375px without horizontal scrolling) and desktop (1280px).
+  - Arctic Frost & Winter Ocean Blue aesthetic with interactive 3D Arctic Fox.
+  - Built with Tailwind CSS and ShadCN UI.
+  - Responsive across mobile (375px without horizontal scrolling) and desktop (1280px).
 
 ## 🛠️ Tech Stack
 
@@ -36,87 +37,15 @@ ExpenseTrail is a modern, high-performance personal expense tracking web applica
 - **Database**: PostgreSQL (hosted on Supabase)
 - **ORM**: Prisma ORM
 - **UI Components**: ShadCN UI + Tailwind CSS + Lucide Icons
-- **State Management**: React Context (`AuthProvider` & `ExpenseProvider`)
+- **State Management**: React Context (`AuthProvider` & `ReadingLogProvider`)
 - **Deployment**: Vercel
-
-## 📦 Project Structure
-
-```text
-├── app/
-│   ├── api/
-│   │   ├── auth/
-│   │   │   ├── login/route.ts
-│   │   │   ├── logout/route.ts
-│   │   │   ├── me/route.ts
-│   │   │   └── register/route.ts
-│   │   └── expenses/
-│   │       ├── [id]/route.ts
-│   │       ├── summary/route.ts
-│   │       └── route.ts
-│   ├── expenses/page.tsx
-│   ├── login/page.tsx
-│   ├── register/page.tsx
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
-├── components/
-│   ├── expenses/
-│   │   ├── EditExpenseModal.tsx
-│   │   ├── ExpenseFilters.tsx
-│   │   ├── ExpenseForm.tsx
-│   │   ├── ExpenseList.tsx
-│   │   └── ExpenseSummary.tsx
-│   ├── ui/
-│   │   ├── badge.tsx
-│   │   ├── button.tsx
-│   │   ├── card.tsx
-│   │   └── input.tsx
-│   ├── Navbar.tsx
-│   └── Providers.tsx
-├── contexts/
-│   ├── AuthContext.tsx
-│   └── ExpenseContext.tsx
-├── lib/
-│   ├── auth.ts
-│   ├── prisma.ts
-│   ├── types.ts
-│   ├── utils.ts
-│   └── validations.ts
-├── prisma/
-│   └── schema.prisma
-├── components.json
-├── package.json
-└── tsconfig.json
-```
 
 ## ⚙️ Environment Configuration
 
-Configure your environment in `.env` based on `.env.example`:
+Configure your environment in `.env`:
 
 ```env
 DATABASE_URL="postgresql://postgres.[PROJECT-REF]:[PASSWORD]@aws-0-[REGION].pooler.supabase.com:6543/postgres?pgbouncer=true"
 DIRECT_URL="postgresql://postgres.[PROJECT-REF]:[PASSWORD]@aws-0-[REGION].pooler.supabase.com:5432/postgres"
 AUTH_SECRET="your-secure-jwt-auth-secret-key"
 ```
-
-## 🏃 Local Setup & Run
-
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-2. Synchronize database schema:
-   ```bash
-   npx prisma db push
-   ```
-
-3. Build production bundle:
-   ```bash
-   npm run build
-   ```
-
-4. Run development server:
-   ```bash
-   npm run dev
-   ```

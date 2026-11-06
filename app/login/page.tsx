@@ -97,7 +97,7 @@ export default function LoginPage() {
         setErrors({ auth: data.error || "Invalid email or password" });
       } else {
         await checkAuth();
-        router.push("/expenses");
+        router.push("/reading-logs");
       }
     } catch {
       setErrors({ auth: "Network error occurred. Please try again." });
@@ -122,7 +122,7 @@ export default function LoginPage() {
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">
               Welcome to <br />
               <span className="text-[#38bdf8] drop-shadow-[0_0_25px_rgba(56,189,248,0.6)]">
-                ExpenseTrail
+                ReadLog
               </span>
             </h2>
           </div>

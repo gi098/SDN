@@ -1,12 +1,4 @@
-export const ALLOWED_CATEGORIES = [
-  "Food",
-  "Transport",
-  "Bills",
-  "Shopping",
-  "Other",
-] as const;
-
-export type Category = (typeof ALLOWED_CATEGORIES)[number];
+import { ALLOWED_GENRES, Genre } from "./types";
 
 export function validateRegisterInput(data: {
   email?: unknown;
@@ -87,112 +79,102 @@ export function validateLoginInput(data: {
   return { valid: true };
 }
 
-export function validateExpenseInput(data: {
+export function validateReadingLogInput(data: {
+  bookTitle?: unknown;
   title?: unknown;
-  amount?: unknown;
+  minutes?: unknown;
+  genre?: unknown;
   category?: unknown;
+  notes?: unknown;
   note?: unknown;
-  spentAt?: unknown;
+  readAt?: unknown;
+  date?: unknown;
 }): {
   valid: boolean;
   error?: string;
-  field?: "title" | "amount" | "category" | "date";
+  field?: "bookTitle" | "minutes" | "genre" | "readAt";
   parsed?: {
-    title: string;
-    amount: number;
-    category: string;
-    note: string;
-    spentAt: Date;
+    bookTitle: string;
+    minutes: number;
+    genre: Genre;
+    notes: string;
+    readAt: Date;
   };
 } {
-  // Title
-  if (
-    data.title === undefined ||
-    data.title === null ||
-    String(data.title).trim() === ""
-  ) {
-    return { valid: false, error: "Title is required", field: "title" };
-  }
-  const title = String(data.title).trim();
-  if (title.length > 80) {
+  const rawTitle = data.bookTitle ?? data.title;
+  const bookTitle = typeof rawTitle === "string" ? rawTitle.trim() : "";
+  if (!bookTitle) {
     return {
       valid: false,
-      error: "Title must be at most 80 characters",
-      field: "title",
+      error: "Book title is required",
+      field: "bookTitle",
     };
   }
 
-  // Amount
-  if (
-    data.amount === undefined ||
-    data.amount === null ||
-    String(data.amount).trim() === ""
-  ) {
-    return { valid: false, error: "Amount is required", field: "amount" };
+  const rawMinutes = data.minutes;
+  let parsedMinutes: number | null = null;
+  if (typeof rawMinutes === "number" && Number.isFinite(rawMinutes)) {
+    parsedMinutes = rawMinutes;
+  } else if (typeof rawMinutes === "string" && rawMinutes.trim() !== "") {
+    const n = Number(rawMinutes);
+    if (!isNaN(n) && Number.isFinite(n)) {
+      parsedMinutes = n;
+    }
   }
-  const numAmount = Number(data.amount);
-  if (isNaN(numAmount) || numAmount <= 0) {
+
+  if (parsedMinutes === null) {
     return {
       valid: false,
-      error: "Amount must be a positive number",
-      field: "amount",
+      error: "Reading minutes are required",
+      field: "minutes",
     };
   }
 
-  // Category
-  if (!data.category || String(data.category).trim() === "") {
+  if (!Number.isInteger(parsedMinutes) || parsedMinutes <= 0) {
     return {
       valid: false,
-      error: "Please choose a category",
-      field: "category",
-    };
-  }
-  const category = String(data.category).trim();
-  if (!ALLOWED_CATEGORIES.includes(category as Category)) {
-    return { valid: false, error: "Invalid category", field: "category" };
-  }
-
-  // Date (spentAt)
-  if (!data.spentAt || String(data.spentAt).trim() === "") {
-    return { valid: false, error: "Date is required", field: "date" };
-  }
-  const spentAtDate = new Date(String(data.spentAt));
-  if (isNaN(spentAtDate.getTime())) {
-    return { valid: false, error: "Date is required", field: "date" };
-  }
-
-  // Date cannot be in the future
-  const now = new Date();
-  const endOfToday = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate(),
-    23,
-    59,
-    59,
-    999
-  );
-  if (spentAtDate.getTime() > endOfToday.getTime()) {
-    return {
-      valid: false,
-      error: "Date cannot be in the future",
-      field: "date",
+      error: "Minutes must be a positive integer",
+      field: "minutes",
     };
   }
 
-  const note =
-    data.note !== undefined && data.note !== null
-      ? String(data.note).trim()
-      : "";
+  const rawGenre = data.genre ?? data.category;
+  const genre = typeof rawGenre === "string" ? rawGenre.trim() : "";
+  if (!genre) {
+    return { valid: false, error: "Genre is required", field: "genre" };
+  }
+  if (!ALLOWED_GENRES.includes(genre as Genre)) {
+    return {
+      valid: false,
+      error: `Genre must be one of: ${ALLOWED_GENRES.join(", ")}`,
+      field: "genre",
+    };
+  }
+
+  const rawDate = data.readAt ?? data.date;
+  if (!rawDate) {
+    return { valid: false, error: "Date is required", field: "readAt" };
+  }
+  const dateObj = new Date(rawDate as string | number | Date);
+  if (isNaN(dateObj.getTime())) {
+    return {
+      valid: false,
+      error: "Please enter a valid date",
+      field: "readAt",
+    };
+  }
+
+  const rawNotes = data.notes ?? data.note;
+  const notes = typeof rawNotes === "string" ? rawNotes.trim() : "";
 
   return {
     valid: true,
     parsed: {
-      title,
-      amount: Math.round(numAmount * 100) / 100,
-      category,
-      note,
-      spentAt: spentAtDate,
+      bookTitle,
+      minutes: parsedMinutes,
+      genre: genre as Genre,
+      notes,
+      readAt: dateObj,
     },
   };
 }

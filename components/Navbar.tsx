@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LogIn, LogOut, Wallet, ArrowRight } from "lucide-react";
+import { LogIn, LogOut, BookOpen, ArrowRight, Home } from "lucide-react";
 import Logo from "@/components/Logo";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -30,22 +30,22 @@ export function Navbar() {
                   : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
               }`}
             >
-              <Wallet className="w-4 h-4 text-sky-500" />
+              <Home className="w-4 h-4 text-sky-500" />
               <span>Home</span>
             </Link>
 
             {!loading && user && (
               <Link
-                href="/expenses"
-                data-testid="link-expenses"
+                href="/reading-logs"
+                data-testid="link-reading-logs"
                 className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${
-                  pathname.startsWith("/expenses")
+                  pathname.startsWith("/reading-logs") || pathname.startsWith("/logs")
                     ? "bg-white text-sky-600 border border-sky-200/80 shadow-xs"
                     : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
                 }`}
               >
-                <Wallet className="w-4 h-4 text-cyan-500" />
-                <span>Expenses</span>
+                <BookOpen className="w-4 h-4 text-cyan-500" />
+                <span>Reading Logs</span>
               </Link>
             )}
           </div>
@@ -74,12 +74,12 @@ export function Navbar() {
                 </div>
               </div>
 
-              {/* Mobile Expenses Link */}
+              {/* Mobile Reading Logs Link */}
               <Link
-                href="/expenses"
+                href="/reading-logs"
                 className="flex lg:hidden items-center p-2 rounded-xl text-slate-600 hover:text-sky-600 hover:bg-sky-50 transition-colors"
               >
-                <Wallet className="w-5 h-5" />
+                <BookOpen className="w-5 h-5" />
               </Link>
 
               {/* Logout Button */}

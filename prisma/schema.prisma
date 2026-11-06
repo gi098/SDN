@@ -12,13 +12,33 @@ datasource db {
 }
 
 model User {
-  id           String    @id @default(cuid())
-  email        String    @unique
+  id           String       @id @default(cuid())
+  email        String       @unique
   passwordHash String
-  createdAt    DateTime  @default(now())
+  createdAt    DateTime     @default(now())
+  readingLogs  ReadingLog[]
   expenses     Expense[]
 
   @@map("users")
+}
+
+model ReadingLog {
+  id         String   @id @default(cuid())
+  userId     String
+  bookTitle  String
+  minutes    Int
+  genre      String
+  notes      String   @default("")
+  isFavorite Boolean  @default(false)
+  readAt     DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, readAt])
+  @@map("reading_logs")
 }
 
 model Expense {
