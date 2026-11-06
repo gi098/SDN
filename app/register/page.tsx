@@ -3,8 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Loader2, ArrowRight, Mail, Lock, Eye, EyeOff, CheckCircle2, AlertCircle, User as UserIcon } from "lucide-react";
-import Logo from "@/components/Logo";
+import { Loader2, ArrowRight, Eye, EyeOff, CheckCircle2, AlertCircle } from "lucide-react";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -151,58 +150,121 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-5rem)] flex items-center justify-center p-4 sm:p-6 relative">
-      {/* Subtle Ambient Crimson Background Glow */}
-      <div className="absolute w-[400px] h-[400px] bg-rose-400/10 blur-[120px] rounded-full pointer-events-none -top-10 left-1/2 -translate-x-1/2" />
-      <div className="absolute w-[300px] h-[300px] bg-amber-400/08 blur-[100px] rounded-full pointer-events-none bottom-10 right-1/4" />
-
-      {/* Floating Compact Arctic Frost Glass Card */}
-      <div className="w-full max-w-[420px] relative z-10 frost-glass rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(2,132,199,0.08)] transition-all">
+    <div className="min-h-[calc(100vh-5rem)] flex items-center justify-center p-4 sm:p-6 lg:p-8 relative">
+      {/* Split Auth Card Container */}
+      <div className="w-full max-w-[960px] bg-white rounded-[32px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(2,132,199,0.2)] border border-sky-100 grid grid-cols-1 md:grid-cols-12 min-h-[580px]">
         
-        {/* Brand Header */}
-        <div className="flex flex-col items-center text-center mb-6">
-          <Logo size="md" showSubtitle={false} className="mb-3" />
-          <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-            Create an Account
-          </h2>
+        {/* Left Panel: Deep Ocean Night with Glowing Text & Celestial Rings */}
+        <div className="md:col-span-5 bg-gradient-to-b from-[#081226] via-[#0b1b38] to-[#040915] p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden text-white select-none">
+          {/* Subtle Starry Dust Background */}
+          <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.7)_1px,transparent_1px)] [background-size:24px_24px] opacity-30 pointer-events-none" />
+          
+          {/* Ambient Glows */}
+          <div className="absolute -top-12 -left-12 w-48 h-48 bg-sky-500/20 blur-[80px] rounded-full pointer-events-none" />
+          <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-cyan-400/20 blur-[80px] rounded-full pointer-events-none" />
+
+          {/* Headline */}
+          <div className="relative z-10">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+              Create an <br />
+              <span className="text-[#38bdf8] drop-shadow-[0_0_25px_rgba(56,189,248,0.6)]">
+                Account
+              </span>
+            </h2>
+          </div>
+
+          {/* Celestial Glowing Orb with Orbital Rings (Ready for User Logo) */}
+          <div className="relative z-10 flex items-center justify-center my-10 sm:my-14">
+            <div className="relative w-36 h-36 flex items-center justify-center">
+              {/* Outer Tilted Cyan Ring */}
+              <div className="absolute inset-0 rounded-full border-[2.5px] border-cyan-400/80 shadow-[0_0_20px_rgba(34,211,238,0.7)] transform rotate-[-25deg] scale-y-50 animate-pulse pointer-events-none" />
+              
+              {/* Inner Tilted Violet / Sky Ring */}
+              <div className="absolute inset-2 rounded-full border-[2px] border-sky-300/70 shadow-[0_0_15px_rgba(125,211,252,0.6)] transform rotate-[30deg] scale-y-45 pointer-events-none" />
+              
+              {/* Floating Star Dust Particles */}
+              <div className="absolute -top-3 -right-2 w-2 h-2 rounded-full bg-cyan-300 shadow-[0_0_8px_#67e8f9]" />
+              <div className="absolute -bottom-2 -left-3 w-2.5 h-2.5 rounded-full bg-sky-300 shadow-[0_0_10px_#7dd3fc]" />
+              <div className="absolute top-1/2 -right-5 w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#ffffff]" />
+              <div className="absolute -top-2 left-2 w-1.5 h-1.5 rounded-full bg-cyan-200" />
+
+              {/* Luminous Core Orb (Logo Placeholder) */}
+              <div className="w-24 h-24 rounded-full bg-white/95 backdrop-blur-md shadow-[0_0_35px_rgba(255,255,255,0.8),0_0_50px_rgba(56,189,248,0.4)] border border-white flex items-center justify-center relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-tr from-sky-100 via-white to-cyan-50 opacity-90" />
+                {/* Elegant Geometric Finance Diamond */}
+                <div className="relative z-10 w-11 h-11 rounded-xl bg-gradient-to-br from-sky-500 to-cyan-400 flex items-center justify-center text-white shadow-md">
+                  <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+                    <path
+                      d="M12 2L3 7V17L12 22L21 17V7L12 2Z"
+                      stroke="currentColor"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M12 22V12"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M21 7L12 12L3 7"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <circle cx="12" cy="12" r="2" fill="#ffffff" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom subtle text */}
+          <div className="relative z-10 text-xs text-slate-400 font-medium">
+            Smart & Intelligent Personal Expense Tracking
+          </div>
         </div>
 
-        {/* Register Form with data-testid="register-form" */}
-        <form
-          data-testid="register-form"
-          onSubmit={handleSubmit}
-          noValidate
-          className="space-y-3.5"
-        >
-          {/* Server / Auth Error with data-testid="error-auth" */}
-          {errors.auth && (
-            <div
-              data-testid="error-auth"
-              className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold flex items-center gap-2"
-            >
-              <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
-              <span>{errors.auth}</span>
-            </div>
-          )}
+        {/* Right Panel: Clean White Form */}
+        <div className="md:col-span-7 bg-white p-8 sm:p-12 lg:p-14 flex flex-col justify-center">
+          
+          {/* Register Form with data-testid="register-form" */}
+          <form
+            data-testid="register-form"
+            onSubmit={handleSubmit}
+            noValidate
+            className="space-y-4"
+          >
+            {/* Server / Auth Error with data-testid="error-auth" */}
+            {errors.auth && (
+              <div
+                data-testid="error-auth"
+                className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold flex items-center gap-2"
+              >
+                <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
+                <span>{errors.auth}</span>
+              </div>
+            )}
 
-          {/* Success Message with data-testid="form-success" */}
-          {successMessage && (
-            <div
-              data-testid="form-success"
-              className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center gap-2"
-            >
-              <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
-              <span>{successMessage}</span>
-            </div>
-          )}
+            {/* Success Message with data-testid="form-success" */}
+            {successMessage && (
+              <div
+                data-testid="form-success"
+                className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center gap-2"
+              >
+                <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
+                <span>{successMessage}</span>
+              </div>
+            )}
 
-          {/* Full Name */}
-          <div className="space-y-1">
-            <label className="text-[10px] font-bold text-slate-700 uppercase tracking-widest ml-1">
-              Full Name
-            </label>
-            <div className="relative">
-              <UserIcon className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            {/* Full Name */}
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                FULL NAME
+              </label>
               <input
                 id="register-name"
                 data-testid="register-name"
@@ -210,19 +272,16 @@ export default function RegisterPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 disabled={loading}
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 transition-all"
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 text-sm font-medium text-slate-900 placeholder:text-slate-400 transition-all"
                 placeholder="John Doe"
               />
             </div>
-          </div>
 
-          {/* Email Address */}
-          <div className="space-y-1">
-            <label className="text-[10px] font-bold text-slate-700 uppercase tracking-widest ml-1">
-              Email Address
-            </label>
-            <div className="relative">
-              <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            {/* Email Address */}
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                EMAIL ADDRESS
+              </label>
               <input
                 id="register-email"
                 data-testid="register-email"
@@ -230,124 +289,127 @@ export default function RegisterPage() {
                 value={email}
                 onChange={handleEmailChange}
                 disabled={loading}
-                className={`w-full pl-10 pr-4 py-2.5 rounded-xl border bg-slate-50/70 focus:bg-white focus:outline-none focus:ring-2 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 transition-all ${
+                className={`w-full px-4 py-3 rounded-xl border bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 text-sm font-medium text-slate-900 placeholder:text-slate-400 transition-all ${
                   errors.email
-                    ? "border-rose-500 focus:border-rose-500 focus:ring-rose-500/20"
-                    : "border-slate-200 focus:border-rose-500 focus:ring-rose-500/20"
+                    ? "border-rose-400 focus:border-rose-500 focus:ring-rose-500/20"
+                    : "border-slate-200 focus:border-sky-500 focus:ring-sky-500/20"
                 }`}
-                placeholder="developer@example.com"
+                placeholder="you@example.com"
               />
+              {errors.email && (
+                <p
+                  data-testid="error-email"
+                  className="text-xs text-rose-600 font-medium mt-1"
+                >
+                  {errors.email}
+                </p>
+              )}
             </div>
-            {errors.email && (
-              <p
-                data-testid="error-email"
-                className="text-[11px] text-rose-600 font-medium ml-1 mt-1"
-              >
-                {errors.email}
-              </p>
-            )}
-          </div>
 
-          {/* Password */}
-          <div className="space-y-1">
-            <label className="text-[10px] font-bold text-slate-700 uppercase tracking-widest ml-1">
-              Password
-            </label>
-            <div className="relative">
-              <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-              <input
-                id="register-password"
-                data-testid="register-password"
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={handlePasswordChange}
-                disabled={loading}
-                className={`w-full pl-10 pr-10 py-2.5 rounded-xl border bg-slate-50/70 focus:bg-white focus:outline-none focus:ring-2 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 transition-all ${
-                  errors.password
-                    ? "border-rose-500 focus:border-rose-500 focus:ring-rose-500/20"
-                    : "border-slate-200 focus:border-rose-500 focus:ring-rose-500/20"
-                }`}
-                placeholder="At least 6 characters"
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
-                tabIndex={-1}
-              >
-                {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
-              </button>
+            {/* Password */}
+            <div className="space-y-1.5">
+              <div className="flex justify-between items-center">
+                <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                  PASSWORD
+                </label>
+                <span className="text-xs text-slate-400 font-medium">
+                  Min. 6 characters
+                </span>
+              </div>
+              <div className="relative">
+                <input
+                  id="register-password"
+                  data-testid="register-password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={handlePasswordChange}
+                  disabled={loading}
+                  className={`w-full pl-4 pr-10 py-3 rounded-xl border bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 text-sm font-medium text-slate-900 placeholder:text-slate-400 transition-all ${
+                    errors.password
+                      ? "border-rose-400 focus:border-rose-500 focus:ring-rose-500/20"
+                      : "border-slate-200 focus:border-sky-500 focus:ring-sky-500/20"
+                  }`}
+                  placeholder="••••••••"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+                  tabIndex={-1}
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+              {errors.password && (
+                <p
+                  data-testid="error-password"
+                  className="text-xs text-rose-600 font-medium mt-1"
+                >
+                  {errors.password}
+                </p>
+              )}
             </div>
-            {errors.password && (
-              <p
-                data-testid="error-password"
-                className="text-[11px] text-rose-600 font-medium ml-1 mt-1"
-              >
-                {errors.password}
-              </p>
-            )}
-          </div>
 
-          {/* Confirm Password */}
-          <div className="space-y-1">
-            <label className="text-[10px] font-bold text-slate-700 uppercase tracking-widest ml-1">
-              Confirm Password
-            </label>
-            <div className="relative">
-              <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-              <input
-                id="register-confirm-password"
-                data-testid="register-confirm-password"
-                type={showPassword ? "text" : "password"}
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-                disabled={loading}
-                className={`w-full pl-10 pr-4 py-2.5 rounded-xl border bg-slate-50/70 focus:bg-white focus:outline-none focus:ring-2 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 transition-all ${
-                  errors.confirmPassword
-                    ? "border-rose-500 focus:border-rose-500 focus:ring-rose-500/20"
-                    : "border-slate-200 focus:border-rose-500 focus:ring-rose-500/20"
-                }`}
-                placeholder="Re-enter password"
-              />
+            {/* Confirm Password */}
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                CONFIRM PASSWORD
+              </label>
+              <div className="relative">
+                <input
+                  id="register-confirm-password"
+                  data-testid="register-confirm-password"
+                  type={showPassword ? "text" : "password"}
+                  value={confirmPassword}
+                  onChange={handleConfirmPasswordChange}
+                  disabled={loading}
+                  className={`w-full pl-4 pr-10 py-3 rounded-xl border bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 text-sm font-medium text-slate-900 placeholder:text-slate-400 transition-all ${
+                    errors.confirmPassword
+                      ? "border-rose-400 focus:border-rose-500 focus:ring-rose-500/20"
+                      : "border-slate-200 focus:border-sky-500 focus:ring-sky-500/20"
+                  }`}
+                  placeholder="••••••••"
+                />
+              </div>
+              {errors.confirmPassword && (
+                <p
+                  data-testid="error-confirm-password"
+                  className="text-xs text-rose-600 font-medium mt-1"
+                >
+                  {errors.confirmPassword}
+                </p>
+              )}
             </div>
-            {errors.confirmPassword && (
-              <p
-                data-testid="error-confirm-password"
-                className="text-[11px] text-rose-600 font-medium ml-1 mt-1"
-              >
-                {errors.confirmPassword}
-              </p>
-            )}
-          </div>
 
-          {/* Submit Button with data-testid="register-submit" */}
-          <button
-            type="submit"
-            data-testid="register-submit"
-            disabled={loading}
-            className="w-full py-2.5 mt-3 rounded-xl theme-gradient-btn text-white text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(225,29,72,0.35)] disabled:opacity-50 cursor-pointer active:scale-95"
-          >
-            {loading ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
-              <>
-                Register Account <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
-              </>
-            )}
-          </button>
-        </form>
-
-        {/* Footer Link */}
-        <div className="text-center pt-5 mt-5 border-t border-slate-100">
-          <p className="text-xs text-slate-500">
-            Already have an account?{" "}
-            <Link
-              href="/login"
-              className="text-rose-600 font-bold hover:text-rose-700 hover:underline transition-colors ml-1"
+            {/* Submit Button with data-testid="register-submit" */}
+            <button
+              type="submit"
+              data-testid="register-submit"
+              disabled={loading}
+              className="w-full py-3.5 mt-2 rounded-xl bg-[#0ea5e9] hover:bg-[#0284c7] text-white text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(14,165,233,0.35)] disabled:opacity-50 cursor-pointer active:scale-95"
             >
-              Sign In
-            </Link>
-          </p>
+              {loading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <>
+                  Create Account <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                </>
+              )}
+            </button>
+          </form>
+
+          {/* Footer Link */}
+          <div className="text-center pt-6 mt-4">
+            <p className="text-xs sm:text-sm text-slate-500">
+              Already have an account?{" "}
+              <Link
+                href="/login"
+                className="text-sky-600 font-bold hover:text-sky-700 hover:underline transition-colors ml-1"
+              >
+                Sign in
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>
