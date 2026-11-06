@@ -8,8 +8,6 @@ import {
   Star,
   ArrowRight,
   Layers,
-  ShieldCheck,
-  Sparkles,
 } from "lucide-react";
 import AnimatedFox3D from "@/components/AnimatedFox3D";
 
@@ -72,22 +70,6 @@ export default function HomePage() {
                   </Link>
                 </>
               ) : null}
-            </div>
-
-            {/* Value Highlights */}
-            <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-slate-500">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/70 border border-sky-100 shadow-xs">
-                <ShieldCheck className="w-4 h-4 text-sky-600" />
-                <span>Bảo mật JWT Cookie</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/70 border border-sky-100 shadow-xs">
-                <Sparkles className="w-4 h-4 text-cyan-600" />
-                <span>Đồng bộ tức thì</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/70 border border-sky-100 shadow-xs">
-                <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
-                <span>Theo dõi Starred</span>
-              </div>
             </div>
           </div>
 

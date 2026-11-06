@@ -7,7 +7,7 @@ import { ExpenseForm } from "@/components/expenses/ExpenseForm";
 import { ExpenseFilters } from "@/components/expenses/ExpenseFilters";
 import { ExpenseSummary } from "@/components/expenses/ExpenseSummary";
 import { ExpenseList } from "@/components/expenses/ExpenseList";
-import { Loader2, Sparkles } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 export default function ExpensesPage() {
   const router = useRouter();
@@ -50,18 +50,9 @@ export default function ExpensesPage() {
       {/* Header Bar */}
       <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-sky-100 gap-4">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/85 border border-sky-100 text-slate-800 text-[11px] font-bold mb-2 shadow-xs backdrop-blur-md">
-            <Sparkles className="w-3 h-3 text-sky-500" />
-            <span className="bg-gradient-to-r from-sky-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
-              Arctic Frost Ledger & Analytics
-            </span>
-          </div>
           <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
             Expense Dashboard
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 mt-1">
-            Ghi nhận giao dịch, đánh dấu ưu tiên và phân tích cấu trúc chi tiêu trong không gian băng tuyết tinh khôi.
-          </p>
         </div>
       </div>
 
