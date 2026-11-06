@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { Loader2, ArrowRight, Eye, EyeOff, AlertCircle } from "lucide-react";
+import AnimatedFox3D from "@/components/AnimatedFox3D";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -129,53 +130,9 @@ export default function LoginPage() {
             </h2>
           </div>
 
-          {/* Celestial Glowing Orb with Orbital Rings (Ready for User Logo) */}
-          <div className="relative z-10 flex items-center justify-center my-10 sm:my-14">
-            <div className="relative w-36 h-36 flex items-center justify-center">
-              {/* Outer Tilted Cyan Ring */}
-              <div className="absolute inset-0 rounded-full border-[2.5px] border-cyan-400/80 shadow-[0_0_20px_rgba(34,211,238,0.7)] transform rotate-[-25deg] scale-y-50 animate-pulse pointer-events-none" />
-              
-              {/* Inner Tilted Violet / Sky Ring */}
-              <div className="absolute inset-2 rounded-full border-[2px] border-sky-300/70 shadow-[0_0_15px_rgba(125,211,252,0.6)] transform rotate-[30deg] scale-y-45 pointer-events-none" />
-              
-              {/* Floating Star Dust Particles */}
-              <div className="absolute -top-3 -right-2 w-2 h-2 rounded-full bg-cyan-300 shadow-[0_0_8px_#67e8f9]" />
-              <div className="absolute -bottom-2 -left-3 w-2.5 h-2.5 rounded-full bg-sky-300 shadow-[0_0_10px_#7dd3fc]" />
-              <div className="absolute top-1/2 -right-5 w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#ffffff]" />
-              <div className="absolute -top-2 left-2 w-1.5 h-1.5 rounded-full bg-cyan-200" />
-
-              {/* Luminous Core Orb (Logo Placeholder) */}
-              <div className="w-24 h-24 rounded-full bg-white/95 backdrop-blur-md shadow-[0_0_35px_rgba(255,255,255,0.8),0_0_50px_rgba(56,189,248,0.4)] border border-white flex items-center justify-center relative overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-tr from-sky-100 via-white to-cyan-50 opacity-90" />
-                {/* Elegant Geometric Finance Diamond */}
-                <div className="relative z-10 w-11 h-11 rounded-xl bg-gradient-to-br from-sky-500 to-cyan-400 flex items-center justify-center text-white shadow-md">
-                  <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-                    <path
-                      d="M12 2L3 7V17L12 22L21 17V7L12 2Z"
-                      stroke="currentColor"
-                      strokeWidth="2.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M12 22V12"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M21 7L12 12L3 7"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <circle cx="12" cy="12" r="2" fill="#ffffff" />
-                  </svg>
-                </div>
-              </div>
-            </div>
+          {/* 3D Animated Arctic Aurora Fox */}
+          <div className="relative z-10 flex items-center justify-center my-8 sm:my-12">
+            <AnimatedFox3D size="lg" interactive={true} />
           </div>
 
           {/* Bottom subtle text */}

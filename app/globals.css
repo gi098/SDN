@@ -189,6 +189,46 @@ html[data-theme="sunset"] {
   animation: cloud-float-x 24s ease-in-out infinite;
 }
 
+/* 3D Arctic Fox Levitation & Celestial Ring Orbit Animations */
+@keyframes fox-3d-float {
+  0%, 100% {
+    transform: translateY(0px) rotateX(3deg) rotateY(-4deg);
+  }
+  50% {
+    transform: translateY(-10px) rotateX(-3deg) rotateY(4deg);
+  }
+}
+
+@keyframes ring-spin-slow {
+  0% {
+    transform: rotateX(68deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(68deg) rotateZ(360deg);
+  }
+}
+
+@keyframes ring-spin-reverse {
+  0% {
+    transform: rotateX(-58deg) rotateY(20deg) rotateZ(360deg);
+  }
+  100% {
+    transform: rotateX(-58deg) rotateY(20deg) rotateZ(0deg);
+  }
+}
+
+.animate-fox-3d-float {
+  animation: fox-3d-float 4.5s ease-in-out infinite;
+}
+
+.animate-ring-spin-slow {
+  animation: ring-spin-slow 14s linear infinite;
+}
+
+.animate-ring-spin-reverse {
+  animation: ring-spin-reverse 18s linear infinite;
+}
+
 /* Glacial Ice Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
