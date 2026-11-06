@@ -3,10 +3,10 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f8fafc;
+  --background: #fdfbf7;
   --foreground: #0f172a;
   --surface: #ffffff;
-  --surface-border: rgba(226, 232, 240, 0.9);
+  --surface-border: rgba(241, 245, 249, 0.9);
 }
 
 .dark {
@@ -22,11 +22,11 @@
 }
 
 * {
-  border-color: rgba(226, 232, 240, 0.9);
+  border-color: rgba(226, 232, 240, 0.85);
 }
 
 body {
-  background-color: #f8fafc;
+  background-color: #fdfbf7;
   color: #0f172a;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   -webkit-font-smoothing: antialiased;
@@ -34,81 +34,76 @@ body {
 }
 
 /* 
-  Luxury Red & Champagne Gold FinTech Design System
-  (Phong cách Hoàng Gia / Tài Chính Cao Cấp: Đỏ Ruby, Đỏ Crimson, Cam Hổ Phách & Vàng Champagne)
+  Dreamy Sunset Cloud Design System
+  (Phong cách Mây Trời Hoàng Hôn Thơ Mộng: Đỏ Sunset Rose, Cam Ấm Amber & Xanh Lam/Cyan Twilight Sky)
 */
 :root,
 html[data-theme="ocean"],
 html[data-theme="sunset"] {
-  --primary-gradient: linear-gradient(135deg, #e11d48 0%, #ef4444 48%, #f97316 100%);
-  --primary-gradient-hover: linear-gradient(135deg, #be123c 0%, #dc2626 48%, #ea580c 100%);
-  --brand-text-gradient: linear-gradient(135deg, #be123c 0%, #e11d48 40%, #f97316 100%);
+  /* Tri-color Sunset Gradient: Đỏ hoàng hôn -> Cam rực rỡ -> Xanh lam mây trời */
+  --primary-gradient: linear-gradient(135deg, #e11d48 0%, #f97316 48%, #0284c7 100%);
+  --primary-gradient-hover: linear-gradient(135deg, #be123c 0%, #ea580c 48%, #0369a1 100%);
+  --brand-text-gradient: linear-gradient(135deg, #be123c 0%, #e11d48 30%, #ea580c 65%, #0284c7 100%);
+  
   --accent-color: #e11d48;
   --accent-bg-subtle: rgba(225, 29, 72, 0.08);
   --accent-border: rgba(225, 29, 72, 0.25);
-  --halo-glow-1: rgba(225, 29, 72, 0.12);
-  --halo-glow-2: rgba(249, 115, 22, 0.10);
-  --halo-glow-3: rgba(245, 158, 11, 0.08);
-  --active-tab-shadow: 0 4px 15px rgba(225, 29, 72, 0.25);
-  --primary-btn-shadow: 0 4px 18px -2px rgba(225, 29, 72, 0.4);
-  --focus-ring: #e11d48;
+  --halo-glow-1: rgba(225, 29, 72, 0.14);
+  --halo-glow-2: rgba(249, 115, 22, 0.12);
+  --halo-glow-3: rgba(2, 132, 199, 0.12);
+  --active-tab-shadow: 0 4px 18px rgba(225, 29, 72, 0.25);
+  --primary-btn-shadow: 0 6px 20px -2px rgba(249, 115, 22, 0.35), 0 4px 12px -2px rgba(225, 29, 72, 0.25);
+  --focus-ring: #f97316;
 }
 
-/* Luminous Pearlescent Background with Subtle Crimson & Champagne Mesh */
-.luminous-bg,
-body {
-  background-color: #f8fafc;
-  background-image:
-    radial-gradient(at 10% 10%, rgba(225, 29, 72, 0.07) 0px, transparent 40%),
-    radial-gradient(at 90% 12%, rgba(249, 115, 22, 0.06) 0px, transparent 40%),
-    radial-gradient(at 50% 45%, rgba(225, 29, 72, 0.04) 0px, transparent 50%),
-    radial-gradient(at 15% 90%, rgba(244, 63, 94, 0.05) 0px, transparent 45%),
-    radial-gradient(at 85% 90%, rgba(245, 158, 11, 0.05) 0px, transparent 45%);
-  background-attachment: fixed;
-  background-size: cover;
-}
-
-/* Luxury Crystalline Frosted Glass */
+/* Ethereal Frosted Glass Cards (Lớp Kính Mây Trong Suốt Thơ Mộng) */
 .dark-glass,
-.luxury-glass {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(226, 232, 240, 0.95);
-  box-shadow: 0 10px 30px -5px rgba(225, 29, 72, 0.05), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+.luxury-glass,
+.cloud-glass {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px -5px rgba(225, 29, 72, 0.05), 0 8px 25px -5px rgba(2, 132, 199, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dark-glass:hover,
-.luxury-glass:hover {
-  border-color: rgba(225, 29, 72, 0.35);
-  box-shadow: 0 16px 36px -10px rgba(225, 29, 72, 0.12), 0 0 15px rgba(244, 63, 94, 0.04);
+.luxury-glass:hover,
+.cloud-glass:hover {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(249, 115, 22, 0.35);
+  box-shadow: 0 16px 36px -8px rgba(249, 115, 22, 0.15), 0 10px 28px -6px rgba(2, 132, 199, 0.12), 0 0 20px rgba(244, 63, 94, 0.06);
+  transform: translateY(-2px);
 }
 
 .dark-card,
-.luxury-card {
-  background: #ffffff;
-  border: 1px solid rgba(226, 232, 240, 0.95);
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+.luxury-card,
+.cloud-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 8px -1px rgba(249, 115, 22, 0.03);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dark-card:hover,
-.luxury-card:hover {
-  border-color: rgba(225, 29, 72, 0.3);
-  box-shadow: 0 8px 25px -4px rgba(225, 29, 72, 0.08);
+.luxury-card:hover,
+.cloud-card:hover {
+  border-color: rgba(244, 63, 94, 0.3);
+  box-shadow: 0 8px 25px -4px rgba(244, 63, 94, 0.1), 0 6px 18px -3px rgba(2, 132, 199, 0.08);
 }
 
-/* Gradient Buttons & Texts */
+/* Gradient Buttons & Texts with Sunset Aura */
 .theme-gradient-btn {
   background-image: var(--primary-gradient);
   box-shadow: var(--primary-btn-shadow);
   color: #ffffff;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .theme-gradient-btn:hover {
   background-image: var(--primary-gradient-hover);
-  box-shadow: 0 6px 22px rgba(225, 29, 72, 0.45);
+  box-shadow: 0 8px 25px rgba(249, 115, 22, 0.45), 0 4px 15px rgba(225, 29, 72, 0.35);
   transform: translateY(-1px);
 }
 
@@ -132,114 +127,76 @@ body {
   color: #e11d48;
 }
 
-/* Glowing Sprint Progress Bar */
-.sprint-progress-bar {
-  background-image: linear-gradient(90deg, #e11d48, #ef4444, #f97316);
-  box-shadow: 0 0 12px rgba(225, 29, 72, 0.4);
-}
-
-/* Animations */
-@keyframes cyber-pulse {
+/* Sunset Cloud Drift Keyframe Animations */
+@keyframes cloud-pulse-slow {
   0%, 100% {
-    opacity: 0.85;
-    transform: scale(1);
+    transform: scale(1) translate(0, 0);
+    opacity: 0.55;
   }
   50% {
-    opacity: 1;
-    transform: scale(1.04);
+    transform: scale(1.08) translate(15px, -15px);
+    opacity: 0.7;
   }
 }
 
-.animate-cyber-pulse {
-  animation: cyber-pulse 3s ease-in-out infinite;
+@keyframes cloud-drift-right {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, -20px) scale(1.05);
+  }
 }
 
-/* Sleek Crimson Ruby Scrollbar */
+@keyframes cloud-drift-left {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-30px, 15px) scale(1.06);
+  }
+}
+
+@keyframes cloud-float-x {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-40px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-cloud-pulse-slow {
+  animation: cloud-pulse-slow 12s ease-in-out infinite;
+}
+
+.animate-cloud-drift-right {
+  animation: cloud-drift-right 16s ease-in-out infinite;
+}
+
+.animate-cloud-drift-left {
+  animation: cloud-drift-left 18s ease-in-out infinite;
+}
+
+.animate-cloud-float-x {
+  animation: cloud-float-x 24s ease-in-out infinite;
+}
+
+/* Dreamy Sunset Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: rgba(254, 242, 242, 0.5);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(225, 29, 72, 0.35);
+  background: linear-gradient(180deg, #f43f5e 0%, #f97316 50%, #0284c7 100%);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(225, 29, 72, 0.7);
+  background: linear-gradient(180deg, #e11d48 0%, #ea580c 50%, #0369a1 100%);
 }
-
-/* 3D Animated Fox (Con Hồ Ly 3D Chuyển Động) */
-@keyframes fox-float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-2px) rotate(2deg);
-  }
-}
-
-@keyframes fox-tail-wag {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(8deg);
-  }
-}
-
-@keyframes fox-ear-l {
-  0%, 80%, 100% {
-    transform: rotate(0deg);
-  }
-  85% {
-    transform: rotate(-6deg);
-  }
-  90% {
-    transform: rotate(2deg);
-  }
-}
-
-@keyframes fox-ear-r {
-  0%, 82%, 100% {
-    transform: rotate(0deg);
-  }
-  87% {
-    transform: rotate(6deg);
-  }
-  92% {
-    transform: rotate(-2deg);
-  }
-}
-
-@keyframes fox-blink {
-  0%, 88%, 100% {
-    transform: scaleY(1);
-  }
-  94% {
-    transform: scaleY(0.12);
-  }
-}
-
-.animate-fox-float {
-  animation: fox-float 3.5s ease-in-out infinite;
-  transform-origin: center bottom;
-}
-.animate-fox-tail {
-  animation: fox-tail-wag 2.8s ease-in-out infinite;
-  transform-origin: 32px 36px;
-}
-.animate-fox-ear-l {
-  animation: fox-ear-l 4.2s ease-in-out infinite;
-  transform-origin: 16px 16px;
-}
-.animate-fox-ear-r {
-  animation: fox-ear-r 4.8s ease-in-out infinite;
-  transform-origin: 32px 16px;
-}
-.animate-fox-eye {
-  animation: fox-blink 3.6s ease-in-out infinite;
-  transform-origin: center;
-}
-

@@ -34,10 +34,10 @@ export default function Logo({
 
   const content = (
     <div className={`flex items-center gap-3 select-none ${className}`}>
-      {/* Luxury Red & Amber Gradient Icon Tile (Crisp Geometric 3D Cube) */}
+      {/* Dreamy Sunset Cloud Gradient Icon Tile (Crisp 3D Finance Cube) */}
       <div className="relative group shrink-0">
         <div
-          className={`${currentSize.box} relative bg-gradient-to-br from-rose-600 via-red-600 to-amber-500 flex items-center justify-center shadow-[0_4px_16px_rgba(225,29,72,0.35)] transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_6px_22px_rgba(225,29,72,0.5)]`}
+          className={`${currentSize.box} relative bg-gradient-to-br from-rose-500 via-amber-500 to-sky-500 flex items-center justify-center shadow-[0_4px_18px_rgba(249,115,22,0.35)] transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_6px_24px_rgba(2,132,199,0.4)]`}
         >
           {/* Crisp Geometric Finance Cube / Diamond Icon */}
           <svg
@@ -76,7 +76,7 @@ export default function Logo({
         <div className={`flex ${layout === "row" ? "flex-row items-center gap-2" : "flex-col"}`}>
           <div className="flex items-center gap-1.5 leading-none">
             <span
-              className={`font-black tracking-tight bg-gradient-to-r from-slate-950 via-slate-800 to-rose-700 bg-clip-text text-transparent ${currentSize.text}`}
+              className={`font-black tracking-tight bg-gradient-to-r from-slate-900 via-rose-700 to-sky-700 bg-clip-text text-transparent ${currentSize.text}`}
             >
               {title}
             </span>

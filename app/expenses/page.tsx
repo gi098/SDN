@@ -48,17 +48,19 @@ export default function ExpensesPage() {
       <div className="absolute w-[400px] h-[400px] bg-amber-400/08 blur-[140px] rounded-full pointer-events-none top-40 right-10" />
 
       {/* Header Bar */}
-      <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-slate-200/80 gap-4">
+      <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-white/80 gap-4">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-200/80 text-rose-700 text-[11px] font-bold mb-2 shadow-xs">
-            <Sparkles className="w-3 h-3 text-rose-500" />
-            <span>Personal Ledger & Analytics</span>
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/80 border border-white text-slate-800 text-[11px] font-bold mb-2 shadow-xs backdrop-blur-md">
+            <Sparkles className="w-3 h-3 text-amber-500" />
+            <span className="bg-gradient-to-r from-rose-600 via-amber-600 to-sky-600 bg-clip-text text-transparent">
+              Dreamy Sunset Ledger & Analytics
+            </span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
             Expense Dashboard
           </h1>
           <p className="text-xs sm:text-sm text-slate-600 mt-1">
-            Log transactions, track starred expenditures, and analyze category breakdowns.
+            Ghi nhận giao dịch, đánh dấu ưu tiên và phân tích cấu trúc chi tiêu trong khung cảnh hoàng hôn thơ mộng.
           </p>
         </div>
       </div>

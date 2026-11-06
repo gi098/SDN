@@ -166,9 +166,9 @@ export function ExpenseForm() {
   };
 
   return (
-    <div className="bg-white/95 backdrop-blur-2xl border border-slate-200/90 hover:border-rose-300 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all">
+    <div className="cloud-glass rounded-3xl p-6 shadow-sm hover:shadow-md transition-all">
       <div className="flex items-center space-x-3 mb-5 pb-4 border-b border-slate-100">
-        <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center shadow-xs">
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 via-amber-500 to-sky-500 text-white flex items-center justify-center shadow-[0_4px_14px_rgba(249,115,22,0.3)]">
           <PlusCircle className="w-5 h-5" />
         </div>
         <div>

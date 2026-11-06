@@ -15,10 +15,10 @@ export function ExpenseFilters() {
   } = useExpenses();
 
   return (
-    <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-4 space-y-3 border border-slate-200/90 shadow-xs">
+    <div className="cloud-glass rounded-2xl p-4 space-y-3">
       <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-rose-600">
-          <Filter className="w-3.5 h-3.5" />
+        <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-rose-600 to-amber-600 bg-clip-text text-transparent">
+          <Filter className="w-3.5 h-3.5 text-rose-500" />
           <span>Filters & Search</span>
         </div>
         {(filters.category !== "All" || filters.starred || filters.q) && (
@@ -26,9 +26,9 @@ export function ExpenseFilters() {
             type="button"
             data-testid="btn-clear-filters"
             onClick={clearFilters}
-            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold border border-slate-200 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white text-slate-700 text-xs font-bold border border-rose-200/80 transition-all cursor-pointer shadow-xs hover:border-amber-300"
           >
-            <X className="w-3 h-3" />
+            <X className="w-3 h-3 text-rose-500" />
             <span>Clear Filters</span>
           </button>
         )}
@@ -44,7 +44,7 @@ export function ExpenseFilters() {
             value={filters.q}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by title or note..."
-            className="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 transition-all"
+            className="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200/90 bg-white/70 focus:bg-white focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 transition-all"
           />
         </div>
 
@@ -54,7 +54,7 @@ export function ExpenseFilters() {
             data-testid="filter-category"
             value={filters.category}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 text-xs sm:text-sm font-medium text-slate-900 transition-all cursor-pointer"
+            className="w-full px-3 py-2 rounded-xl border border-slate-200/90 bg-white/70 focus:bg-white focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 text-xs sm:text-sm font-medium text-slate-900 transition-all cursor-pointer"
           >
             <option value="All" className="bg-white text-slate-900">All Categories</option>
             {ALLOWED_CATEGORIES.map((cat) => (
@@ -73,7 +73,7 @@ export function ExpenseFilters() {
               data-testid="filter-starred"
               checked={filters.starred}
               onChange={(e) => setStarredFilter(e.target.checked)}
-              className="w-4 h-4 rounded text-rose-600 focus:ring-rose-500 border-slate-300 bg-white cursor-pointer"
+              className="w-4 h-4 rounded text-rose-600 focus:ring-amber-500 border-slate-300 bg-white cursor-pointer"
             />
             <span className="flex items-center space-x-1.5">
               <Star
@@ -91,4 +91,5 @@ export function ExpenseFilters() {
     </div>
   );
 }
+
 export default ExpenseFilters;

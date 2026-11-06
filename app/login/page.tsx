@@ -112,8 +112,8 @@ export default function LoginPage() {
       <div className="absolute w-[400px] h-[400px] bg-rose-400/10 blur-[120px] rounded-full pointer-events-none -top-10 left-1/2 -translate-x-1/2" />
       <div className="absolute w-[300px] h-[300px] bg-amber-400/08 blur-[100px] rounded-full pointer-events-none bottom-10 right-1/4" />
 
-      {/* Floating Compact Luxury Card */}
-      <div className="w-full max-w-[420px] relative z-10 bg-white/95 backdrop-blur-2xl border border-slate-200/90 hover:border-rose-300 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(15,23,42,0.06),0_0_25px_rgba(225,29,72,0.05)] transition-all">
+      {/* Floating Compact Dreamy Cloud Glass Card */}
+      <div className="w-full max-w-[420px] relative z-10 cloud-glass rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(15,23,42,0.06),0_0_25px_rgba(249,115,22,0.08)] transition-all">
         
         {/* Brand Header */}
         <div className="flex flex-col items-center text-center mb-6">

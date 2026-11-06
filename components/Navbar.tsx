@@ -11,7 +11,7 @@ export function Navbar() {
   const { user, logout, loading } = useAuth();
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/85 border-b border-slate-200/80 shadow-xs transition-all">
+    <header className="sticky top-0 z-50 backdrop-blur-2xl bg-white/75 border-b border-white/80 shadow-[0_4px_25px_rgba(244,63,94,0.04),0_4px_25px_rgba(2,132,199,0.04)] transition-all">
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 h-20 flex items-center justify-between gap-4">
         
         {/* Left: Brand / Logo */}
@@ -21,7 +21,7 @@ export function Navbar() {
 
         {/* Middle: Navigation Links (Desktop) */}
         <nav className="hidden lg:flex items-center justify-center gap-1 flex-1 px-4">
-          <div className="flex items-center gap-1.5 bg-slate-100/80 p-1.5 rounded-2xl border border-slate-200/80 shadow-inner">
+          <div className="flex items-center gap-1.5 bg-white/60 p-1.5 rounded-2xl border border-white/80 shadow-xs backdrop-blur-md">
             <Link
               href="/"
               className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${
@@ -30,7 +30,7 @@ export function Navbar() {
                   : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
               }`}
             >
-              <Wallet className="w-4 h-4" />
+              <Wallet className="w-4 h-4 text-rose-500" />
               <span>Home</span>
             </Link>
 
@@ -40,11 +40,11 @@ export function Navbar() {
                 data-testid="link-expenses"
                 className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${
                   pathname.startsWith("/expenses")
-                    ? "bg-white text-rose-600 border border-rose-200/80 shadow-xs"
+                    ? "bg-white text-sky-600 border border-sky-200/80 shadow-xs"
                     : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
                 }`}
               >
-                <Wallet className="w-4 h-4" />
+                <Wallet className="w-4 h-4 text-sky-500" />
                 <span>Expenses</span>
               </Link>
             )}
@@ -57,8 +57,8 @@ export function Navbar() {
           {!loading && user ? (
             <>
               {/* Desktop User Email Badge */}
-              <div className="hidden sm:flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-xs hover:border-rose-300 transition-all">
-                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-rose-500 to-amber-600 flex items-center justify-center text-white font-black text-xs shrink-0 shadow-xs">
+              <div className="hidden sm:flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-white/80 border border-white shadow-xs hover:border-amber-300 transition-all backdrop-blur-md">
+                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-rose-500 via-amber-500 to-sky-500 flex items-center justify-center text-white font-black text-xs shrink-0 shadow-xs">
                   {user.email.charAt(0).toUpperCase()}
                 </div>
                 <div className="flex flex-col max-w-[180px]">
@@ -68,7 +68,7 @@ export function Navbar() {
                   >
                     {user.email}
                   </span>
-                  <span className="text-[10px] font-semibold text-rose-600 truncate leading-tight">
+                  <span className="text-[10px] font-semibold bg-gradient-to-r from-rose-600 to-amber-600 bg-clip-text text-transparent truncate leading-tight">
                     Active Session
                   </span>
                 </div>
@@ -87,7 +87,7 @@ export function Navbar() {
                 type="button"
                 data-testid="btn-logout"
                 onClick={logout}
-                className="flex items-center gap-1.5 p-2 sm:px-3 sm:py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-rose-600 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 transition-all cursor-pointer shadow-xs"
+                className="flex items-center gap-1.5 p-2 sm:px-3 sm:py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-rose-600 hover:bg-rose-50/80 border border-slate-200/80 hover:border-rose-200 transition-all cursor-pointer shadow-xs bg-white/70"
                 title="Logout"
               >
                 <LogOut className="w-4 h-4" />
@@ -99,7 +99,7 @@ export function Navbar() {
               <Link
                 href="/login"
                 data-testid="btn-login"
-                className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-200 shadow-xs transition-all"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-700 hover:text-slate-900 bg-white/80 hover:bg-white border border-white/90 shadow-xs transition-all backdrop-blur-md"
               >
                 <LogIn className="w-4 h-4 text-rose-500" />
                 <span>Login</span>
@@ -108,7 +108,7 @@ export function Navbar() {
               <Link
                 href="/register"
                 data-testid="btn-register"
-                className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white theme-gradient-btn hover:scale-105 active:scale-95 transition-all shadow-[0_4px_16px_rgba(225,29,72,0.3)] cursor-pointer"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white theme-gradient-btn hover:scale-105 active:scale-95 transition-all shadow-[0_4px_16px_rgba(249,115,22,0.35)] cursor-pointer"
               >
                 <span>Register</span>
                 <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
