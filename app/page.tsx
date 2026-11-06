@@ -11,6 +11,7 @@ import {
   Clock,
 } from "lucide-react";
 import AnimatedFox3D from "@/components/AnimatedFox3D";
+import BookCarousel from "@/components/BookCarousel";
 
 export default function HomePage() {
   const { user, loading } = useAuth();
@@ -88,6 +89,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* 4 Pinterest Book Covers Animated Carousel / Marquee */}
+      <BookCarousel />
 
       {/* Feature Cards Bento Section */}
       <section className="relative z-10 py-8 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
