@@ -4,7 +4,7 @@ import Logo from "@/components/Logo";
 
 export default function Footer() {
   return (
-    <footer className="mt-auto border-t border-white/80 bg-white/70 backdrop-blur-xl transition-colors py-8 shadow-xs">
+    <footer className="mt-auto border-t border-sky-100 bg-white/75 backdrop-blur-xl transition-colors py-8 shadow-xs">
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center">

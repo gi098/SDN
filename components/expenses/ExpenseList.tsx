@@ -24,11 +24,11 @@ export function ExpenseList() {
   const getCategoryColor = (category: string) => {
     switch (category) {
       case "Food":
-        return "bg-rose-50 border-rose-200 text-rose-700";
-      case "Transport":
-        return "bg-amber-50 border-amber-200 text-amber-700";
-      case "Bills":
         return "bg-sky-50 border-sky-200 text-sky-700";
+      case "Transport":
+        return "bg-cyan-50 border-cyan-200 text-cyan-700";
+      case "Bills":
+        return "bg-blue-50 border-blue-200 text-blue-700";
       case "Shopping":
         return "bg-indigo-50 border-indigo-200 text-indigo-700";
       default:
@@ -43,10 +43,10 @@ export function ExpenseList() {
         {expenses.length === 0 ? (
           <div
             data-testid="expenses-empty"
-            className="flex flex-col items-center justify-center p-12 cloud-glass rounded-3xl text-center shadow-xs"
+            className="flex flex-col items-center justify-center p-12 frost-glass rounded-3xl text-center shadow-xs"
           >
-            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-rose-500/10 via-amber-500/10 to-sky-500/10 border border-amber-200/60 flex items-center justify-center text-amber-600 shadow-xs">
-              <Layers className="w-8 h-8 text-rose-500" />
+            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-sky-500/10 via-blue-500/10 to-cyan-500/10 border border-sky-200/60 flex items-center justify-center text-sky-600 shadow-xs">
+              <Layers className="w-8 h-8 text-sky-500" />
             </div>
             <h3 className="text-lg font-bold text-slate-900 mb-1">
               No expenses found
@@ -66,7 +66,7 @@ export function ExpenseList() {
               <div
                 key={expense.id}
                 data-testid="expense-item"
-                className="group relative flex flex-col sm:flex-row sm:items-center justify-between p-4 cloud-card rounded-2xl border border-white/90 hover:border-amber-300/80 shadow-xs hover:shadow-md transition-all duration-300 gap-4"
+                className="group relative flex flex-col sm:flex-row sm:items-center justify-between p-4 frost-card rounded-2xl border border-sky-100 hover:border-sky-300 shadow-xs hover:shadow-md transition-all duration-300 gap-4"
               >
                 {/* Left side: Star, Title, Category, Note, Date */}
                 <div className="flex items-start space-x-3.5 flex-1 min-w-0">
@@ -96,7 +96,7 @@ export function ExpenseList() {
                     <div className="flex flex-wrap items-center gap-2">
                       <h4
                         data-testid="expense-title"
-                        className="font-bold text-slate-900 text-base truncate group-hover:text-rose-600 transition-colors"
+                        className="font-bold text-slate-900 text-base truncate group-hover:text-sky-600 transition-colors"
                       >
                         {expense.title}
                       </h4>

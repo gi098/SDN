@@ -15,10 +15,10 @@ export function ExpenseFilters() {
   } = useExpenses();
 
   return (
-    <div className="cloud-glass rounded-2xl p-4 space-y-3">
+    <div className="frost-glass rounded-2xl p-4 space-y-3">
       <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-rose-600 to-amber-600 bg-clip-text text-transparent">
-          <Filter className="w-3.5 h-3.5 text-rose-500" />
+        <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-sky-600 to-blue-700 bg-clip-text text-transparent">
+          <Filter className="w-3.5 h-3.5 text-sky-500" />
           <span>Filters & Search</span>
         </div>
         {(filters.category !== "All" || filters.starred || filters.q) && (
@@ -26,9 +26,9 @@ export function ExpenseFilters() {
             type="button"
             data-testid="btn-clear-filters"
             onClick={clearFilters}
-            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white text-slate-700 text-xs font-bold border border-rose-200/80 transition-all cursor-pointer shadow-xs hover:border-amber-300"
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white text-sky-700 text-xs font-bold border border-sky-200 transition-all cursor-pointer shadow-xs hover:border-sky-300"
           >
-            <X className="w-3 h-3 text-rose-500" />
+            <X className="w-3 h-3 text-sky-500" />
             <span>Clear Filters</span>
           </button>
         )}
@@ -37,14 +37,14 @@ export function ExpenseFilters() {
       <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
         {/* Search Input */}
         <div className="sm:col-span-5 relative">
-          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-sky-400 pointer-events-none" />
           <input
             data-testid="search-input"
             type="text"
             value={filters.q}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by title or note..."
-            className="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200/90 bg-white/70 focus:bg-white focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 transition-all"
+            className="w-full pl-9 pr-3 py-2 rounded-xl border border-sky-100 bg-white/75 focus:bg-white focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 transition-all"
           />
         </div>
 
@@ -54,7 +54,7 @@ export function ExpenseFilters() {
             data-testid="filter-category"
             value={filters.category}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl border border-slate-200/90 bg-white/70 focus:bg-white focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 text-xs sm:text-sm font-medium text-slate-900 transition-all cursor-pointer"
+            className="w-full px-3 py-2 rounded-xl border border-sky-100 bg-white/75 focus:bg-white focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 text-xs sm:text-sm font-medium text-slate-900 transition-all cursor-pointer"
           >
             <option value="All" className="bg-white text-slate-900">All Categories</option>
             {ALLOWED_CATEGORIES.map((cat) => (
@@ -73,7 +73,7 @@ export function ExpenseFilters() {
               data-testid="filter-starred"
               checked={filters.starred}
               onChange={(e) => setStarredFilter(e.target.checked)}
-              className="w-4 h-4 rounded text-rose-600 focus:ring-amber-500 border-slate-300 bg-white cursor-pointer"
+              className="w-4 h-4 rounded text-sky-600 focus:ring-sky-500 border-sky-200 bg-white cursor-pointer"
             />
             <span className="flex items-center space-x-1.5">
               <Star
