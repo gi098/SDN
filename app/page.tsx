@@ -9,7 +9,6 @@ import {
   ArrowRight,
   Layers,
   ShieldCheck,
-  TrendingUp,
   Sparkles,
 } from "lucide-react";
 import AnimatedFox3D from "@/components/AnimatedFox3D";
@@ -99,18 +98,6 @@ export default function HomePage() {
               {/* Internal Aurora Glaze */}
               <div className="absolute -top-16 -left-16 w-48 h-48 bg-sky-500/20 blur-[70px] rounded-full pointer-events-none" />
               <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-cyan-400/20 blur-[70px] rounded-full pointer-events-none" />
-
-              {/* Top Floating Glass Badge */}
-              <div className="absolute top-5 left-5 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md text-[11px] font-bold text-white shadow-lg">
-                <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Real-Time Tracker</span>
-              </div>
-
-              {/* Bottom Floating Glass Badge */}
-              <div className="absolute bottom-5 right-5 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md text-[11px] font-bold text-white shadow-lg">
-                <Star className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
-                <span>Aurora Fox Edition</span>
-              </div>
 
               {/* 3D Interactive Fox */}
               <AnimatedFox3D size="xl" interactive={true} />
