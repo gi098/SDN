@@ -77,25 +77,27 @@ export function EditReadingLogModal({ log, isOpen, onClose }: EditReadingLogModa
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-sky-100 relative">
-        <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-100">
-          <h3 className="text-lg font-black text-slate-900">Edit Reading Session</h3>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/50 backdrop-blur-sm overflow-y-auto animate-in fade-in duration-200">
+      <div className="w-full max-w-lg bg-white rounded-3xl p-5 sm:p-7 shadow-2xl border border-sky-100 relative my-auto max-h-[92vh] flex flex-col">
+        {/* Modal Header */}
+        <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-100 shrink-0">
+          <h3 className="text-base sm:text-lg font-black text-slate-900">Edit Reading Session</h3>
           <button
+            type="button"
             onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-all cursor-pointer"
+            className="p-1.5 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-all cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {error && (
-          <div className="mb-4 p-3.5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold">
+          <div className="mb-3.5 p-3 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold shrink-0">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} noValidate className="space-y-4">
+        <form onSubmit={handleSubmit} noValidate className="space-y-3.5 overflow-y-auto pr-0.5">
           <div>
             <label className="text-[11px] font-bold text-slate-600 uppercase tracking-wider block mb-1">
               Book Title *
@@ -152,7 +154,7 @@ export function EditReadingLogModal({ log, isOpen, onClose }: EditReadingLogModa
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 text-sm font-medium text-slate-800 transition-all cursor-pointer"
               />
             </div>
-            <div className="pt-4">
+            <div className="pt-3.5">
               <label className="flex items-center gap-2 cursor-pointer select-none">
                 <input
                   type="checkbox"
@@ -173,11 +175,11 @@ export function EditReadingLogModal({ log, isOpen, onClose }: EditReadingLogModa
               rows={2}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 text-sm font-medium text-slate-800 transition-all resize-none"
+              className="w-full px-4 py-2 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 text-sm font-medium text-slate-800 transition-all resize-none"
             />
           </div>
 
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100">
+          <div className="flex items-center justify-end gap-3 pt-3.5 border-t border-slate-100 shrink-0">
             <button
               type="button"
               onClick={onClose}
