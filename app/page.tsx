@@ -8,77 +8,119 @@ import {
   Star,
   ArrowRight,
   Layers,
+  ShieldCheck,
+  TrendingUp,
   Sparkles,
-  Snowflake,
 } from "lucide-react";
+import AnimatedFox3D from "@/components/AnimatedFox3D";
 
 export default function HomePage() {
   const { user, loading } = useAuth();
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-5rem)] relative overflow-hidden">
-      {/* Hero Section */}
-      <section className="relative z-10 py-16 sm:py-24 lg:py-28 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
-        {/* Arctic Frost & Winter Ocean Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/85 border border-sky-100 text-slate-800 text-xs font-bold mb-6 shadow-[0_4px_20px_rgba(2,132,199,0.12)] backdrop-blur-md">
-          <Snowflake className="w-4 h-4 text-sky-500 animate-spin-slow" />
-          <span className="bg-gradient-to-r from-sky-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
-            Arctic Frost Edition · Băng Tuyết & Biển Xanh Tinh Khiết
-          </span>
-          <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-        </div>
-
-        {/* Hero Title with data-testid="home-title" */}
-        <h1
-          data-testid="home-title"
-          className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 mb-6 leading-tight"
-        >
-          <span className="theme-gradient-text drop-shadow-[0_6px_35px_rgba(2,132,199,0.22)]">
-            ExpenseTrail
-          </span>
-        </h1>
-
-        {/* Hero Description */}
-        <p className="max-w-2xl mx-auto text-sm sm:text-base lg:text-lg text-slate-600 font-medium leading-relaxed mb-8">
-          Hệ sinh thái quản lý chi tiêu cá nhân trong trẻo và chuẩn mực như pha lê tuyết trắng.
-          Ghi nhận giao dịch mượt mà, phân loại danh mục thông minh, đánh dấu ưu tiên và theo dõi dòng tiền minh bạch tuyệt đối.
-        </p>
-
-        {/* Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-          {!loading && user ? (
-            <Link
-              href="/expenses"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl theme-gradient-btn text-white text-sm font-bold shadow-[0_6px_25px_rgba(2,132,199,0.35)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
+      {/* Hero Section: Modern 2-Column Split Showcase */}
+      <section className="relative z-10 pt-10 sm:pt-14 lg:pt-20 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          {/* Left Column: Bold Headline & Actions */}
+          <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+            
+            {/* Hero Title with data-testid="home-title" */}
+            <h1
+              data-testid="home-title"
+              className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 leading-[1.1] max-w-2xl"
             >
-              <Wallet className="w-4 h-4" />
-              <span>Go to My Expenses</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          ) : !loading ? (
-            <>
-              <Link
-                href="/register"
-                data-testid="btn-register"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl theme-gradient-btn text-white text-sm font-bold shadow-[0_6px_25px_rgba(2,132,199,0.35)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
-              >
-                <span>Get Started Free</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/login"
-                data-testid="btn-login"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white/90 hover:bg-white border border-sky-100 text-slate-800 text-sm font-bold shadow-xs hover:border-sky-300 transition-all backdrop-blur-md"
-              >
-                <span>Sign In</span>
-              </Link>
-            </>
-          ) : null}
+              Smart Money Flow with{" "}
+              <span className="bg-gradient-to-r from-sky-600 via-cyan-500 to-blue-700 bg-clip-text text-transparent drop-shadow-[0_4px_30px_rgba(2,132,199,0.25)] block sm:inline">
+                ExpenseTrail
+              </span>
+            </h1>
+
+            {/* Hero Description */}
+            <p className="max-w-xl text-base sm:text-lg text-slate-600 font-medium leading-relaxed">
+              Hệ sinh thái quản lý tài chính cá nhân tinh gọn, hiện đại và chuẩn xác.
+              Theo dõi chi tiêu thời gian thực, tự động phân nhóm và đánh dấu ưu tiên với trải nghiệm mượt mà không độ trễ.
+            </p>
+
+            {/* Action Buttons */}
+            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full">
+              {!loading && user ? (
+                <Link
+                  href="/expenses"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl theme-gradient-btn text-white text-sm font-bold shadow-[0_8px_30px_rgba(2,132,199,0.35)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                >
+                  <Wallet className="w-4 h-4" />
+                  <span>Go to My Expenses</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              ) : !loading ? (
+                <>
+                  <Link
+                    href="/register"
+                    data-testid="btn-register"
+                    className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl theme-gradient-btn text-white text-sm font-bold shadow-[0_8px_30px_rgba(2,132,199,0.35)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                  >
+                    <span>Get Started Free</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <Link
+                    href="/login"
+                    data-testid="btn-login"
+                    className="inline-flex items-center gap-2 px-7 py-4 rounded-2xl bg-white/95 hover:bg-white border border-sky-100 text-slate-800 text-sm font-bold shadow-[0_4px_20px_rgba(2,132,199,0.06)] hover:border-sky-300 hover:shadow-md transition-all backdrop-blur-md"
+                  >
+                    <span>Sign In</span>
+                  </Link>
+                </>
+              ) : null}
+            </div>
+
+            {/* Value Highlights */}
+            <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-slate-500">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/70 border border-sky-100 shadow-xs">
+                <ShieldCheck className="w-4 h-4 text-sky-600" />
+                <span>Bảo mật JWT Cookie</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/70 border border-sky-100 shadow-xs">
+                <Sparkles className="w-4 h-4 text-cyan-600" />
+                <span>Đồng bộ tức thì</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/70 border border-sky-100 shadow-xs">
+                <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
+                <span>Theo dõi Starred</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: 3D Arctic Fox Floating Glass Showcase */}
+          <div className="lg:col-span-5 flex justify-center relative">
+            <div className="w-full max-w-[420px] aspect-square rounded-[36px] bg-gradient-to-b from-[#081329] via-[#0b1c3b] to-[#040a18] p-8 relative flex items-center justify-center shadow-[0_30px_70px_-15px_rgba(2,132,199,0.35)] border border-sky-200/20 overflow-hidden select-none group">
+              
+              {/* Internal Aurora Glaze */}
+              <div className="absolute -top-16 -left-16 w-48 h-48 bg-sky-500/20 blur-[70px] rounded-full pointer-events-none" />
+              <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-cyan-400/20 blur-[70px] rounded-full pointer-events-none" />
+
+              {/* Top Floating Glass Badge */}
+              <div className="absolute top-5 left-5 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md text-[11px] font-bold text-white shadow-lg">
+                <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Real-Time Tracker</span>
+              </div>
+
+              {/* Bottom Floating Glass Badge */}
+              <div className="absolute bottom-5 right-5 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md text-[11px] font-bold text-white shadow-lg">
+                <Star className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
+                <span>Aurora Fox Edition</span>
+              </div>
+
+              {/* 3D Interactive Fox */}
+              <AnimatedFox3D size="xl" interactive={true} />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Feature Cards Section (at least 3 cards) */}
-      <section className="relative z-10 py-8 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      {/* Feature Cards Bento Section */}
+      <section className="relative z-10 py-8 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="text-center mb-12">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
             Designed for Financial Mastery
