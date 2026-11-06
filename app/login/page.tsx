@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { Loader2, ArrowRight, Eye, EyeOff, AlertCircle } from "lucide-react";
 import AnimatedFox3D from "@/components/AnimatedFox3D";
+import Logo from "@/components/Logo";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -113,15 +114,15 @@ export default function LoginPage() {
         
         {/* Left Panel: Deep Ocean Night with Glowing Text & Celestial Rings */}
         <div className="md:col-span-5 bg-gradient-to-b from-[#081226] via-[#0b1b38] to-[#040915] p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden text-white select-none">
-          {/* Subtle Starry Dust Background */}
-          <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.7)_1px,transparent_1px)] [background-size:24px_24px] opacity-30 pointer-events-none" />
-          
           {/* Ambient Glows */}
           <div className="absolute -top-12 -left-12 w-48 h-48 bg-sky-500/20 blur-[80px] rounded-full pointer-events-none" />
           <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-cyan-400/20 blur-[80px] rounded-full pointer-events-none" />
 
-          {/* Headline */}
+          {/* Headline & Brand Logo */}
           <div className="relative z-10">
+            <div className="mb-5 inline-block">
+              <Logo theme="dark" size="sm" showSubtitle={false} href="/" />
+            </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">
               Welcome to <br />
               <span className="text-[#38bdf8] drop-shadow-[0_0_25px_rgba(56,189,248,0.6)]">
@@ -143,6 +144,9 @@ export default function LoginPage() {
 
         {/* Right Panel: Clean White Form */}
         <div className="md:col-span-7 bg-white p-8 sm:p-12 lg:p-14 flex flex-col justify-center">
+          <div className="mb-6 block md:hidden">
+            <Logo size="sm" showSubtitle={false} href="/" />
+          </div>
           
           {/* Login Form with data-testid="login-form" */}
           <form

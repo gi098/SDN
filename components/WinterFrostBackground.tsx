@@ -95,8 +95,7 @@ export function WinterFrostBackground() {
         </svg>
       </div>
 
-      {/* Delicate Frost Snowflakes & Crystal Shimmer Grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(rgba(186,230,253,0.7)_1.5px,transparent_1.5px)] [background-size:42px_42px] opacity-45" />
+      {/* Soft Glacial Frost Ambient Flow */}
 
       {/* Floating Ice Crystal Sparkles (SVG Snow Stars) */}
       <div className="absolute top-16 left-1/4 w-3 h-3 text-sky-300 opacity-60 animate-pulse">

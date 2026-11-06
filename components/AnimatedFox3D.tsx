@@ -23,8 +23,8 @@ export function AnimatedFox3D({
   const sizeClasses = {
     sm: "w-10 h-10",
     md: "w-16 h-16",
-    lg: "w-36 h-36 sm:w-44 sm:h-44",
-    xl: "w-48 h-48 sm:w-56 sm:h-56",
+    lg: "w-44 h-44 sm:w-52 sm:h-52",
+    xl: "w-56 h-56 sm:w-64 sm:h-64",
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -32,9 +32,9 @@ export function AnimatedFox3D({
     const rect = containerRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-    // Calculate 3D tilt angles (max +/- 18 degrees)
-    const rotateY = (x / (rect.width / 2)) * 18;
-    const rotateX = -(y / (rect.height / 2)) * 18;
+    // 3D perspective tilt angles
+    const rotateY = (x / (rect.width / 2)) * 20;
+    const rotateX = -(y / (rect.height / 2)) * 20;
     setRotate({ x: rotateX, y: rotateY });
   };
 
@@ -63,85 +63,59 @@ export function AnimatedFox3D({
         className="w-full h-full relative flex items-center justify-center transition-transform duration-300 ease-out [transform-style:preserve-3d]"
         style={{
           transform: isHovered
-            ? `rotateX(${rotate.x}deg) rotateY(${rotate.y}deg) scale3d(1.06, 1.06, 1.06)`
+            ? `rotateX(${rotate.x}deg) rotateY(${rotate.y}deg) scale3d(1.08, 1.08, 1.08)`
             : "none",
         }}
       >
-        {/* Ambient 3D Levitation Wrapper */}
-        <div className={`w-full h-full relative flex items-center justify-center [transform-style:preserve-3d] ${isHovered ? "" : "animate-fox-3d-float"}`}>
-          
-          {/* Back Glow Nebula (Layer -1 in 3D) */}
+        {/* Ambient 3D Floating Cycle */}
+        <div
+          className={`w-full h-full relative flex items-center justify-center [transform-style:preserve-3d] ${
+            isHovered ? "" : "animate-fox-3d-float"
+          }`}
+        >
+          {/* Luminous Celestial Halo (Back Layer) */}
           <div
-            className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500/30 via-sky-400/25 to-blue-600/30 blur-xl pointer-events-none"
-            style={{ transform: "translateZ(-20px)" }}
+            className="absolute inset-4 rounded-full bg-gradient-to-tr from-cyan-400/25 via-sky-400/20 to-blue-600/25 blur-2xl pointer-events-none"
+            style={{ transform: "translateZ(-25px)" }}
           />
 
           {showRings && (
             <>
-              {/* Outer 3D Aurora Ring (Spinning in 3D Space) */}
+              {/* Outer 3D Aurora Ring (Spinning around the fox) */}
               <div
-                className="absolute -inset-4 sm:-inset-6 rounded-full border-[2.5px] border-cyan-400/80 shadow-[0_0_25px_rgba(34,211,238,0.7),inset_0_0_15px_rgba(34,211,238,0.4)] pointer-events-none animate-ring-spin-slow"
+                className="absolute -inset-3 sm:-inset-5 rounded-full border-[2.5px] border-cyan-400/80 shadow-[0_0_25px_rgba(34,211,238,0.7),inset_0_0_15px_rgba(34,211,238,0.4)] pointer-events-none animate-ring-spin-slow"
                 style={{
                   transform: "rotateX(68deg) rotateZ(25deg) translateZ(-5px)",
                   transformStyle: "preserve-3d",
                 }}
               />
 
-              {/* Inner 3D Violet / Cyan Counter-Orbital Ring */}
+              {/* Inner 3D Counter-Rotating Celestial Ring */}
               <div
-                className="absolute -inset-2 sm:-inset-4 rounded-full border-[2px] border-sky-300/70 shadow-[0_0_18px_rgba(125,211,252,0.6)] pointer-events-none animate-ring-spin-reverse"
+                className="absolute -inset-1 sm:-inset-3 rounded-full border-[2px] border-sky-300/70 shadow-[0_0_18px_rgba(125,211,252,0.6)] pointer-events-none animate-ring-spin-reverse"
                 style={{
                   transform: "rotateX(-58deg) rotateY(20deg) translateZ(10px)",
                   transformStyle: "preserve-3d",
                 }}
               />
-
-              {/* Orbiting Stardust Particles (Floating at different 3D depths) */}
-              <div
-                className="absolute -top-3 right-2 w-2 h-2 rounded-full bg-cyan-300 shadow-[0_0_10px_#67e8f9] animate-pulse"
-                style={{ transform: "translateZ(35px)" }}
-              />
-              <div
-                className="absolute bottom-1 -left-2 w-2.5 h-2.5 rounded-full bg-sky-300 shadow-[0_0_12px_#7dd3fc] animate-pulse"
-                style={{ transform: "translateZ(45px)", animationDelay: "1s" }}
-              />
-              <div
-                className="absolute top-1/2 -right-4 w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_#ffffff] animate-pulse"
-                style={{ transform: "translateZ(55px)", animationDelay: "2s" }}
-              />
             </>
           )}
 
-          {/* Central 3D Arctic Fox Luminous Orb */}
+          {/* Transparent Arctic Aurora Fox (Floating in 3D Space without background) */}
           <div
-            className="w-full h-full rounded-full relative overflow-hidden shadow-[0_0_35px_rgba(6,182,212,0.5),0_0_60px_rgba(2,132,199,0.35)] border-2 border-cyan-300/60 bg-[#061224] flex items-center justify-center"
+            className="w-full h-full relative flex items-center justify-center drop-shadow-[0_15px_25px_rgba(6,182,212,0.35)]"
             style={{
-              transform: "translateZ(20px)",
+              transform: "translateZ(25px)",
               transformStyle: "preserve-3d",
             }}
           >
-            {/* Arctic Fox Image with Feathered Radial Vignette */}
-            <div
-              className="w-full h-full relative"
-              style={{
-                WebkitMaskImage: "radial-gradient(circle at 50% 50%, black 72%, transparent 98%)",
-                maskImage: "radial-gradient(circle at 50% 50%, black 72%, transparent 98%)",
-              }}
-            >
-              <Image
-                src="/fox.jpg"
-                alt="Arctic Aurora Fox"
-                fill
-                priority
-                className="object-cover object-center transform scale-110 hover:scale-115 transition-transform duration-500"
-                sizes="(max-width: 768px) 160px, 240px"
-              />
-            </div>
-
-            {/* Frost Crystalline Glaze Overlay */}
-            <div
-              className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-transparent to-white/20 pointer-events-none rounded-full"
-              style={{ transform: "translateZ(10px)" }}
+            <Image
+              src="/fox-transparent.png"
+              alt="Arctic Aurora Fox (Transparent)"
+              fill
+              priority
+              className="object-contain object-center transform transition-transform duration-300"
+              sizes="(max-width: 768px) 180px, 260px"
             />
           </div>
         </div>
@@ -151,4 +125,3 @@ export function AnimatedFox3D({
 }
 
 export default AnimatedFox3D;
-
