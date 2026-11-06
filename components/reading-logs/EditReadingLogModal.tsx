@@ -199,3 +199,4 @@ export function EditReadingLogModal({ log, isOpen, onClose }: EditReadingLogModa
     </div>
   );
 }
+

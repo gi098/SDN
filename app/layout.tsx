@@ -6,9 +6,9 @@ import { WinterFrostBackground } from "@/components/WinterFrostBackground";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ExpenseTrail – Personal Expense Tracker",
+  title: "ReadLog – Personal Reading Tracker",
   description:
-    "Next-gen personal expense tracking and financial management platform connected to Supabase PostgreSQL.",
+    "Next-gen personal reading log and habit tracking platform connected to Supabase PostgreSQL.",
 };
 
 export default function RootLayout({
