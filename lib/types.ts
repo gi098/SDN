@@ -1,23 +1,34 @@
-export type TaskStatus = "TODO" | "IN_PROGRESS" | "DONE";
-export type TaskPriority = "LOW" | "MEDIUM" | "HIGH";
+import { ALLOWED_CATEGORIES, Category } from "./validations";
 
-export interface Task {
+export { ALLOWED_CATEGORIES };
+export type { Category };
+
+export interface User {
   id: string;
-  title: string;
-  description: string | null;
-  status: TaskStatus;
-  priority: TaskPriority;
-  dueDate: string | null;
-  teamId: string | null;
-  assigneeId: string | null;
-  createdAt: string;
-  updatedAt: string;
+  email: string;
 }
 
-export interface TaskFormData {
+export interface Expense {
+  id: string;
+  userId: string;
   title: string;
-  description: string;
-  status: TaskStatus;
-  priority: TaskPriority;
-  dueDate: string;
+  amount: number;
+  category: string;
+  note: string;
+  starred: boolean;
+  spentAt: string | Date;
+  createdAt: string | Date;
+}
+
+export interface CategoryBreakdown {
+  category: string;
+  count: number;
+  total: number;
+}
+
+export interface ExpenseSummary {
+  count: number;
+  starredCount: number;
+  totalAmount: number;
+  breakdown: CategoryBreakdown[];
 }

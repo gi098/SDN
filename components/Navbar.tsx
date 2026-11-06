@@ -2,20 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LogIn, CheckSquare, LogOut, LayoutDashboard } from "lucide-react";
+import { LogIn, LogOut, Wallet, ArrowRight } from "lucide-react";
 import Logo from "@/components/Logo";
-import LanguageToggle from "@/components/LanguageToggle";
-import NotificationBell from "@/components/NotificationBell";
-import { useLanguage } from "@/lib/languageContext";
-import { useSession, signOut } from "next-auth/react";
+import { useAuth } from "@/contexts/AuthContext";
 
-export default function Navbar() {
+export function Navbar() {
   const pathname = usePathname();
-  const { t } = useLanguage();
-  const { data: session } = useSession();
+  const { user, logout, loading } = useAuth();
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-2xl bg-[#060b14]/85 border-b border-white/10 shadow-2xl transition-all">
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/85 border-b border-slate-200/80 shadow-xs transition-all">
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 h-20 flex items-center justify-between gap-4">
         
         {/* Left: Brand / Logo */}
@@ -25,89 +21,104 @@ export default function Navbar() {
 
         {/* Middle: Navigation Links (Desktop) */}
         <nav className="hidden lg:flex items-center justify-center gap-1 flex-1 px-4">
-          <div className="flex items-center gap-1.5 bg-[#0a1222] p-1.5 rounded-2xl border border-white/10 shadow-inner">
+          <div className="flex items-center gap-1.5 bg-slate-100/80 p-1.5 rounded-2xl border border-slate-200/80 shadow-inner">
             <Link
               href="/"
               className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${
                 pathname === "/"
-                  ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/35 shadow-[0_0_15px_rgba(16,185,129,0.25)]"
-                  : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/50"
+                  ? "bg-white text-rose-600 border border-rose-200/80 shadow-xs"
+                  : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
               }`}
             >
-              <CheckSquare className="w-4 h-4" />
-              <span>{t("navTasks")}</span>
+              <Wallet className="w-4 h-4" />
+              <span>Home</span>
             </Link>
 
-            <Link
-              href="/teams"
-              className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${
-                pathname.startsWith("/teams") || pathname.startsWith("/dashboard")
-                  ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/35 shadow-[0_0_15px_rgba(16,185,129,0.25)]"
-                  : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/50"
-              }`}
-            >
-              <LayoutDashboard className="w-4 h-4" />
-              <span>{t("navTeams")}</span>
-            </Link>
+            {!loading && user && (
+              <Link
+                href="/expenses"
+                data-testid="link-expenses"
+                className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${
+                  pathname.startsWith("/expenses")
+                    ? "bg-white text-rose-600 border border-rose-200/80 shadow-xs"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
+                }`}
+              >
+                <Wallet className="w-4 h-4" />
+                <span>Expenses</span>
+              </Link>
+            )}
           </div>
         </nav>
 
         {/* Right: User Controls & Utility */}
         <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 relative z-20">
           
-          <div className="hidden xl:flex items-center mr-1">
-             {session?.user && (
-               <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-[#0a1222] border border-white/10 shadow-sm hover:border-emerald-500/40 transition-all">
-                 <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white font-black text-xs shrink-0 shadow-sm">
-                   {session.user.name?.charAt(0).toUpperCase()}
-                 </div>
-                 <div className="flex flex-col max-w-[180px]">
-                   <span className="text-xs font-bold text-slate-200 truncate leading-tight">
-                     {session.user.name}
-                   </span>
-                   <span className="text-[10px] font-medium text-slate-400 truncate leading-tight">
-                     {session.user.email}
-                   </span>
-                 </div>
-               </div>
-             )}
-          </div>
+          {!loading && user ? (
+            <>
+              {/* Desktop User Email Badge */}
+              <div className="hidden sm:flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-xs hover:border-rose-300 transition-all">
+                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-rose-500 to-amber-600 flex items-center justify-center text-white font-black text-xs shrink-0 shadow-xs">
+                  {user.email.charAt(0).toUpperCase()}
+                </div>
+                <div className="flex flex-col max-w-[180px]">
+                  <span
+                    data-testid="user-email"
+                    className="text-xs font-bold text-slate-800 truncate leading-tight"
+                  >
+                    {user.email}
+                  </span>
+                  <span className="text-[10px] font-semibold text-rose-600 truncate leading-tight">
+                    Active Session
+                  </span>
+                </div>
+              </div>
 
-          <div className="hidden xl:block h-6 w-[1px] bg-slate-800 mx-1" />
+              {/* Mobile Expenses Link */}
+              <Link
+                href="/expenses"
+                className="flex lg:hidden items-center p-2 rounded-xl text-slate-600 hover:text-rose-600 hover:bg-rose-50 transition-colors"
+              >
+                <Wallet className="w-5 h-5" />
+              </Link>
 
-          {/* Nav links for smaller screens (under lg) */}
-          <div className="flex lg:hidden items-center gap-1 mr-1">
-             <Link href="/" className={`p-2 rounded-xl transition-colors ${pathname === "/" ? "bg-emerald-500/15 text-emerald-400" : "text-slate-400 hover:bg-slate-800"}`}>
-               <CheckSquare className="w-5 h-5" />
-             </Link>
-             <Link href="/teams" className={`p-2 rounded-xl transition-colors ${pathname.startsWith("/teams") || pathname.startsWith("/dashboard") ? "bg-emerald-500/15 text-emerald-400" : "text-slate-400 hover:bg-slate-800"}`}>
-               <LayoutDashboard className="w-5 h-5" />
-             </Link>
-          </div>
+              {/* Logout Button */}
+              <button
+                type="button"
+                data-testid="btn-logout"
+                onClick={logout}
+                className="flex items-center gap-1.5 p-2 sm:px-3 sm:py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-rose-600 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 transition-all cursor-pointer shadow-xs"
+                title="Logout"
+              >
+                <LogOut className="w-4 h-4" />
+                <span className="hidden sm:inline">Logout</span>
+              </button>
+            </>
+          ) : !loading ? (
+            <>
+              <Link
+                href="/login"
+                data-testid="btn-login"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-200 shadow-xs transition-all"
+              >
+                <LogIn className="w-4 h-4 text-rose-500" />
+                <span>Login</span>
+              </Link>
 
-          <NotificationBell />
-          <LanguageToggle />
-
-          {!session ? (
-            <Link
-              href="/login"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white theme-gradient-btn hover:scale-105 active:scale-95 transition-all shadow-md ml-1"
-            >
-              <LogIn className="w-4 h-4" />
-              <span className="hidden sm:inline">{t("navSignIn")}</span>
-            </Link>
-          ) : (
-            <button
-              onClick={() => signOut({ callbackUrl: "/" })}
-              className="flex items-center gap-1.5 p-2.5 sm:px-3 sm:py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition-all ml-1 cursor-pointer"
-              title="Logout"
-            >
-              <LogOut className="w-4 h-4" />
-              <span className="hidden sm:inline">Logout</span>
-            </button>
-          )}
+              <Link
+                href="/register"
+                data-testid="btn-register"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white theme-gradient-btn hover:scale-105 active:scale-95 transition-all shadow-[0_4px_16px_rgba(225,29,72,0.3)] cursor-pointer"
+              >
+                <span>Register</span>
+                <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
+              </Link>
+            </>
+          ) : null}
         </div>
       </div>
     </header>
   );
 }
+
+export default Navbar;

@@ -1,23 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { LanguageProvider } from "@/lib/languageContext";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { Providers } from "@/components/Providers";
-import { Toaster } from "react-hot-toast";
+import { Navbar } from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Nexus – Modern Workspace & Task Platform",
+  title: "ExpenseTrail – Personal Expense Tracker",
   description:
-    "Enterprise-grade collaborative workspace and task management system built with Next.js, TypeScript, Tailwind CSS, Prisma ORM, and Supabase.",
-  icons: {
-    icon: "/favicon.ico",
-  },
+    "Next-gen personal expense tracking and financial management platform connected to Supabase PostgreSQL.",
 };
 
 export default function RootLayout({
@@ -26,28 +16,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark h-full antialiased" suppressHydrationWarning>
+    <html lang="en" className="h-full" suppressHydrationWarning>
       <body
-        className={`${inter.className} min-h-full flex flex-col bg-[#060b14] text-slate-100 antialiased selection:bg-emerald-500 selection:text-slate-950`}
         suppressHydrationWarning
+        className="min-h-full flex flex-col bg-[#f8fafc] text-slate-900 antialiased selection:bg-rose-500/20 selection:text-rose-700"
       >
         <Providers>
-          <LanguageProvider>
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <Toaster
-              position="top-right"
-              toastOptions={{
-                style: {
-                  background: "#0a1324",
-                  color: "#f8fafc",
-                  border: "1px solid rgba(16, 185, 129, 0.25)",
-                  borderRadius: "1rem",
-                },
-              }}
-            />
-          </LanguageProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
         </Providers>
       </body>
     </html>

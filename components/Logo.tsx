@@ -6,10 +6,10 @@ interface LogoProps {
   size?: "sm" | "md" | "lg" | "xl";
   showText?: boolean;
   showSubtitle?: boolean;
+  title?: string;
   subtitle?: string;
   className?: string;
   href?: string;
-  animate?: boolean;
   layout?: "col" | "row";
 }
 
@@ -17,71 +17,58 @@ export default function Logo({
   size = "md",
   showText = true,
   showSubtitle = true,
-  subtitle = "Workspace Intelligence",
+  title = "ExpenseTrail",
+  subtitle = "Personal Expense Tracker",
   className = "",
-  href,
-  animate = true,
+  href = "/",
   layout = "col",
 }: LogoProps) {
   const sizeMap = {
-    sm: { box: "w-8 h-8", text: "text-base", sub: "text-[10px]", icon: "w-4 h-4" },
-    md: { box: "w-10 h-10", text: "text-lg", sub: "text-[11px]", icon: "w-5 h-5" },
-    lg: { box: "w-12 h-12", text: "text-2xl", sub: "text-xs", icon: "w-6 h-6" },
-    xl: { box: "w-16 h-16", text: "text-3xl", sub: "text-sm", icon: "w-8 h-8" },
+    sm: { box: "w-8 h-8 rounded-lg", text: "text-base", sub: "text-[10px]", icon: "w-4 h-4" },
+    md: { box: "w-10 h-10 rounded-xl", text: "text-lg", sub: "text-[11px]", icon: "w-5 h-5" },
+    lg: { box: "w-12 h-12 rounded-2xl", text: "text-2xl", sub: "text-xs", icon: "w-6 h-6" },
+    xl: { box: "w-16 h-16 rounded-2xl", text: "text-3xl", sub: "text-sm", icon: "w-8 h-8" },
   };
 
   const currentSize = sizeMap[size];
 
   const content = (
     <div className={`flex items-center gap-3 select-none ${className}`}>
-      {/* High-Tech Glowing Hexagonal / Cyber Cube Icon (Emerald & Navy) */}
+      {/* Luxury Red & Amber Gradient Icon Tile (Crisp Geometric 3D Cube) */}
       <div className="relative group shrink-0">
         <div
-          className={`${currentSize.box} relative rounded-xl bg-gradient-to-br from-emerald-500/20 via-teal-600/30 to-green-600/20 border border-emerald-500/40 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.35)] transition-all duration-300 group-hover:scale-110 group-hover:border-emerald-400 group-hover:shadow-[0_0_25px_rgba(16,185,129,0.6)]`}
+          className={`${currentSize.box} relative bg-gradient-to-br from-rose-600 via-red-600 to-amber-500 flex items-center justify-center shadow-[0_4px_16px_rgba(225,29,72,0.35)] transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_6px_22px_rgba(225,29,72,0.5)]`}
         >
-          {/* Subtle Ambient Glow behind */}
-          <div className="absolute inset-0 bg-emerald-400/20 blur-md rounded-xl" />
-
-          {/* Futuristic Geometric Icon */}
+          {/* Crisp Geometric Finance Cube / Diamond Icon */}
           <svg
             viewBox="0 0 24 24"
             fill="none"
-            className={`${currentSize.icon} relative z-10 text-emerald-400 drop-shadow-[0_0_6px_rgba(16,185,129,0.8)]`}
+            className={`${currentSize.icon} text-white drop-shadow-xs`}
           >
             <path
               d="M12 2L3 7V17L12 22L21 17V7L12 2Z"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M12 22V12"
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
-              d="M12 22V12"
-              stroke="url(#nexus-grad)"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
               d="M21 7L12 12L3 7"
-              stroke="url(#nexus-grad)"
+              stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            <circle cx="12" cy="12" r="2.5" fill="#34d399" />
-            <defs>
-              <linearGradient id="nexus-grad" x1="3" y1="7" x2="21" y2="22" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#34d399" />
-                <stop offset="0.5" stopColor="#10b981" />
-                <stop offset="1" stopColor="#059669" />
-              </linearGradient>
-            </defs>
+            <circle cx="12" cy="12" r="2" fill="#ffffff" />
           </svg>
         </div>
-
-        {/* Mini Accent Dot */}
-        <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] ring-2 ring-[#050a12]" />
       </div>
 
       {/* Brand Typography */}
@@ -89,18 +76,15 @@ export default function Logo({
         <div className={`flex ${layout === "row" ? "flex-row items-center gap-2" : "flex-col"}`}>
           <div className="flex items-center gap-1.5 leading-none">
             <span
-              className={`font-black tracking-tight bg-gradient-to-r from-white via-slate-100 to-emerald-200 bg-clip-text text-transparent ${currentSize.text}`}
+              className={`font-black tracking-tight bg-gradient-to-r from-slate-950 via-slate-800 to-rose-700 bg-clip-text text-transparent ${currentSize.text}`}
             >
-              NEXUS
-            </span>
-            <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/30 shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-              SDN
+              {title}
             </span>
           </div>
 
           {showSubtitle && (
             <span
-              className={`text-slate-400 font-medium tracking-wide ${layout === "col" ? "mt-1" : ""} ${currentSize.sub}`}
+              className={`text-slate-500 font-medium tracking-wide ${layout === "col" ? "mt-1" : ""} ${currentSize.sub}`}
             >
               {layout === "row" ? `· ${subtitle}` : subtitle}
             </span>

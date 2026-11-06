@@ -1,54 +1,56 @@
-import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import { prisma } from "@/lib/prisma";
+import { validateRegisterInput } from "@/lib/validations";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
-    const { name, email, password } = await req.json();
+    const body = await req.json().catch(() => ({}));
+    const validation = validateRegisterInput(body);
 
-    if (!name || !email || !password) {
+    if (!validation.valid) {
       return NextResponse.json(
-        { error: "Missing fields" },
+        { error: validation.error },
         { status: 400 }
       );
     }
 
-    if (password.length < 6) {
-      return NextResponse.json(
-        { error: "Password must be at least 6 characters" },
-        { status: 400 }
-      );
-    }
+    const email = String(body.email).trim().toLowerCase();
+    const password = String(body.password);
 
-    const existingUser = await prisma.user.findUnique({
+    // Check duplicate email
+    const existing = await prisma.user.findUnique({
       where: { email },
     });
 
-    if (existingUser) {
+    if (existing) {
       return NextResponse.json(
-        { error: "User already exists" },
-        { status: 400 }
+        { error: "Email is already registered" },
+        { status: 409 }
       );
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const passwordHash = await bcrypt.hash(password, 10);
 
     const user = await prisma.user.create({
       data: {
-        name,
         email,
-        password: hashedPassword,
+        passwordHash,
+      },
+      select: {
+        id: true,
+        email: true,
       },
     });
 
     return NextResponse.json(
-      { message: "User registered successfully", user: { id: user.id, name: user.name, email: user.email } },
+      { id: user.id, email: user.email },
       { status: 201 }
     );
-  } catch (error) {
-    console.error("Registration error:", error);
+  } catch (err: unknown) {
+    console.error("Register error:", err);
     return NextResponse.json(
-      { error: "An error occurred during registration" },
+      { error: "An unexpected error occurred during registration" },
       { status: 500 }
     );
   }
