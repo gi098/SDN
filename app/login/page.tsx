@@ -112,13 +112,13 @@ export default function LoginPage() {
       <div className="w-full max-w-[960px] bg-white rounded-[32px] overflow-hidden shadow-[0_25px_60px_-15px_rgba(2,132,199,0.2)] border border-sky-100 grid grid-cols-1 md:grid-cols-12 min-h-[560px]">
         
         {/* Left Panel: Deep Ocean Night with Glowing Text & Celestial Rings */}
-        <div className="md:col-span-5 bg-gradient-to-b from-[#081226] via-[#0b1b38] to-[#040915] p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden text-white select-none">
+        <div className="md:col-span-5 bg-gradient-to-b from-[#081226] via-[#0b1b38] to-[#040915] p-8 sm:p-10 flex flex-col justify-center items-center relative overflow-hidden text-white select-none">
           {/* Ambient Glows */}
           <div className="absolute -top-12 -left-12 w-48 h-48 bg-sky-500/20 blur-[80px] rounded-full pointer-events-none" />
           <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-cyan-400/20 blur-[80px] rounded-full pointer-events-none" />
 
           {/* Headline */}
-          <div className="relative z-10">
+          <div className="relative z-10 text-center mb-6 sm:mb-8">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">
               Welcome to <br />
               <span className="text-[#38bdf8] drop-shadow-[0_0_25px_rgba(56,189,248,0.6)]">
@@ -128,13 +128,8 @@ export default function LoginPage() {
           </div>
 
           {/* 3D Animated Arctic Aurora Fox */}
-          <div className="relative z-10 flex items-center justify-center my-8 sm:my-12">
+          <div className="relative z-10 flex items-center justify-center">
             <AnimatedFox3D size="lg" interactive={true} />
-          </div>
-
-          {/* Bottom subtle text */}
-          <div className="relative z-10 text-xs text-slate-400 font-medium">
-            Smart & Intelligent Personal Expense Tracking
           </div>
         </div>
 
