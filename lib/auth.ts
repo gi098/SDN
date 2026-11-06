@@ -6,7 +6,7 @@ import { prisma } from "./prisma";
 const SECRET =
   process.env.AUTH_SECRET ||
   process.env.NEXTAUTH_SECRET ||
-  "fallback_secret_sdn302_expensetrail";
+  "fallback_secret_sdn302_readlog";
 
 function base64UrlEncode(str: string): string {
   return Buffer.from(str)

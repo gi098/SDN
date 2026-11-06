@@ -17,7 +17,6 @@ model User {
   passwordHash String
   createdAt    DateTime     @default(now())
   readingLogs  ReadingLog[]
-  expenses     Expense[]
 
   @@map("users")
 }
@@ -39,22 +38,4 @@ model ReadingLog {
   @@index([userId])
   @@index([userId, readAt])
   @@map("reading_logs")
-}
-
-model Expense {
-  id        String   @id @default(cuid())
-  userId    String
-  title     String
-  amount    Float
-  category  String
-  note      String   @default("")
-  starred   Boolean  @default(false)
-  spentAt   DateTime
-  createdAt DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-  @@index([userId, spentAt])
-  @@map("expenses")
 }
